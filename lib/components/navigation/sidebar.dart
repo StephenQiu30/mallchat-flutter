@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
 
-import '../controllers/app_controller.dart';
+import 'package:mallchat_flutter/controllers/app_controller.dart';
+import 'package:mallchat_flutter/components/common/mallchat_avatar.dart';
 
-class SidebarWidget extends StatelessWidget {
-  const SidebarWidget({super.key});
+class Sidebar extends StatelessWidget {
+  const Sidebar({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -56,9 +57,8 @@ class SidebarWidget extends StatelessWidget {
               BoxShadow(color: Colors.black.withValues(alpha: 0.1), blurRadius: 8, offset: const Offset(0, 2))
             ],
           ),
-          child: const TDAvatar(
+          child: const MallChatAvatar(
             size: TDAvatarSize.large,
-            type: TDAvatarType.normal,
             avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?seed=Stephen&backgroundColor=e2e8f0',
           ),
         ),

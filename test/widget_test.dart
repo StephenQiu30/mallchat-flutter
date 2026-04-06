@@ -13,7 +13,7 @@ class _TestChatController extends ChatController {
     super.onInit();
     chatRooms.clear();
     currentMessages.clear();
-    activeRoomId.value = '';
+    activeRoomId.value = null;
   }
 }
 

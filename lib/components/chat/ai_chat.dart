@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
 
-class AiChatArea extends StatelessWidget {
-  const AiChatArea({super.key});
+class AiChat extends StatelessWidget {
+  const AiChat({super.key});
 
   @override
   Widget build(BuildContext context) {

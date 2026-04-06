@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
+import 'package:mallchat_flutter/components/common/mallchat_avatar.dart';
 
-class ChatListWidget extends StatelessWidget {
-  const ChatListWidget({super.key});
+class ChatList extends StatelessWidget {
+  const ChatList({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -66,11 +67,10 @@ class ChatListWidget extends StatelessWidget {
           // Avatar with optional unread badge
           Stack(
             children: [
-              TDAvatar(
-                size: TDAvatarSize.large,
-                type: TDAvatarType.normal,
-                avatarUrl: avatarUrl,
-              ),
+                MallChatAvatar(
+                  size: TDAvatarSize.large,
+                  avatarUrl: avatarUrl,
+                ),
               if (unread)
                 Positioned(
                   top: 0,
