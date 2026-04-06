@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
+import 'input_toolbar.dart';
 
 class ChatAreaWidget extends StatelessWidget {
   const ChatAreaWidget({super.key});
@@ -66,66 +67,12 @@ class ChatAreaWidget extends StatelessWidget {
         ),
         
         // 3. Input Area
-        Container(
-          height: 160,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border(top: BorderSide(color: Colors.grey.shade300, width: 1)),
-          ),
-          child: Column(
-            children: [
-              // Toolbar
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: Row(
-                  children: [
-                    Icon(TDIcons.smile, color: Colors.grey.shade600, size: 22),
-                    const SizedBox(width: 16),
-                    Icon(TDIcons.folder, color: Colors.grey.shade600, size: 22),
-                    const SizedBox(width: 16),
-                    Icon(TDIcons.time, color: Colors.grey.shade600, size: 22),
-                    const Spacer(),
-                    Icon(TDIcons.precise_monitor, color: Theme.of(context).primaryColor, size: 22),
-                  ],
-                ),
-              ),
-              // Input & Send button
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: TextField(
-                    maxLines: null,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "输入消息...",
-                    ),
-                    style: const TextStyle(fontSize: 14),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text("Enter 发送 / Shift+Enter 换行", style: TextStyle(color: Colors.grey.shade400, fontSize: 12)),
-                    const SizedBox(width: 12),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).primaryColor,
-                        foregroundColor: Colors.white,
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
-                      ),
-                      onPressed: () {},
-                      child: const Text("发送"),
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
-        )
+        InputToolbar(
+          onSend: (text) {
+            // Handle send in ChatAreaWidget context if needed
+            debugPrint("Sending: $text");
+          },
+        ),
       ],
     );
   }

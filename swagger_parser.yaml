@@ -1,0 +1,30 @@
+swagger_parser:
+  output_directory: lib/api
+  json_serializer: json_serializable
+  language: dart
+  root_interface: true
+  
+  schemes:
+    - schema_url: http://localhost:8081/api/v3/api-docs
+      root_client_name: UserClient
+      output_directory: lib/api/user
+      
+    - schema_url: http://localhost:8082/api/v3/api-docs
+      root_client_name: FileClient
+      output_directory: lib/api/file
+      
+    - schema_url: http://localhost:8083/api/v3/api-docs
+      root_client_name: NotificationClient
+      output_directory: lib/api/notification
+
+    - schema_url: http://localhost:8084/api/v3/api-docs
+      root_client_name: LogClient
+      output_directory: lib/api/log
+      
+    - schema_url: http://localhost:8085/api/v3/api-docs
+      root_client_name: AiClient
+      output_directory: lib/api/ai
+
+    - schema_url: http://localhost:8086/api/v3/api-docs
+      root_client_name: ChatClient
+      output_directory: lib/api/chat

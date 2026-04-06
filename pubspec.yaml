@@ -37,6 +37,9 @@ dependencies:
   tdesign_flutter: ^0.2.7
   get: ^4.7.3
   flutter_slidable: ^3.1.2
+  dio: ^5.4.0
+  json_annotation: ^4.8.1
+  retrofit: ^4.9.2
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +51,10 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+  swagger_parser: ^1.43.0
+  build_runner: ^2.4.8
+  json_serializable: ^6.7.1
+  retrofit_generator: ^10.2.3
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

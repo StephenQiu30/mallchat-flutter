@@ -1,0 +1,455 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "MallChat Cloud API",
+        "description": "MallChat Cloud 微服务接口文档",
+        "contact": {
+            "name": "StephenQiu30"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8086/api",
+            "description": "Generated server url"
+        }
+    ],
+    "tags": [
+        {
+            "name": "ChatRoomController",
+            "description": "聊天室管理"
+        }
+    ],
+    "paths": {
+        "/chat/room/join": {
+            "post": {
+                "tags": [
+                    "ChatRoomController"
+                ],
+                "summary": "加入聊天室",
+                "description": "将当前用户加入到指定的聊天室",
+                "operationId": "joinChatRoom",
+                "parameters": [
+                    {
+                        "name": "roomId",
+                        "in": "query",
+                        "description": "房间ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseBoolean"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/chat/room/add": {
+            "post": {
+                "tags": [
+                    "ChatRoomController"
+                ],
+                "summary": "创建聊天室",
+                "description": "创建一个新的聊天室（群聊或私聊）",
+                "operationId": "addChatRoom",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChatRoomAddRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseLong"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/chat/message/send": {
+            "post": {
+                "tags": [
+                    "ChatRoomController"
+                ],
+                "summary": "发送消息",
+                "description": "向指定房间发送一条消息（支持文本、图片、文件）",
+                "operationId": "sendMessage",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ChatMessageSendRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseLong"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/chat/room/list": {
+            "get": {
+                "tags": [
+                    "ChatRoomController"
+                ],
+                "summary": "获取当前用户的聊天室列表",
+                "description": "获取当前登录用户参与的所有聊天室",
+                "operationId": "listUserChatRooms",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseListChatRoomVO"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/chat/message/history": {
+            "get": {
+                "tags": [
+                    "ChatRoomController"
+                ],
+                "summary": "获取历史消息",
+                "description": "获取指定房间的历史聊天记录（支持滚动翻页优化）",
+                "operationId": "listHistoryMessages",
+                "parameters": [
+                    {
+                        "name": "roomId",
+                        "in": "query",
+                        "description": "房间ID",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "lastMessageId",
+                        "in": "query",
+                        "description": "上一页最后一条消息ID",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "加载消息数量",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32",
+                            "default": 20
+                        },
+                        "example": 20
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BaseResponseListChatMessageVO"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BaseResponseBoolean": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "description": "状态码",
+                        "format": "int32"
+                    },
+                    "data": {
+                        "type": "boolean",
+                        "description": "数据"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "消息"
+                    }
+                },
+                "description": "通用返回类"
+            },
+            "ChatRoomAddRequest": {
+                "required": [
+                    "name",
+                    "type"
+                ],
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "房间名称",
+                        "example": "技术交流群"
+                    },
+                    "type": {
+                        "type": "integer",
+                        "description": "房间类型：1-群聊，2-私聊",
+                        "format": "int32",
+                        "example": 1
+                    },
+                    "avatar": {
+                        "type": "string",
+                        "description": "房间头像",
+                        "example": "https://example.com/avatar.png"
+                    }
+                },
+                "description": "创建聊天室请求"
+            },
+            "BaseResponseLong": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "description": "状态码",
+                        "format": "int32"
+                    },
+                    "data": {
+                        "type": "integer",
+                        "description": "数据",
+                        "format": "int64"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "消息"
+                    }
+                },
+                "description": "通用返回类"
+            },
+            "ChatMessageSendRequest": {
+                "required": [
+                    "content",
+                    "roomId"
+                ],
+                "type": "object",
+                "properties": {
+                    "roomId": {
+                        "type": "integer",
+                        "description": "房间ID",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "消息内容",
+                        "example": "Hello, World!"
+                    },
+                    "type": {
+                        "type": "integer",
+                        "description": "消息类型：1-文本，2-图片，3-文件",
+                        "format": "int32",
+                        "example": 1
+                    }
+                },
+                "description": "发送消息请求"
+            },
+            "BaseResponseListChatRoomVO": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "description": "状态码",
+                        "format": "int32"
+                    },
+                    "data": {
+                        "type": "array",
+                        "description": "数据",
+                        "items": {
+                            "$ref": "#/components/schemas/ChatRoomVO"
+                        }
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "消息"
+                    }
+                },
+                "description": "通用返回类"
+            },
+            "ChatRoomVO": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "房间ID",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "房间名称",
+                        "example": "技术交流群"
+                    },
+                    "type": {
+                        "type": "integer",
+                        "description": "房间类型：1-群聊，2-私聊",
+                        "format": "int32",
+                        "example": 1
+                    },
+                    "avatar": {
+                        "type": "string",
+                        "description": "房间头像",
+                        "example": "https://example.com/avatar.png"
+                    },
+                    "createTime": {
+                        "type": "string",
+                        "description": "创建时间",
+                        "format": "date-time"
+                    }
+                },
+                "description": "聊天室视图对象"
+            },
+            "BaseResponseListChatMessageVO": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "description": "状态码",
+                        "format": "int32"
+                    },
+                    "data": {
+                        "type": "array",
+                        "description": "数据",
+                        "items": {
+                            "$ref": "#/components/schemas/ChatMessageVO"
+                        }
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "消息"
+                    }
+                },
+                "description": "通用返回类"
+            },
+            "ChatMessageVO": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "消息ID",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "roomId": {
+                        "type": "integer",
+                        "description": "房间ID",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "fromUserId": {
+                        "type": "integer",
+                        "description": "发送者ID",
+                        "format": "int64",
+                        "example": 1
+                    },
+                    "fromUserName": {
+                        "type": "string",
+                        "description": "发送者姓名",
+                        "example": "Stephen"
+                    },
+                    "fromUserAvatar": {
+                        "type": "string",
+                        "description": "发送者头像",
+                        "example": "https://example.com/avatar.png"
+                    },
+                    "content": {
+                        "type": "string",
+                        "description": "消息内容",
+                        "example": "Hello, World!"
+                    },
+                    "type": {
+                        "type": "integer",
+                        "description": "消息类型：1-文本，2-图片，3-文件",
+                        "format": "int32",
+                        "example": 1
+                    },
+                    "createTime": {
+                        "type": "string",
+                        "description": "发送时间",
+                        "format": "date-time"
+                    }
+                },
+                "description": "聊天消息视图对象"
+            }
+        }
+    },
+    "x-openapi": {
+        "x-setting": {
+            "customCode": 200,
+            "language": "zh-CN",
+            "enableSwaggerModels": true,
+            "swaggerModelName": "Swagger Models",
+            "enableReloadCacheParameter": false,
+            "enableAfterScript": true,
+            "enableDocumentManage": true,
+            "enableVersion": false,
+            "enableRequestCache": true,
+            "enableFilterMultipartApis": false,
+            "enableFilterMultipartApiMethodType": "POST",
+            "enableHost": false,
+            "enableHostText": "",
+            "enableDynamicParameter": false,
+            "enableDebug": true,
+            "enableFooter": true,
+            "enableFooterCustom": false,
+            "enableSearch": true,
+            "enableOpenApi": true,
+            "enableHomeCustom": false,
+            "enableGroup": true,
+            "enableResponseCode": true
+        },
+        "x-markdownFiles": []
+    }
+}
