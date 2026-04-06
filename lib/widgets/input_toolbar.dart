@@ -23,91 +23,73 @@ class _InputToolbarState extends State<InputToolbar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: EdgeInsets.only(
+        left: 12,
+        right: 12,
+        top: 12,
+        bottom: MediaQuery.of(context).padding.bottom + 12,
+      ),
       decoration: BoxDecoration(
         color: Colors.white,
-        border: Border(top: BorderSide(color: Colors.black.withValues(alpha: 0.05), width: 0.5)),
-      ),
-      child: Column(
-        children: [
-          // Toolbar Actions
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              children: [
-                _buildActionIcon(TDIcons.smile, tooltip: "表情"),
-                _buildActionIcon(TDIcons.image, tooltip: "图片"),
-                _buildActionIcon(TDIcons.folder_add, tooltip: "文件"),
-                _buildActionIcon(TDIcons.history, tooltip: "聊天记录"),
-                const Spacer(),
-                _buildActionIcon(TDIcons.precise_monitor, color: Theme.of(context).primaryColor, tooltip: "AI 辅助"),
-              ],
-            ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.05),
+            blurRadius: 10,
+            offset: const Offset(0, -2),
           ),
-          const SizedBox(height: 8),
-          // Input Box
+        ],
+      ),
+      child: Row(
+        children: [
+          _buildActionIcon(TDIcons.add_circle, color: const Color(0xFF9CA3AF)),
+          const SizedBox(width: 8),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              decoration: BoxDecoration(
+                color: const Color(0xFFF3F4F6),
+                borderRadius: BorderRadius.circular(24),
+              ),
               child: TextField(
                 controller: _controller,
-                maxLines: null,
-                style: const TextStyle(fontSize: 15, color: Color(0xFF1D2129)),
+                maxLines: 4,
+                minLines: 1,
+                style: const TextStyle(fontSize: 15, color: Color(0xFF1F2937)),
                 decoration: const InputDecoration(
                   hintText: "发个消息吧...",
-                  hintStyle: TextStyle(color: Color(0xFFC9CDD4), fontSize: 14),
+                  hintStyle: TextStyle(color: Color(0xFF9CA3AF), fontSize: 14),
                   border: InputBorder.none,
                 ),
                 onSubmitted: (_) => _handleSend(),
               ),
             ),
           ),
-          // Bottom Row (Send button)
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                const Text(
-                  "Enter 发送 / Shift+Enter 换行", 
-                  style: TextStyle(color: Color(0xFFC9CDD4), fontSize: 11),
-                ),
-                const SizedBox(width: 16),
-                Material(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.circular(6),
-                  elevation: 2,
-                  shadowColor: Theme.of(context).primaryColor.withValues(alpha: 0.3),
-                  child: InkWell(
-                    onTap: _handleSend,
-                    borderRadius: BorderRadius.circular(6),
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
-                      child: const Text(
-                        "发送", 
-                        style: TextStyle(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+          const SizedBox(width: 8),
+          _buildActionIcon(TDIcons.smile, color: const Color(0xFF9CA3AF)),
+          const SizedBox(width: 8),
+          GestureDetector(
+            onTap: _handleSend,
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: const BoxDecoration(
+                color: Color(0xFF3B82F6),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(TDIcons.send, color: Colors.white, size: 20),
             ),
-          )
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildActionIcon(IconData icon, {Color? color, String? tooltip}) {
-    return Tooltip(
-      message: tooltip ?? "",
-      child: InkWell(
-        onTap: () {},
-        borderRadius: BorderRadius.circular(6),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Icon(icon, color: color ?? const Color(0xFF4E5969), size: 22),
-        ),
+  Widget _buildActionIcon(IconData icon, {Color? color}) {
+    return InkWell(
+      onTap: () {},
+      borderRadius: BorderRadius.circular(20),
+      child: Padding(
+        padding: const EdgeInsets.all(6),
+        child: Icon(icon, color: color ?? const Color(0xFF4B5563), size: 26),
       ),
     );
   }
