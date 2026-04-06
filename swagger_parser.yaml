@@ -2,8 +2,8 @@ swagger_parser:
   output_directory: lib/api
   json_serializer: json_serializable
   language: dart
-  root_interface: true
-  
+  root_client: true
+  root_client_name: ApiClient
   schemes:
     - schema_url: http://localhost:8081/api/v3/api-docs
       root_client_name: UserClient

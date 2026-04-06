@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
 
-import 'package:mallchat_flutter/controllers/app_controller.dart';
+import 'package:mallchat_flutter/api/request.dart';
 import 'package:mallchat_flutter/pages/chat/chat_list_page.dart';
 import 'package:mallchat_flutter/pages/contacts/contacts_page.dart';
 import 'package:mallchat_flutter/pages/profile/profile_page.dart';
@@ -12,7 +12,7 @@ class MobileMainPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appController = Get.find<AppController>();
+    final appController = Request.app;
 
     const pages = [
       ChatListPage(),

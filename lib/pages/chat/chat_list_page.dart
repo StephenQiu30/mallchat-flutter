@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
 
 import 'package:mallchat_flutter/styles/glass_theme.dart';
-import 'package:mallchat_flutter/controllers/chat_controller.dart';
+import 'package:mallchat_flutter/api/request.dart';
 import 'package:mallchat_flutter/api/chat/models/chat_room_vo.dart';
 import 'package:mallchat_flutter/components/common/mallchat_avatar.dart';
 import 'package:mallchat_flutter/pages/chat/chat_detail_page.dart';
@@ -13,7 +13,7 @@ class ChatListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final chatController = Get.find<ChatController>();
+    final chatController = Request.chat;
 
     return Container(
       color: GlassTheme.backgroundGray,
@@ -120,7 +120,7 @@ class ChatListPage extends StatelessWidget {
   }
 
   Widget _buildChatCell(ChatRoomVo room, bool isActive) {
-    final chatController = Get.find<ChatController>();
+    final chatController = Request.chat;
     final roomId = room.id ?? 0;
     final unreadCount = chatController.unreadCounts[roomId] ?? 0;
     final lastMsg = chatController.lastMessages[roomId] ?? "";

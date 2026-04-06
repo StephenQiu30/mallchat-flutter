@@ -28,8 +28,7 @@ class _FileControllerClient implements FileControllerClient {
     final queryParameters = <String, dynamic>{r'bizType': bizType};
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(body?.toJson() ?? <String, dynamic>{});
+    final _data = body;
     final _options = _setStreamType<BaseResponseFileVo>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(

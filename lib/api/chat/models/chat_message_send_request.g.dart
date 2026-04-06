@@ -11,7 +11,8 @@ ChatMessageSendRequest _$ChatMessageSendRequestFromJson(
 ) => ChatMessageSendRequest(
   roomId: (json['roomId'] as num).toInt(),
   content: json['content'] as String,
-  type: (json['type'] as num?)?.toInt(),
+  type: (json['type'] as num).toInt(),
+  extra: json['extra'] as String?,
 );
 
 Map<String, dynamic> _$ChatMessageSendRequestToJson(
@@ -20,4 +21,5 @@ Map<String, dynamic> _$ChatMessageSendRequestToJson(
   'roomId': instance.roomId,
   'content': instance.content,
   'type': instance.type,
+  'extra': instance.extra,
 };
