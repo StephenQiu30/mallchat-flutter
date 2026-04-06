@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
-import '../controllers/chat_controller.dart';
-import '../widgets/input_toolbar.dart';
+import 'package:mallchat_flutter/controllers/chat_controller.dart';
+import 'package:mallchat_flutter/components/chat/input_toolbar.dart';
+import 'package:mallchat_flutter/components/common/mallchat_avatar.dart';
 
 class ChatDetailPage extends StatelessWidget {
   const ChatDetailPage({super.key});
@@ -20,22 +21,27 @@ class ChatDetailPage extends StatelessWidget {
           icon: const Icon(TDIcons.chevron_left, color: Color(0xFF1F2937)),
           onPressed: () => Get.back(),
         ),
-        title: Obx(() => Column(
-          children: [
-            Text(
-              "聊天室: ${chatController.activeRoomId.value}",
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF1F2937),
+        title: Obx(() {
+          final activeRoom = chatController.chatRooms.firstWhereOrNull((r) => r.id == chatController.activeRoomId.value);
+          final roomName = activeRoom?.name ?? "聊天详情";
+          
+          return Column(
+            children: [
+              Text(
+                roomName,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF1F2937),
+                ),
               ),
-            ),
-            const Text(
-              "iPhone 在线",
-              style: TextStyle(fontSize: 11, color: Color(0xFF9CA3AF)),
-            ),
-          ],
-        )),
+              const Text(
+                "iPhone 在线",
+                style: TextStyle(fontSize: 11, color: Color(0xFF9CA3AF)),
+              ),
+            ],
+          );
+        }),
         actions: [
           IconButton(
             icon: const Icon(TDIcons.more, color: Color(0xFF1F2937)),
@@ -61,7 +67,17 @@ class ChatDetailPage extends StatelessWidget {
                 itemCount: messages.length,
                 itemBuilder: (context, index) {
                   final msg = messages[index];
-                  return _buildMessageBubble(context, msg.isSelf, msg.senderAvatar, msg.senderName, msg.content, "14:30");
+                  final isSelf = chatController.isSelf(msg);
+                  final timeStr = msg.createTime != null ? "${msg.createTime!.hour}:${msg.createTime!.minute.toString().padLeft(2, '0')}" : "14:30";
+
+                  return _buildMessageBubble(
+                    context, 
+                    isSelf, 
+                    msg.fromUserAvatar ?? "", 
+                    msg.fromUserName ?? "未知用户", 
+                    msg.content ?? "", 
+                    timeStr
+                  );
                 },
               );
             }),
@@ -84,7 +100,7 @@ class ChatDetailPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!isSelf) ...[
-            TDAvatar(size: TDAvatarSize.medium, avatarUrl: avatar),
+            MallChatAvatar(size: TDAvatarSize.medium, avatarUrl: avatar),
             const SizedBox(width: 10),
           ],
           
@@ -129,7 +145,7 @@ class ChatDetailPage extends StatelessWidget {
           
           if (isSelf) ...[
             const SizedBox(width: 10),
-            TDAvatar(size: TDAvatarSize.medium, avatarUrl: avatar),
+            MallChatAvatar(size: TDAvatarSize.medium, avatarUrl: avatar),
           ],
         ],
       ),

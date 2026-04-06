@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
+import 'package:mallchat_flutter/components/common/mallchat_avatar.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -62,9 +63,9 @@ class ProfilePage extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              const TDAvatar(
+                              const MallChatAvatar(
                                 size: TDAvatarSize.large,
-                                avatarUrl: 'https://tdesign.gtimg.com/mobile/demos/avatar_1.png',
+                                avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?seed=Stephen&backgroundColor=e2e8f0',
                               ),
                               const SizedBox(width: 16),
                               const Expanded(
@@ -95,14 +96,14 @@ class ProfilePage extends StatelessWidget {
                           ),
                           const SizedBox(height: 24),
                           // Stats
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              _StatItem(label: "最近访问", count: "1.2k"),
-                              _StatItem(label: "我的好友", count: "482"),
-                              _StatItem(label: "收藏内容", count: "156"),
-                            ],
-                          ),
+                           Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceAround,
+                             children: [
+                               _StatItem(label: "最近访问", count: "1.2k", icon: TDIcons.time),
+                               _StatItem(label: "我的好友", count: "482", icon: TDIcons.user),
+                               _StatItem(label: "收藏内容", count: "156", icon: TDIcons.star),
+                             ],
+                           ),
                         ],
                       ),
                     ),
@@ -179,13 +180,16 @@ class ProfilePage extends StatelessWidget {
 class _StatItem extends StatelessWidget {
   final String label;
   final String count;
+  final IconData icon;
 
-  const _StatItem({required this.label, required this.count});
+  const _StatItem({required this.label, required this.count, required this.icon});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
+        Icon(icon, size: 24, color: const Color(0xFF3B82F6).withValues(alpha: 0.8)),
+        const SizedBox(height: 8),
         Text(
           count,
           style: const TextStyle(
@@ -194,7 +198,7 @@ class _StatItem extends StatelessWidget {
             color: Color(0xFF1F2937),
           ),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: 2),
         Text(
           label,
           style: const TextStyle(

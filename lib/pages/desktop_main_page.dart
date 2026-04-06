@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/app_controller.dart';
-import '../widgets/sidebar.dart';
-import 'chat_list_page.dart';
-import 'chat_detail_page.dart';
+import 'package:mallchat_flutter/controllers/app_controller.dart';
+import 'package:mallchat_flutter/components/navigation/sidebar.dart';
+import 'package:mallchat_flutter/pages/chat_list_page.dart';
+import 'package:mallchat_flutter/pages/chat_detail_page.dart';
 
 class DesktopMainPage extends StatelessWidget {
   const DesktopMainPage({super.key});
@@ -14,7 +14,7 @@ class DesktopMainPage extends StatelessWidget {
       body: Row(
         children: [
           // 1. Sidebar (Width: 68) with Glassmorphism effect
-          const SidebarWidget(),
+          const Sidebar(),
           
           // 2. Secondary Panel (Chat list, contacts, etc - Width: 280)
           Container(

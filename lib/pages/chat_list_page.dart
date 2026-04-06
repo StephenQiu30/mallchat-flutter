@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
-import '../controllers/chat_controller.dart';
-import '../models/chat_room.dart';
+import 'package:mallchat_flutter/controllers/chat_controller.dart';
+import 'package:mallchat_flutter/api/chat/models/chat_room_vo.dart';
+import 'package:mallchat_flutter/components/common/mallchat_avatar.dart';
 
 class ChatListPage extends StatelessWidget {
   const ChatListPage({super.key});
@@ -22,11 +23,9 @@ class ChatListPage extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16, 50, 16, 12),
             child: Row(
               children: [
-                const TDAvatar(
+                const MallChatAvatar(
                   size: TDAvatarSize.medium,
-                  type: TDAvatarType.normal,
-                  shape: TDAvatarShape.circle,
-                  avatarUrl: 'https://tdesign.gtimg.com/mobile/demos/avatar_1.png',
+                  avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?seed=Stephen&backgroundColor=e2e8f0',
                 ),
                 const SizedBox(width: 12),
                 const Text(
@@ -87,22 +86,23 @@ class ChatListPage extends StatelessWidget {
                 itemCount: rooms.length,
                 itemBuilder: (context, index) {
                   final room = rooms[index];
-                  final isActive = chatController.activeRoomId.value == room.id;
+                  final roomId = room.id ?? 0;
+                  final isActive = chatController.activeRoomId.value == roomId;
                   
                   return Slidable(
-                    key: ValueKey(room.id),
+                    key: ValueKey(roomId),
                     endActionPane: ActionPane(
                       motion: const ScrollMotion(),
                       children: [
                         SlidableAction(
-                          onPressed: (_) => chatController.markAsRead(room.id),
+                          onPressed: (_) => chatController.markAsRead(roomId),
                           backgroundColor: const Color(0xFF3B82F6),
                           foregroundColor: Colors.white,
                           icon: Icons.mark_chat_read,
                           label: '已读',
                         ),
                         SlidableAction(
-                          onPressed: (_) => chatController.deleteRoom(room.id),
+                          onPressed: (_) => chatController.deleteRoom(roomId),
                           backgroundColor: Colors.red,
                           foregroundColor: Colors.white,
                           icon: Icons.delete,
@@ -124,9 +124,16 @@ class ChatListPage extends StatelessWidget {
     );
   }
 
-  Widget _buildChatCell(ChatRoom room, bool isActive) {
+  Widget _buildChatCell(ChatRoomVo room, bool isActive) {
     final chatController = Get.find<ChatController>();
+    final roomId = room.id ?? 0;
+    final unreadCount = chatController.unreadCounts[roomId] ?? 0;
+    final lastMsg = chatController.lastMessages[roomId] ?? "";
+    final isGroup = room.type == 1;
     
+    // Simple time format for mock
+    final timeStr = room.createTime != null ? "${room.createTime!.hour}:${room.createTime!.minute.toString().padLeft(2, '0')}" : "10:42";
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -142,7 +149,7 @@ class ChatListPage extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () => chatController.selectRoom(room.id),
+          onTap: () => chatController.selectRoom(roomId),
           borderRadius: BorderRadius.circular(16),
           child: Padding(
             padding: const EdgeInsets.all(16),
@@ -152,13 +159,12 @@ class ChatListPage extends StatelessWidget {
                 Stack(
                   clipBehavior: Clip.none,
                   children: [
-                    TDAvatar(
+                    MallChatAvatar(
                       size: TDAvatarSize.large,
-                      type: TDAvatarType.normal,
-                      shape: room.isGroup ? TDAvatarShape.square : TDAvatarShape.circle,
-                      avatarUrl: room.avatar,
+                      shape: isGroup ? TDAvatarShape.square : TDAvatarShape.circle,
+                      avatarUrl: room.avatar ?? "",
                     ),
-                    if (room.unreadCount > 0)
+                    if (unreadCount > 0)
                       Positioned(
                         top: -4,
                         right: -4,
@@ -170,7 +176,7 @@ class ChatListPage extends StatelessWidget {
                             border: Border.all(color: Colors.white, width: 2),
                           ),
                           child: Text(
-                            room.unreadCount.toString(),
+                            unreadCount.toString(),
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 10,
@@ -192,7 +198,7 @@ class ChatListPage extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              room.name,
+                              room.name ?? "未知房间",
                               style: const TextStyle(
                                 fontSize: 16, 
                                 fontWeight: FontWeight.bold, 
@@ -203,14 +209,14 @@ class ChatListPage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            room.time,
+                            timeStr,
                             style: const TextStyle(fontSize: 12, color: Color(0xFF9CA3AF)),
                           ),
                         ],
                       ),
                       const SizedBox(height: 4),
                       Text(
-                        room.topMessage,
+                        lastMsg,
                         style: const TextStyle(fontSize: 14, color: Color(0xFF6B7280), height: 1.2),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

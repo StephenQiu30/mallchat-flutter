@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
 import 'input_toolbar.dart';
 
-class ChatAreaWidget extends StatelessWidget {
-  const ChatAreaWidget({super.key});
+class ChatPanel extends StatelessWidget {
+  const ChatPanel({super.key});
 
   @override
   Widget build(BuildContext context) {

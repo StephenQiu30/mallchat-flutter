@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
+import 'package:mallchat_flutter/components/common/mallchat_avatar.dart';
 
 class ContactsPage extends StatelessWidget {
   const ContactsPage({super.key});
@@ -15,11 +16,9 @@ class ContactsPage extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16, 50, 16, 12),
             child: Row(
               children: [
-                const TDAvatar(
+                const MallChatAvatar(
                   size: TDAvatarSize.medium,
-                  type: TDAvatarType.normal,
-                  shape: TDAvatarShape.circle,
-                  avatarUrl: 'https://tdesign.gtimg.com/mobile/demos/avatar_1.png',
+                  avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?seed=Stephen&backgroundColor=e2e8f0',
                 ),
                 const SizedBox(width: 12),
                 const Text(
@@ -178,23 +177,23 @@ class ContactsPage extends StatelessWidget {
             const Icon(TDIcons.chevron_down, size: 16, color: Color(0xFF9CA3AF)),
           ],
         ),
-        children: const [
+        children: [
           // Simplified friends for now
           ListTile(
-            leading: TDAvatar(
+            leading: MallChatAvatar(
               size: TDAvatarSize.small,
-              avatarUrl: 'https://tdesign.gtimg.com/mobile/demos/avatar_2.png',
+              avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?seed=ZhangSan&backgroundColor=ffedd5',
             ),
-            title: Text("张三"),
-            subtitle: Text("[在线] 这种设计真好看"),
+            title: const Text("张三"),
+            subtitle: const Text("[在线] 这种设计真好看"),
           ),
           ListTile(
-            leading: TDAvatar(
+            leading: MallChatAvatar(
               size: TDAvatarSize.small,
-              avatarUrl: 'https://tdesign.gtimg.com/mobile/demos/avatar_3.png',
+              avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?seed=LiSi&backgroundColor=dcfce7',
             ),
-            title: Text("李四"),
-            subtitle: Text("[离线] 稍后联系"),
+            title: const Text("李四"),
+            subtitle: const Text("[离线] 稍后联系"),
           ),
         ],
       ),
