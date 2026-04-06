@@ -3,11 +3,11 @@ import 'dart:ui' show Size;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 
-import 'package:mallchat_flutter/controllers/app_controller.dart';
-import 'package:mallchat_flutter/controllers/chat_controller.dart';
+import 'package:mallchat_flutter/store/app_store.dart';
+import 'package:mallchat_flutter/store/chat_store.dart';
 import 'package:mallchat_flutter/main.dart';
 
-class _TestChatController extends ChatController {
+class _TestChatStore extends ChatStore {
   @override
   void onInit() {
     super.onInit();
@@ -18,7 +18,7 @@ class _TestChatController extends ChatController {
 }
 
 void main() {
-  tearDown(Get.reset);
+  tearDown(Get.clearRouteTree);
 
   testWidgets('MallChatApp smoke test', (WidgetTester tester) async {
     final view = tester.view;
@@ -27,8 +27,8 @@ void main() {
     addTearDown(view.resetPhysicalSize);
     addTearDown(view.resetDevicePixelRatio);
 
-    Get.put(AppController());
-    Get.put<ChatController>(_TestChatController());
+    Get.put(AppStore());
+    Get.put<ChatStore>(_TestChatStore());
     await tester.pumpWidget(const MallChatApp());
     await tester.pumpAndSettle();
     expect(find.text('MallChat'), findsOneWidget);

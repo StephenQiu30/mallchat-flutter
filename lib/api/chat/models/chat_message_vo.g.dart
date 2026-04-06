@@ -15,6 +15,7 @@ ChatMessageVo _$ChatMessageVoFromJson(Map<String, dynamic> json) =>
       fromUserAvatar: json['fromUserAvatar'] as String?,
       content: json['content'] as String?,
       type: (json['type'] as num?)?.toInt(),
+      extra: json['extra'] as String?,
       createTime: json['createTime'] == null
           ? null
           : DateTime.parse(json['createTime'] as String),
@@ -29,5 +30,6 @@ Map<String, dynamic> _$ChatMessageVoToJson(ChatMessageVo instance) =>
       'fromUserAvatar': instance.fromUserAvatar,
       'content': instance.content,
       'type': instance.type,
+      'extra': instance.extra,
       'createTime': instance.createTime?.toIso8601String(),
     };

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'file_controller_client.dart';
+part of 'chat_friend_controller_client.dart';
 
 // dart format off
 
@@ -10,8 +10,8 @@ part of 'file_controller_client.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main
 
-class _FileControllerClient implements FileControllerClient {
-  _FileControllerClient(this._dio, {this.baseUrl, this.errorLogger});
+class _ChatFriendControllerClient implements ChatFriendControllerClient {
+  _ChatFriendControllerClient(this._dio, {this.baseUrl, this.errorLogger});
 
   final Dio _dio;
 
@@ -20,29 +20,55 @@ class _FileControllerClient implements FileControllerClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<BaseResponseFileVo> uploadFile({
-    required String bizType,
-    FileUploadRequestBody? body,
+  Future<BaseResponseBoolean> addFriend({
+    required ChatFriendAddRequest body,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'bizType': bizType};
-    queryParameters.removeWhere((k, v) => v == null);
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = body;
-    final _options = _setStreamType<BaseResponseFileVo>(
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
+    final _options = _setStreamType<BaseResponseBoolean>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/file/upload',
+            '/chat_friend/add',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late BaseResponseFileVo _value;
+    late BaseResponseBoolean _value;
     try {
-      _value = BaseResponseFileVo.fromJson(_result.data!);
+      _value = BaseResponseBoolean.fromJson(_result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<BaseResponseListChatFriendUserVo> listFriends() async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<BaseResponseListChatFriendUserVo>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/chat_friend/list/vo',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, Object?>>(_options);
+    late BaseResponseListChatFriendUserVo _value;
+    try {
+      _value = BaseResponseListChatFriendUserVo.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
 
-import 'package:mallchat_flutter/controllers/app_controller.dart';
+import 'package:mallchat_flutter/api/request.dart';
+import 'package:mallchat_flutter/store/app_store.dart';
 import 'package:mallchat_flutter/components/common/mallchat_avatar.dart';
 
 class Sidebar extends StatelessWidget {
@@ -10,7 +11,7 @@ class Sidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AppController appController = Get.find<AppController>();
+    final appStore = Request.app;
 
     return Container(
       width: 72,
@@ -19,7 +20,7 @@ class Sidebar extends StatelessWidget {
         border: Border(right: BorderSide(color: Colors.black.withValues(alpha: 0.05), width: 0.5)),
       ),
       child: Obx(() {
-        final currentIndex = appController.currentNavIndex.value;
+        final currentIndex = appStore.currentNavIndex.value;
         return Column(
           children: [
             const SizedBox(height: 40),
@@ -28,16 +29,16 @@ class Sidebar extends StatelessWidget {
             const SizedBox(height: 32),
             
             // Navigation Items
-            _buildNavItem(TDIcons.chat_bubble_1, 0, currentIndex, appController, context, badge: "9"),
+            _buildNavItem(TDIcons.chat_bubble_1, 0, currentIndex, appStore, context, badge: "9"),
             const SizedBox(height: 12),
-            _buildNavItem(TDIcons.user, 1, currentIndex, appController, context),
+            _buildNavItem(TDIcons.user, 1, currentIndex, appStore, context),
             const SizedBox(height: 12),
-            _buildNavItem(TDIcons.logo_wechat_stroke, 2, currentIndex, appController, context), 
+            _buildNavItem(TDIcons.logo_wechat_stroke, 2, currentIndex, appStore, context), 
             
             const Spacer(),
-            _buildNavItem(TDIcons.more, 98, currentIndex, appController, context),
+            _buildNavItem(TDIcons.more, 98, currentIndex, appStore, context),
             const SizedBox(height: 12),
-            _buildNavItem(TDIcons.setting, 99, currentIndex, appController, context),
+            _buildNavItem(TDIcons.setting, 99, currentIndex, appStore, context),
             const SizedBox(height: 24),
           ],
         );
@@ -79,7 +80,7 @@ class Sidebar extends StatelessWidget {
     );
   }
 
-  Widget _buildNavItem(IconData iconData, int index, int currentIndex, AppController controller, BuildContext context, {String? badge}) {
+  Widget _buildNavItem(IconData iconData, int index, int currentIndex, AppStore controller, BuildContext context, {String? badge}) {
     final isActive = currentIndex == index;
     final primaryColor = Theme.of(context).primaryColor;
     

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'chat_room_controller_client.dart';
+part of 'chat_message_controller_client.dart';
 
 // dart format off
 
@@ -10,8 +10,8 @@ part of 'chat_room_controller_client.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers,unused_element,unnecessary_string_interpolations,unused_element_parameter,avoid_unused_constructor_parameters,unreachable_from_main
 
-class _ChatRoomControllerClient implements ChatRoomControllerClient {
-  _ChatRoomControllerClient(this._dio, {this.baseUrl, this.errorLogger});
+class _ChatMessageControllerClient implements ChatMessageControllerClient {
+  _ChatMessageControllerClient(this._dio, {this.baseUrl, this.errorLogger});
 
   final Dio _dio;
 
@@ -20,8 +20,8 @@ class _ChatRoomControllerClient implements ChatRoomControllerClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<BaseResponseLong> getOrCreatePrivateRoom({
-    required ChatPrivateRoomRequest body,
+  Future<BaseResponseLong> sendMessage({
+    required ChatMessageSendRequest body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -32,7 +32,7 @@ class _ChatRoomControllerClient implements ChatRoomControllerClient {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/chat_room/private',
+            '/chat_message/send',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -50,16 +50,19 @@ class _ChatRoomControllerClient implements ChatRoomControllerClient {
   }
 
   @override
-  Future<BaseResponseBoolean> joinChatRoom({required int roomId}) async {
+  Future<BaseResponseBoolean> markMessageRead({
+    required ChatMessageReadRequest body,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'roomId': roomId};
+    final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    const Map<String, dynamic>? _data = null;
+    final _data = <String, dynamic>{};
+    _data.addAll(body.toJson());
     final _options = _setStreamType<BaseResponseBoolean>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/chat_room/join',
+            '/chat_message/read',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -77,55 +80,34 @@ class _ChatRoomControllerClient implements ChatRoomControllerClient {
   }
 
   @override
-  Future<BaseResponseLong> addChatRoom({
-    required ChatRoomAddRequest body,
+  Future<BaseResponseListChatMessageVo> listHistoryMessages({
+    required int roomId,
+    int? limit = 20,
+    int? lastMessageId,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(body.toJson());
-    final _options = _setStreamType<BaseResponseLong>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
-          .compose(
-            _dio.options,
-            '/chat_room/add',
-            queryParameters: queryParameters,
-            data: _data,
-          )
-          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
-    );
-    final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late BaseResponseLong _value;
-    try {
-      _value = BaseResponseLong.fromJson(_result.data!);
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
-    return _value;
-  }
-
-  @override
-  Future<BaseResponseListChatRoomVo> listUserChatRooms() async {
-    final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'roomId': roomId,
+      r'limit': limit,
+      r'lastMessageId': lastMessageId,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<BaseResponseListChatRoomVo>(
+    final _options = _setStreamType<BaseResponseListChatMessageVo>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/chat_room/list/vo',
+            '/chat_message/history',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late BaseResponseListChatRoomVo _value;
+    late BaseResponseListChatMessageVo _value;
     try {
-      _value = BaseResponseListChatRoomVo.fromJson(_result.data!);
+      _value = BaseResponseListChatMessageVo.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;

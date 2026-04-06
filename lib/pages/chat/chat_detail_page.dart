@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
 import 'package:mallchat_flutter/styles/glass_theme.dart';
-import 'package:mallchat_flutter/controllers/chat_controller.dart';
+import 'package:mallchat_flutter/api/request.dart';
 import 'package:mallchat_flutter/components/chat/input_toolbar.dart';
 import 'package:mallchat_flutter/components/common/mallchat_avatar.dart';
 
@@ -11,7 +11,7 @@ class ChatDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final chatController = Get.find<ChatController>();
+    final chatController = Request.chat;
 
     return Scaffold(
       backgroundColor: GlassTheme.backgroundGray,

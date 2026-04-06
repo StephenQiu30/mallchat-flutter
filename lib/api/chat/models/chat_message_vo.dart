@@ -17,6 +17,7 @@ class ChatMessageVo {
     this.fromUserAvatar,
     this.content,
     this.type,
+    this.extra,
     this.createTime,
   });
   
@@ -42,6 +43,9 @@ class ChatMessageVo {
 
   /// 消息类型：1-文本，2-图片，3-文件
   final int? type;
+
+  /// 消息扩展内容
+  final String? extra;
 
   /// 发送时间
   final DateTime? createTime;

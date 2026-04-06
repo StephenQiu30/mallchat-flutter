@@ -12,7 +12,8 @@ class ChatMessageSendRequest {
   const ChatMessageSendRequest({
     required this.roomId,
     required this.content,
-    this.type,
+    required this.type,
+    this.extra,
   });
   
   factory ChatMessageSendRequest.fromJson(Map<String, Object?> json) => _$ChatMessageSendRequestFromJson(json);
@@ -24,7 +25,10 @@ class ChatMessageSendRequest {
   final String content;
 
   /// 消息类型：1-文本，2-图片，3-文件
-  final int? type;
+  final int type;
+
+  /// 消息扩展内容（JSON 字符串）
+  final String? extra;
 
   Map<String, Object?> toJson() => _$ChatMessageSendRequestToJson(this);
 }

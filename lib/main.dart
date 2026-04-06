@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'controllers/app_controller.dart';
-import 'controllers/chat_controller.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mallchat_flutter/store/app_store.dart';
+import 'package:mallchat_flutter/store/chat_store.dart';
 import 'layout/responsive_layout.dart';
 
-void main() {
-  // Initialize GetX Controllers globally
-  Get.put(AppController());
-  Get.put(ChatController());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Initialize Global Persistence
+  final prefs = await SharedPreferences.getInstance();
+  Get.put(prefs, permanent: true);
+
+  // Initialize Global Stores
+  Get.put(AppStore());
+  Get.put(ChatStore());
 
   runApp(const MallChatApp());
 }
