@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mallchat_flutter/controllers/app_controller.dart';
 import 'package:mallchat_flutter/components/navigation/sidebar.dart';
-import 'package:mallchat_flutter/pages/chat_list_page.dart';
-import 'package:mallchat_flutter/pages/chat_detail_page.dart';
+import 'package:mallchat_flutter/pages/chat/chat_list_page.dart';
+import 'package:mallchat_flutter/pages/chat/chat_detail_page.dart';
 
 class DesktopMainPage extends StatelessWidget {
   const DesktopMainPage({super.key});

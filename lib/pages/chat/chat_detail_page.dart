@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
+import 'package:mallchat_flutter/styles/glass_theme.dart';
 import 'package:mallchat_flutter/controllers/chat_controller.dart';
 import 'package:mallchat_flutter/components/chat/input_toolbar.dart';
 import 'package:mallchat_flutter/components/common/mallchat_avatar.dart';
@@ -13,7 +14,7 @@ class ChatDetailPage extends StatelessWidget {
     final chatController = Get.find<ChatController>();
 
     return Scaffold(
-      backgroundColor: const Color(0xFFF3F4F6),
+      backgroundColor: GlassTheme.backgroundGray,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -37,14 +38,14 @@ class ChatDetailPage extends StatelessWidget {
               ),
               const Text(
                 "iPhone 在线",
-                style: TextStyle(fontSize: 11, color: Color(0xFF9CA3AF)),
+                style: TextStyle(fontSize: 11, color: GlassTheme.textLightGray),
               ),
             ],
           );
         }),
         actions: [
           IconButton(
-            icon: const Icon(TDIcons.more, color: Color(0xFF1F2937)),
+            icon: const Icon(TDIcons.more, color: GlassTheme.textDark),
             onPressed: () {},
           ),
         ],
@@ -57,7 +58,7 @@ class ChatDetailPage extends StatelessWidget {
               final messages = chatController.currentMessages;
               if (messages.isEmpty) {
                 return const Center(
-                  child: Text("暂无消息记录", style: TextStyle(color: Color(0xFF9CA3AF))),
+                  child: Text("暂无消息记录", style: TextStyle(color: GlassTheme.textLightGray)),
                 );
               }
 
@@ -111,31 +112,25 @@ class ChatDetailPage extends StatelessWidget {
                 if (!isSelf)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 4, left: 2),
-                    child: Text(sender, style: const TextStyle(color: Color(0xFF9CA3AF), fontSize: 11)),
+                    child: Text(sender, style: const TextStyle(color: GlassTheme.textLightGray, fontSize: 11)),
                   ),
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                   decoration: BoxDecoration(
-                    color: isSelf ? const Color(0xFF3B82F6) : Colors.white,
+                    color: isSelf ? GlassTheme.primaryBlue : GlassTheme.cardWhite,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(isSelf ? 16 : 4),
                       topRight: Radius.circular(isSelf ? 4 : 16),
                       bottomLeft: const Radius.circular(16),
                       bottomRight: const Radius.circular(16),
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.02),
-                        blurRadius: 5,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
+                    boxShadow: GlassTheme.softShadow,
                   ),
                   child: Text(
                     content,
                     style: TextStyle(
                       fontSize: 15,
-                      color: isSelf ? Colors.white : const Color(0xFF1F2937),
+                      color: isSelf ? GlassTheme.cardWhite : GlassTheme.textDark,
                     ),
                   ),
                 ),
