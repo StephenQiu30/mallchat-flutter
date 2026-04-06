@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
 
 import 'package:mallchat_flutter/controllers/app_controller.dart';
-import 'package:mallchat_flutter/pages/chat_list_page.dart';
-import 'package:mallchat_flutter/pages/contacts_page.dart';
-import 'package:mallchat_flutter/pages/profile_page.dart';
+import 'package:mallchat_flutter/pages/chat/chat_list_page.dart';
+import 'package:mallchat_flutter/pages/contacts/contacts_page.dart';
+import 'package:mallchat_flutter/pages/profile/profile_page.dart';
 
 class MobileMainPage extends StatelessWidget {
   const MobileMainPage({super.key});

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
+import 'package:mallchat_flutter/styles/glass_theme.dart';
 
 /// 通用头像组件，支持 SVG 和普通图片格式
 /// 解决了 Flutter 原生 Image 组件不支持 SVG 的问题
@@ -36,17 +37,18 @@ class MallChatAvatar extends StatelessWidget {
           height: dimension,
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
-            color: const Color(0xFFF3F4F6),
+            color: GlassTheme.backgroundGray,
             shape: shape == TDAvatarShape.circle ? BoxShape.circle : BoxShape.rectangle,
-            borderRadius: shape == TDAvatarShape.circle ? null : BorderRadius.circular(8),
+            borderRadius: shape == TDAvatarShape.circle ? null : BorderRadius.circular(12),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.1), width: 0.5),
           ),
           child: SvgPicture.network(
             avatarUrl,
             fit: BoxFit.cover,
             placeholderBuilder: (BuildContext context) => Container(
-              color: const Color(0xFFE5E7EB),
+              color: GlassTheme.backgroundGray.withValues(alpha: 0.5),
               child: const Center(
-                child: Icon(TDIcons.user, color: Color(0xFF9CA3AF), size: 20),
+                child: Icon(TDIcons.user, color: GlassTheme.textLightGray, size: 20),
               ),
             ),
           ),

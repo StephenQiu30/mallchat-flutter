@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 
+import 'package:mallchat_flutter/styles/glass_theme.dart';
 import 'package:mallchat_flutter/controllers/chat_controller.dart';
 import 'package:mallchat_flutter/api/chat/models/chat_room_vo.dart';
 import 'package:mallchat_flutter/components/common/mallchat_avatar.dart';
+import 'package:mallchat_flutter/pages/chat/chat_detail_page.dart';
 
 class ChatListPage extends StatelessWidget {
   const ChatListPage({super.key});
@@ -15,7 +16,7 @@ class ChatListPage extends StatelessWidget {
     final chatController = Get.find<ChatController>();
 
     return Container(
-      color: const Color(0xFFF6F7F9),
+      color: GlassTheme.backgroundGray,
       child: Column(
         children: [
           // Custom Header
@@ -33,13 +34,13 @@ class ChatListPage extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFF1F2937),
+                    color: GlassTheme.textDark,
                   ),
                 ),
                 const Spacer(),
                 IconButton(
                   onPressed: () {},
-                  icon: const Icon(TDIcons.add, size: 24, color: Color(0xFF1F2937)),
+                  icon: const Icon(TDIcons.add, size: 24, color: GlassTheme.textDark),
                 ),
               ],
             ),
@@ -51,15 +52,9 @@ class ChatListPage extends StatelessWidget {
             child: Container(
               height: 44,
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(24),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.02),
-                    blurRadius: 10,
-                    offset: const Offset(0, 2),
-                  ),
-                ],
+                color: GlassTheme.cardWhite,
+                borderRadius: GlassTheme.radius24,
+                boxShadow: GlassTheme.softShadow,
               ),
               child: const Row(
                 children: [
@@ -69,7 +64,7 @@ class ChatListPage extends StatelessWidget {
                   ),
                   Text(
                     '搜索联系人、群聊...',
-                    style: TextStyle(color: Color(0xFF9CA3AF), fontSize: 14),
+                    style: TextStyle(color: GlassTheme.textLightGray, fontSize: 14),
                   ),
                 ],
               ),
@@ -136,20 +131,17 @@ class ChatListPage extends StatelessWidget {
 
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.03),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        color: GlassTheme.cardWhite,
+        borderRadius: GlassTheme.radius16,
+        boxShadow: GlassTheme.mediumShadow,
       ),
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: () => chatController.selectRoom(roomId),
+          onTap: () {
+            chatController.selectRoom(roomId);
+            Get.to(() => const ChatDetailPage());
+          },
           borderRadius: BorderRadius.circular(16),
           child: Padding(
             padding: const EdgeInsets.all(16),

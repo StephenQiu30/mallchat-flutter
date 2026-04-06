@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../pages/desktop_main_page.dart';
-import '../pages/mobile_main_page.dart';
+import 'package:mallchat_flutter/pages/home/desktop_main_page.dart';
+import 'package:mallchat_flutter/pages/home/mobile_main_page.dart';
 
 class ResponsiveLayout extends StatelessWidget {
   const ResponsiveLayout({super.key});
