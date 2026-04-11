@@ -6,20 +6,25 @@ part of 'base_response_notification_vo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BaseResponseNotificationVo _$BaseResponseNotificationVoFromJson(
-  Map<String, dynamic> json,
-) => BaseResponseNotificationVo(
-  code: (json['code'] as num?)?.toInt(),
-  data: json['data'] == null
-      ? null
-      : NotificationVo.fromJson(json['data'] as Map<String, dynamic>),
-  message: json['message'] as String?,
-);
+BaseResponseNotificationVo _$BaseResponseNotificationVoFromJson(Map json) =>
+    $checkedCreate('BaseResponseNotificationVo', json, ($checkedConvert) {
+      final val = BaseResponseNotificationVo(
+        code: $checkedConvert('code', (v) => (v as num?)?.toInt()),
+        data: $checkedConvert(
+          'data',
+          (v) => v == null
+              ? null
+              : NotificationVo.fromJson(Map<String, Object?>.from(v as Map)),
+        ),
+        message: $checkedConvert('message', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$BaseResponseNotificationVoToJson(
   BaseResponseNotificationVo instance,
 ) => <String, dynamic>{
   'code': instance.code,
-  'data': instance.data,
+  'data': instance.data?.toJson(),
   'message': instance.message,
 };

@@ -4,17 +4,15 @@
 
 import 'package:dio/dio.dart';
 
-import 'notification_controller/notification_controller_client.dart';
+import 'clients/notification_controller_client.dart';
 
 /// MallChat Cloud API `v1.0.0`.
 ///
 /// MallChat Cloud 微服务接口文档.
 class NotificationClient {
-  NotificationClient(
-    Dio dio, {
-    String? baseUrl,
-  })  : _dio = dio,
-        _baseUrl = baseUrl;
+  NotificationClient(Dio dio, {String? baseUrl})
+    : _dio = dio,
+      _baseUrl = baseUrl;
 
   final Dio _dio;
   final String? _baseUrl;
@@ -23,5 +21,9 @@ class NotificationClient {
 
   NotificationControllerClient? _notificationController;
 
-  NotificationControllerClient get notificationController => _notificationController ??= NotificationControllerClient(_dio, baseUrl: _baseUrl);
+  NotificationControllerClient get notificationController =>
+      _notificationController ??= NotificationControllerClient(
+        _dio,
+        baseUrl: _baseUrl,
+      );
 }

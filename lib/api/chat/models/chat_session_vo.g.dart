@@ -6,19 +6,26 @@ part of 'chat_session_vo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChatSessionVo _$ChatSessionVoFromJson(Map<String, dynamic> json) =>
-    ChatSessionVo(
-      roomId: (json['roomId'] as num?)?.toInt(),
-      name: json['name'] as String?,
-      avatar: json['avatar'] as String?,
-      type: (json['type'] as num?)?.toInt(),
-      lastMessage: json['lastMessage'] as String?,
-      unreadCount: (json['unreadCount'] as num?)?.toInt(),
-      topStatus: (json['topStatus'] as num?)?.toInt(),
-      activeTime: json['activeTime'] == null
-          ? null
-          : DateTime.parse(json['activeTime'] as String),
+ChatSessionVo _$ChatSessionVoFromJson(Map json) => $checkedCreate(
+  'ChatSessionVo',
+  json,
+  ($checkedConvert) {
+    final val = ChatSessionVo(
+      roomId: $checkedConvert('roomId', (v) => (v as num?)?.toInt()),
+      name: $checkedConvert('name', (v) => v as String?),
+      avatar: $checkedConvert('avatar', (v) => v as String?),
+      type: $checkedConvert('type', (v) => (v as num?)?.toInt()),
+      lastMessage: $checkedConvert('lastMessage', (v) => v as String?),
+      unreadCount: $checkedConvert('unreadCount', (v) => (v as num?)?.toInt()),
+      topStatus: $checkedConvert('topStatus', (v) => (v as num?)?.toInt()),
+      activeTime: $checkedConvert(
+        'activeTime',
+        (v) => v == null ? null : DateTime.parse(v as String),
+      ),
     );
+    return val;
+  },
+);
 
 Map<String, dynamic> _$ChatSessionVoToJson(ChatSessionVo instance) =>
     <String, dynamic>{

@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 import 'api_access_log_vo.dart';
@@ -26,9 +28,10 @@ class PageApiAccessLogVo {
     this.countId,
     this.pages,
   });
-  
-  factory PageApiAccessLogVo.fromJson(Map<String, Object?> json) => _$PageApiAccessLogVoFromJson(json);
-  
+
+  factory PageApiAccessLogVo.fromJson(Map<String, Object?> json) =>
+      _$PageApiAccessLogVoFromJson(json);
+
   final List<ApiAccessLogVo>? records;
   final int? total;
   final int? size;
@@ -43,3 +46,20 @@ class PageApiAccessLogVo {
 
   Map<String, Object?> toJson() => _$PageApiAccessLogVoToJson(this);
 }
+
+// Flutter compute serialization functions for PageApiAccessLogVo
+FutureOr<PageApiAccessLogVo> deserializePageApiAccessLogVo(
+  Map<String, dynamic> json,
+) => PageApiAccessLogVo.fromJson(json);
+
+FutureOr<List<PageApiAccessLogVo>> deserializePageApiAccessLogVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => PageApiAccessLogVo.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializePageApiAccessLogVo(
+  PageApiAccessLogVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializePageApiAccessLogVoList(
+  List<PageApiAccessLogVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

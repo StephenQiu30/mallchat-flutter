@@ -7,19 +7,27 @@ part of 'base_response_page_chat_friend_apply_vo.dart';
 // **************************************************************************
 
 BaseResponsePageChatFriendApplyVo _$BaseResponsePageChatFriendApplyVoFromJson(
-  Map<String, dynamic> json,
-) => BaseResponsePageChatFriendApplyVo(
-  code: (json['code'] as num?)?.toInt(),
-  data: json['data'] == null
-      ? null
-      : PageChatFriendApplyVo.fromJson(json['data'] as Map<String, dynamic>),
-  message: json['message'] as String?,
-);
+  Map json,
+) => $checkedCreate('BaseResponsePageChatFriendApplyVo', json, (
+  $checkedConvert,
+) {
+  final val = BaseResponsePageChatFriendApplyVo(
+    code: $checkedConvert('code', (v) => (v as num?)?.toInt()),
+    data: $checkedConvert(
+      'data',
+      (v) => v == null
+          ? null
+          : PageChatFriendApplyVo.fromJson(Map<String, Object?>.from(v as Map)),
+    ),
+    message: $checkedConvert('message', (v) => v as String?),
+  );
+  return val;
+});
 
 Map<String, dynamic> _$BaseResponsePageChatFriendApplyVoToJson(
   BaseResponsePageChatFriendApplyVo instance,
 ) => <String, dynamic>{
   'code': instance.code,
-  'data': instance.data,
+  'data': instance.data?.toJson(),
   'message': instance.message,
 };

@@ -6,9 +6,16 @@ part of 'chat_friend_add_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChatFriendAddRequest _$ChatFriendAddRequestFromJson(
-  Map<String, dynamic> json,
-) => ChatFriendAddRequest(friendUserId: (json['friendUserId'] as num).toInt());
+ChatFriendAddRequest _$ChatFriendAddRequestFromJson(Map json) => $checkedCreate(
+  'ChatFriendAddRequest',
+  json,
+  ($checkedConvert) {
+    final val = ChatFriendAddRequest(
+      friendUserId: $checkedConvert('friendUserId', (v) => (v as num).toInt()),
+    );
+    return val;
+  },
+);
 
 Map<String, dynamic> _$ChatFriendAddRequestToJson(
   ChatFriendAddRequest instance,

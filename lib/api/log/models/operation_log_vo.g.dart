@@ -6,25 +6,32 @@ part of 'operation_log_vo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-OperationLogVo _$OperationLogVoFromJson(Map<String, dynamic> json) =>
-    OperationLogVo(
-      id: (json['id'] as num?)?.toInt(),
-      operatorId: (json['operatorId'] as num?)?.toInt(),
-      operatorName: json['operatorName'] as String?,
-      module: json['module'] as String?,
-      action: json['action'] as String?,
-      method: json['method'] as String?,
-      path: json['path'] as String?,
-      requestParams: json['requestParams'] as String?,
-      responseStatus: (json['responseStatus'] as num?)?.toInt(),
-      success: (json['success'] as num?)?.toInt(),
-      errorMessage: json['errorMessage'] as String?,
-      clientIp: json['clientIp'] as String?,
-      location: json['location'] as String?,
-      createTime: json['createTime'] == null
-          ? null
-          : DateTime.parse(json['createTime'] as String),
-    );
+OperationLogVo _$OperationLogVoFromJson(Map json) =>
+    $checkedCreate('OperationLogVo', json, ($checkedConvert) {
+      final val = OperationLogVo(
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        operatorId: $checkedConvert('operatorId', (v) => (v as num?)?.toInt()),
+        operatorName: $checkedConvert('operatorName', (v) => v as String?),
+        module: $checkedConvert('module', (v) => v as String?),
+        action: $checkedConvert('action', (v) => v as String?),
+        method: $checkedConvert('method', (v) => v as String?),
+        path: $checkedConvert('path', (v) => v as String?),
+        requestParams: $checkedConvert('requestParams', (v) => v as String?),
+        responseStatus: $checkedConvert(
+          'responseStatus',
+          (v) => (v as num?)?.toInt(),
+        ),
+        success: $checkedConvert('success', (v) => (v as num?)?.toInt()),
+        errorMessage: $checkedConvert('errorMessage', (v) => v as String?),
+        clientIp: $checkedConvert('clientIp', (v) => v as String?),
+        location: $checkedConvert('location', (v) => v as String?),
+        createTime: $checkedConvert(
+          'createTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$OperationLogVoToJson(OperationLogVo instance) =>
     <String, dynamic>{

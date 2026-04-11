@@ -6,18 +6,20 @@ part of 'notification_update_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-NotificationUpdateRequest _$NotificationUpdateRequestFromJson(
-  Map<String, dynamic> json,
-) => NotificationUpdateRequest(
-  id: (json['id'] as num?)?.toInt(),
-  title: json['title'] as String?,
-  content: json['content'] as String?,
-  type: json['type'] as String?,
-  userId: (json['userId'] as num?)?.toInt(),
-  relatedId: (json['relatedId'] as num?)?.toInt(),
-  relatedType: json['relatedType'] as String?,
-  contentUrl: json['contentUrl'] as String?,
-);
+NotificationUpdateRequest _$NotificationUpdateRequestFromJson(Map json) =>
+    $checkedCreate('NotificationUpdateRequest', json, ($checkedConvert) {
+      final val = NotificationUpdateRequest(
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        title: $checkedConvert('title', (v) => v as String?),
+        content: $checkedConvert('content', (v) => v as String?),
+        type: $checkedConvert('type', (v) => v as String?),
+        userId: $checkedConvert('userId', (v) => (v as num?)?.toInt()),
+        relatedId: $checkedConvert('relatedId', (v) => (v as num?)?.toInt()),
+        relatedType: $checkedConvert('relatedType', (v) => v as String?),
+        contentUrl: $checkedConvert('contentUrl', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$NotificationUpdateRequestToJson(
   NotificationUpdateRequest instance,

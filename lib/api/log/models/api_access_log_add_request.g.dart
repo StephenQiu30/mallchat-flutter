@@ -7,21 +7,24 @@ part of 'api_access_log_add_request.dart';
 // **************************************************************************
 
 ApiAccessLogAddRequest _$ApiAccessLogAddRequestFromJson(
-  Map<String, dynamic> json,
-) => ApiAccessLogAddRequest(
-  traceId: json['traceId'] as String?,
-  userId: (json['userId'] as num?)?.toInt(),
-  method: json['method'] as String?,
-  path: json['path'] as String?,
-  query: json['query'] as String?,
-  status: (json['status'] as num?)?.toInt(),
-  latencyMs: (json['latencyMs'] as num?)?.toInt(),
-  clientIp: json['clientIp'] as String?,
-  userAgent: json['userAgent'] as String?,
-  referer: json['referer'] as String?,
-  requestSize: (json['requestSize'] as num?)?.toInt(),
-  responseSize: (json['responseSize'] as num?)?.toInt(),
-);
+  Map json,
+) => $checkedCreate('ApiAccessLogAddRequest', json, ($checkedConvert) {
+  final val = ApiAccessLogAddRequest(
+    traceId: $checkedConvert('traceId', (v) => v as String?),
+    userId: $checkedConvert('userId', (v) => (v as num?)?.toInt()),
+    method: $checkedConvert('method', (v) => v as String?),
+    path: $checkedConvert('path', (v) => v as String?),
+    query: $checkedConvert('query', (v) => v as String?),
+    status: $checkedConvert('status', (v) => (v as num?)?.toInt()),
+    latencyMs: $checkedConvert('latencyMs', (v) => (v as num?)?.toInt()),
+    clientIp: $checkedConvert('clientIp', (v) => v as String?),
+    userAgent: $checkedConvert('userAgent', (v) => v as String?),
+    referer: $checkedConvert('referer', (v) => v as String?),
+    requestSize: $checkedConvert('requestSize', (v) => (v as num?)?.toInt()),
+    responseSize: $checkedConvert('responseSize', (v) => (v as num?)?.toInt()),
+  );
+  return val;
+});
 
 Map<String, dynamic> _$ApiAccessLogAddRequestToJson(
   ApiAccessLogAddRequest instance,

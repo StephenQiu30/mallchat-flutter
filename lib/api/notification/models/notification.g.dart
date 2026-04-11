@@ -6,26 +6,32 @@ part of 'notification.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Notification _$NotificationFromJson(Map<String, dynamic> json) => Notification(
-  id: (json['id'] as num?)?.toInt(),
-  title: json['title'] as String?,
-  content: json['content'] as String?,
-  type: json['type'] as String?,
-  bizId: json['bizId'] as String?,
-  userId: (json['userId'] as num?)?.toInt(),
-  relatedId: (json['relatedId'] as num?)?.toInt(),
-  relatedType: json['relatedType'] as String?,
-  isRead: (json['isRead'] as num?)?.toInt(),
-  status: (json['status'] as num?)?.toInt(),
-  contentUrl: json['contentUrl'] as String?,
-  createTime: json['createTime'] == null
-      ? null
-      : DateTime.parse(json['createTime'] as String),
-  updateTime: json['updateTime'] == null
-      ? null
-      : DateTime.parse(json['updateTime'] as String),
-  isDelete: (json['isDelete'] as num?)?.toInt(),
-);
+Notification _$NotificationFromJson(Map json) =>
+    $checkedCreate('Notification', json, ($checkedConvert) {
+      final val = Notification(
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        title: $checkedConvert('title', (v) => v as String?),
+        content: $checkedConvert('content', (v) => v as String?),
+        type: $checkedConvert('type', (v) => v as String?),
+        bizId: $checkedConvert('bizId', (v) => v as String?),
+        userId: $checkedConvert('userId', (v) => (v as num?)?.toInt()),
+        relatedId: $checkedConvert('relatedId', (v) => (v as num?)?.toInt()),
+        relatedType: $checkedConvert('relatedType', (v) => v as String?),
+        isRead: $checkedConvert('isRead', (v) => (v as num?)?.toInt()),
+        status: $checkedConvert('status', (v) => (v as num?)?.toInt()),
+        contentUrl: $checkedConvert('contentUrl', (v) => v as String?),
+        createTime: $checkedConvert(
+          'createTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        updateTime: $checkedConvert(
+          'updateTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        isDelete: $checkedConvert('isDelete', (v) => (v as num?)?.toInt()),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$NotificationToJson(Notification instance) =>
     <String, dynamic>{

@@ -6,14 +6,17 @@ part of 'chat_message_send_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChatMessageSendRequest _$ChatMessageSendRequestFromJson(
-  Map<String, dynamic> json,
-) => ChatMessageSendRequest(
-  roomId: (json['roomId'] as num).toInt(),
-  content: json['content'] as String,
-  type: (json['type'] as num).toInt(),
-  extra: json['extra'] as String?,
-);
+ChatMessageSendRequest _$ChatMessageSendRequestFromJson(Map json) =>
+    $checkedCreate('ChatMessageSendRequest', json, ($checkedConvert) {
+      final val = ChatMessageSendRequest(
+        roomId: $checkedConvert('roomId', (v) => (v as num).toInt()),
+        content: $checkedConvert('content', (v) => v as String),
+        type: $checkedConvert('type', (v) => (v as num).toInt()),
+        extra: $checkedConvert('extra', (v) => v as String?),
+        replyMsgId: $checkedConvert('replyMsgId', (v) => (v as num?)?.toInt()),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$ChatMessageSendRequestToJson(
   ChatMessageSendRequest instance,
@@ -22,4 +25,5 @@ Map<String, dynamic> _$ChatMessageSendRequestToJson(
   'content': instance.content,
   'type': instance.type,
   'extra': instance.extra,
+  'replyMsgId': instance.replyMsgId,
 };

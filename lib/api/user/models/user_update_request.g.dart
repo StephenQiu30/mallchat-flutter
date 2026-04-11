@@ -6,15 +6,19 @@ part of 'user_update_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserUpdateRequest _$UserUpdateRequestFromJson(Map<String, dynamic> json) =>
-    UserUpdateRequest(
-      id: (json['id'] as num?)?.toInt(),
-      userName: json['userName'] as String?,
-      userAvatar: json['userAvatar'] as String?,
-      userProfile: json['userProfile'] as String?,
-      userRole: json['userRole'] as String?,
-      userPhone: json['userPhone'] as String?,
-    );
+UserUpdateRequest _$UserUpdateRequestFromJson(Map json) =>
+    $checkedCreate('UserUpdateRequest', json, ($checkedConvert) {
+      final val = UserUpdateRequest(
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        userName: $checkedConvert('userName', (v) => v as String?),
+        userAvatar: $checkedConvert('userAvatar', (v) => v as String?),
+        userProfile: $checkedConvert('userProfile', (v) => v as String?),
+        userRole: $checkedConvert('userRole', (v) => v as String?),
+        userPhone: $checkedConvert('userPhone', (v) => v as String?),
+        userEmail: $checkedConvert('userEmail', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$UserUpdateRequestToJson(UserUpdateRequest instance) =>
     <String, dynamic>{
@@ -24,4 +28,5 @@ Map<String, dynamic> _$UserUpdateRequestToJson(UserUpdateRequest instance) =>
       'userProfile': instance.userProfile,
       'userRole': instance.userRole,
       'userPhone': instance.userPhone,
+      'userEmail': instance.userEmail,
     };

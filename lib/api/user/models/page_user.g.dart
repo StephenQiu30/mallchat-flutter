@@ -6,36 +6,56 @@ part of 'page_user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PageUser _$PageUserFromJson(Map<String, dynamic> json) => PageUser(
-  records: (json['records'] as List<dynamic>?)
-      ?.map((e) => User.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  total: (json['total'] as num?)?.toInt(),
-  size: (json['size'] as num?)?.toInt(),
-  current: (json['current'] as num?)?.toInt(),
-  orders: (json['orders'] as List<dynamic>?)
-      ?.map((e) => OrderItem.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  optimizeCountSql: json['optimizeCountSql'] == null
-      ? null
-      : PageUser.fromJson(json['optimizeCountSql'] as Map<String, dynamic>),
-  searchCount: json['searchCount'] == null
-      ? null
-      : PageUser.fromJson(json['searchCount'] as Map<String, dynamic>),
-  optimizeJoinOfCountSql: json['optimizeJoinOfCountSql'] as bool?,
-  maxLimit: (json['maxLimit'] as num?)?.toInt(),
-  countId: json['countId'] as String?,
-  pages: (json['pages'] as num?)?.toInt(),
-);
+PageUser _$PageUserFromJson(Map json) => $checkedCreate('PageUser', json, (
+  $checkedConvert,
+) {
+  final val = PageUser(
+    records: $checkedConvert(
+      'records',
+      (v) => (v as List<dynamic>?)
+          ?.map((e) => User.fromJson(Map<String, Object?>.from(e as Map)))
+          .toList(),
+    ),
+    total: $checkedConvert('total', (v) => (v as num?)?.toInt()),
+    size: $checkedConvert('size', (v) => (v as num?)?.toInt()),
+    current: $checkedConvert('current', (v) => (v as num?)?.toInt()),
+    orders: $checkedConvert(
+      'orders',
+      (v) => (v as List<dynamic>?)
+          ?.map((e) => OrderItem.fromJson(Map<String, Object?>.from(e as Map)))
+          .toList(),
+    ),
+    optimizeCountSql: $checkedConvert(
+      'optimizeCountSql',
+      (v) => v == null
+          ? null
+          : PageUser.fromJson(Map<String, Object?>.from(v as Map)),
+    ),
+    searchCount: $checkedConvert(
+      'searchCount',
+      (v) => v == null
+          ? null
+          : PageUser.fromJson(Map<String, Object?>.from(v as Map)),
+    ),
+    optimizeJoinOfCountSql: $checkedConvert(
+      'optimizeJoinOfCountSql',
+      (v) => v as bool?,
+    ),
+    maxLimit: $checkedConvert('maxLimit', (v) => (v as num?)?.toInt()),
+    countId: $checkedConvert('countId', (v) => v as String?),
+    pages: $checkedConvert('pages', (v) => (v as num?)?.toInt()),
+  );
+  return val;
+});
 
 Map<String, dynamic> _$PageUserToJson(PageUser instance) => <String, dynamic>{
-  'records': instance.records,
+  'records': instance.records?.map((e) => e.toJson()).toList(),
   'total': instance.total,
   'size': instance.size,
   'current': instance.current,
-  'orders': instance.orders,
-  'optimizeCountSql': instance.optimizeCountSql,
-  'searchCount': instance.searchCount,
+  'orders': instance.orders?.map((e) => e.toJson()).toList(),
+  'optimizeCountSql': instance.optimizeCountSql?.toJson(),
+  'searchCount': instance.searchCount?.toJson(),
   'optimizeJoinOfCountSql': instance.optimizeJoinOfCountSql,
   'maxLimit': instance.maxLimit,
   'countId': instance.countId,

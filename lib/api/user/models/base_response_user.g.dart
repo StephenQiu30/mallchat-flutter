@@ -6,18 +6,24 @@ part of 'base_response_user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BaseResponseUser _$BaseResponseUserFromJson(Map<String, dynamic> json) =>
-    BaseResponseUser(
-      code: (json['code'] as num?)?.toInt(),
-      data: json['data'] == null
-          ? null
-          : User.fromJson(json['data'] as Map<String, dynamic>),
-      message: json['message'] as String?,
-    );
+BaseResponseUser _$BaseResponseUserFromJson(Map json) =>
+    $checkedCreate('BaseResponseUser', json, ($checkedConvert) {
+      final val = BaseResponseUser(
+        code: $checkedConvert('code', (v) => (v as num?)?.toInt()),
+        data: $checkedConvert(
+          'data',
+          (v) => v == null
+              ? null
+              : User.fromJson(Map<String, Object?>.from(v as Map)),
+        ),
+        message: $checkedConvert('message', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$BaseResponseUserToJson(BaseResponseUser instance) =>
     <String, dynamic>{
       'code': instance.code,
-      'data': instance.data,
+      'data': instance.data?.toJson(),
       'message': instance.message,
     };

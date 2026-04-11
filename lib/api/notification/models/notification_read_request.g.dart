@@ -6,9 +6,13 @@ part of 'notification_read_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-NotificationReadRequest _$NotificationReadRequestFromJson(
-  Map<String, dynamic> json,
-) => NotificationReadRequest(id: (json['id'] as num?)?.toInt());
+NotificationReadRequest _$NotificationReadRequestFromJson(Map json) =>
+    $checkedCreate('NotificationReadRequest', json, ($checkedConvert) {
+      final val = NotificationReadRequest(
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$NotificationReadRequestToJson(
   NotificationReadRequest instance,

@@ -6,12 +6,15 @@ part of 'base_response_long.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BaseResponseLong _$BaseResponseLongFromJson(Map<String, dynamic> json) =>
-    BaseResponseLong(
-      code: (json['code'] as num?)?.toInt(),
-      data: (json['data'] as num?)?.toInt(),
-      message: json['message'] as String?,
-    );
+BaseResponseLong _$BaseResponseLongFromJson(Map json) =>
+    $checkedCreate('BaseResponseLong', json, ($checkedConvert) {
+      final val = BaseResponseLong(
+        code: $checkedConvert('code', (v) => (v as num?)?.toInt()),
+        data: $checkedConvert('data', (v) => (v as num?)?.toInt()),
+        message: $checkedConvert('message', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$BaseResponseLongToJson(BaseResponseLong instance) =>
     <String, dynamic>{

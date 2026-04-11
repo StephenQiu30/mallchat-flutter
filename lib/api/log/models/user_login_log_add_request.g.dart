@@ -6,18 +6,20 @@ part of 'user_login_log_add_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserLoginLogAddRequest _$UserLoginLogAddRequestFromJson(
-  Map<String, dynamic> json,
-) => UserLoginLogAddRequest(
-  userId: (json['userId'] as num?)?.toInt(),
-  account: json['account'] as String?,
-  loginType: json['loginType'] as String?,
-  status: json['status'] as String?,
-  failReason: json['failReason'] as String?,
-  clientIp: json['clientIp'] as String?,
-  location: json['location'] as String?,
-  userAgent: json['userAgent'] as String?,
-);
+UserLoginLogAddRequest _$UserLoginLogAddRequestFromJson(Map json) =>
+    $checkedCreate('UserLoginLogAddRequest', json, ($checkedConvert) {
+      final val = UserLoginLogAddRequest(
+        userId: $checkedConvert('userId', (v) => (v as num?)?.toInt()),
+        account: $checkedConvert('account', (v) => v as String?),
+        loginType: $checkedConvert('loginType', (v) => v as String?),
+        status: $checkedConvert('status', (v) => v as String?),
+        failReason: $checkedConvert('failReason', (v) => v as String?),
+        clientIp: $checkedConvert('clientIp', (v) => v as String?),
+        location: $checkedConvert('location', (v) => v as String?),
+        userAgent: $checkedConvert('userAgent', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$UserLoginLogAddRequestToJson(
   UserLoginLogAddRequest instance,

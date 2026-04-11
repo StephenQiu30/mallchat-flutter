@@ -6,24 +6,26 @@ part of 'file_upload_record_add_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FileUploadRecordAddRequest _$FileUploadRecordAddRequestFromJson(
-  Map<String, dynamic> json,
-) => FileUploadRecordAddRequest(
-  userId: (json['userId'] as num?)?.toInt(),
-  bizType: json['bizType'] as String?,
-  fileName: json['fileName'] as String?,
-  fileSize: (json['fileSize'] as num?)?.toInt(),
-  fileSuffix: json['fileSuffix'] as String?,
-  contentType: json['contentType'] as String?,
-  storageType: json['storageType'] as String?,
-  bucket: json['bucket'] as String?,
-  objectKey: json['objectKey'] as String?,
-  url: json['url'] as String?,
-  md5: json['md5'] as String?,
-  clientIp: json['clientIp'] as String?,
-  status: json['status'] as String?,
-  errorMessage: json['errorMessage'] as String?,
-);
+FileUploadRecordAddRequest _$FileUploadRecordAddRequestFromJson(Map json) =>
+    $checkedCreate('FileUploadRecordAddRequest', json, ($checkedConvert) {
+      final val = FileUploadRecordAddRequest(
+        userId: $checkedConvert('userId', (v) => (v as num?)?.toInt()),
+        bizType: $checkedConvert('bizType', (v) => v as String?),
+        fileName: $checkedConvert('fileName', (v) => v as String?),
+        fileSize: $checkedConvert('fileSize', (v) => (v as num?)?.toInt()),
+        fileSuffix: $checkedConvert('fileSuffix', (v) => v as String?),
+        contentType: $checkedConvert('contentType', (v) => v as String?),
+        storageType: $checkedConvert('storageType', (v) => v as String?),
+        bucket: $checkedConvert('bucket', (v) => v as String?),
+        objectKey: $checkedConvert('objectKey', (v) => v as String?),
+        url: $checkedConvert('url', (v) => v as String?),
+        md5: $checkedConvert('md5', (v) => v as String?),
+        clientIp: $checkedConvert('clientIp', (v) => v as String?),
+        status: $checkedConvert('status', (v) => v as String?),
+        errorMessage: $checkedConvert('errorMessage', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$FileUploadRecordAddRequestToJson(
   FileUploadRecordAddRequest instance,

@@ -6,21 +6,26 @@ part of 'ai_chat_record_vo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AiChatRecordVo _$AiChatRecordVoFromJson(Map<String, dynamic> json) =>
-    AiChatRecordVo(
-      id: (json['id'] as num?)?.toInt(),
-      userId: (json['userId'] as num?)?.toInt(),
-      sessionId: json['sessionId'] as String?,
-      message: json['message'] as String?,
-      response: json['response'] as String?,
-      modelType: json['modelType'] as String?,
-      createTime: json['createTime'] == null
-          ? null
-          : DateTime.parse(json['createTime'] as String),
-      updateTime: json['updateTime'] == null
-          ? null
-          : DateTime.parse(json['updateTime'] as String),
-    );
+AiChatRecordVo _$AiChatRecordVoFromJson(Map json) =>
+    $checkedCreate('AiChatRecordVo', json, ($checkedConvert) {
+      final val = AiChatRecordVo(
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        userId: $checkedConvert('userId', (v) => (v as num?)?.toInt()),
+        sessionId: $checkedConvert('sessionId', (v) => v as String?),
+        message: $checkedConvert('message', (v) => v as String?),
+        response: $checkedConvert('response', (v) => v as String?),
+        modelType: $checkedConvert('modelType', (v) => v as String?),
+        createTime: $checkedConvert(
+          'createTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        updateTime: $checkedConvert(
+          'updateTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$AiChatRecordVoToJson(AiChatRecordVo instance) =>
     <String, dynamic>{

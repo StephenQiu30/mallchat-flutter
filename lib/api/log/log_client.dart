@@ -4,20 +4,16 @@
 
 import 'package:dio/dio.dart';
 
-import 'operation_log_controller/operation_log_controller_client.dart';
-import 'user_login_log_controller/user_login_log_controller_client.dart';
-import 'file_upload_record_controller/file_upload_record_controller_client.dart';
-import 'api_access_log_controller/api_access_log_controller_client.dart';
+import 'clients/operation_log_controller_client.dart';
+import 'clients/user_login_log_controller_client.dart';
+import 'clients/file_upload_record_controller_client.dart';
+import 'clients/api_access_log_controller_client.dart';
 
 /// MallChat Cloud API `v1.0.0`.
 ///
 /// MallChat Cloud 微服务接口文档.
 class LogClient {
-  LogClient(
-    Dio dio, {
-    String? baseUrl,
-  })  : _dio = dio,
-        _baseUrl = baseUrl;
+  LogClient(Dio dio, {String? baseUrl}) : _dio = dio, _baseUrl = baseUrl;
 
   final Dio _dio;
   final String? _baseUrl;
@@ -29,11 +25,27 @@ class LogClient {
   FileUploadRecordControllerClient? _fileUploadRecordController;
   ApiAccessLogControllerClient? _apiAccessLogController;
 
-  OperationLogControllerClient get operationLogController => _operationLogController ??= OperationLogControllerClient(_dio, baseUrl: _baseUrl);
+  OperationLogControllerClient get operationLogController =>
+      _operationLogController ??= OperationLogControllerClient(
+        _dio,
+        baseUrl: _baseUrl,
+      );
 
-  UserLoginLogControllerClient get userLoginLogController => _userLoginLogController ??= UserLoginLogControllerClient(_dio, baseUrl: _baseUrl);
+  UserLoginLogControllerClient get userLoginLogController =>
+      _userLoginLogController ??= UserLoginLogControllerClient(
+        _dio,
+        baseUrl: _baseUrl,
+      );
 
-  FileUploadRecordControllerClient get fileUploadRecordController => _fileUploadRecordController ??= FileUploadRecordControllerClient(_dio, baseUrl: _baseUrl);
+  FileUploadRecordControllerClient get fileUploadRecordController =>
+      _fileUploadRecordController ??= FileUploadRecordControllerClient(
+        _dio,
+        baseUrl: _baseUrl,
+      );
 
-  ApiAccessLogControllerClient get apiAccessLogController => _apiAccessLogController ??= ApiAccessLogControllerClient(_dio, baseUrl: _baseUrl);
+  ApiAccessLogControllerClient get apiAccessLogController =>
+      _apiAccessLogController ??= ApiAccessLogControllerClient(
+        _dio,
+        baseUrl: _baseUrl,
+      );
 }

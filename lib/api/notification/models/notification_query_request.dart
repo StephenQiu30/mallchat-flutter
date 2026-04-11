@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'notification_query_request.g.dart';
@@ -22,9 +24,10 @@ class NotificationQueryRequest {
     this.relatedType,
     this.searchText,
   });
-  
-  factory NotificationQueryRequest.fromJson(Map<String, Object?> json) => _$NotificationQueryRequestFromJson(json);
-  
+
+  factory NotificationQueryRequest.fromJson(Map<String, Object?> json) =>
+      _$NotificationQueryRequestFromJson(json);
+
   /// 当前页号
   final int? current;
 
@@ -60,3 +63,20 @@ class NotificationQueryRequest {
 
   Map<String, Object?> toJson() => _$NotificationQueryRequestToJson(this);
 }
+
+// Flutter compute serialization functions for NotificationQueryRequest
+FutureOr<NotificationQueryRequest> deserializeNotificationQueryRequest(
+  Map<String, dynamic> json,
+) => NotificationQueryRequest.fromJson(json);
+
+FutureOr<List<NotificationQueryRequest>>
+deserializeNotificationQueryRequestList(List<Map<String, dynamic>> json) =>
+    json.map((e) => NotificationQueryRequest.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeNotificationQueryRequest(
+  NotificationQueryRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeNotificationQueryRequestList(
+  List<NotificationQueryRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

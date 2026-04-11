@@ -6,12 +6,16 @@ part of 'file_vo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FileVo _$FileVoFromJson(Map<String, dynamic> json) => FileVo(
-  url: json['url'] as String?,
-  key: json['key'] as String?,
-  fileName: json['fileName'] as String?,
-  size: (json['size'] as num?)?.toInt(),
-);
+FileVo _$FileVoFromJson(Map json) =>
+    $checkedCreate('FileVo', json, ($checkedConvert) {
+      final val = FileVo(
+        url: $checkedConvert('url', (v) => v as String?),
+        key: $checkedConvert('key', (v) => v as String?),
+        fileName: $checkedConvert('fileName', (v) => v as String?),
+        size: $checkedConvert('size', (v) => (v as num?)?.toInt()),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$FileVoToJson(FileVo instance) => <String, dynamic>{
   'url': instance.url,

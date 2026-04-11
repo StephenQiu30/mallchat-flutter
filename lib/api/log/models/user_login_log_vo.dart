@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_login_log_vo.g.dart';
@@ -21,9 +23,10 @@ class UserLoginLogVo {
     this.userAgent,
     this.createTime,
   });
-  
-  factory UserLoginLogVo.fromJson(Map<String, Object?> json) => _$UserLoginLogVoFromJson(json);
-  
+
+  factory UserLoginLogVo.fromJson(Map<String, Object?> json) =>
+      _$UserLoginLogVoFromJson(json);
+
   /// 主键
   final int? id;
 
@@ -56,3 +59,19 @@ class UserLoginLogVo {
 
   Map<String, Object?> toJson() => _$UserLoginLogVoToJson(this);
 }
+
+// Flutter compute serialization functions for UserLoginLogVo
+FutureOr<UserLoginLogVo> deserializeUserLoginLogVo(Map<String, dynamic> json) =>
+    UserLoginLogVo.fromJson(json);
+
+FutureOr<List<UserLoginLogVo>> deserializeUserLoginLogVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => UserLoginLogVo.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeUserLoginLogVo(
+  UserLoginLogVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeUserLoginLogVoList(
+  List<UserLoginLogVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

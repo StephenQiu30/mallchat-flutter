@@ -6,29 +6,37 @@ part of 'notification_vo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-NotificationVo _$NotificationVoFromJson(Map<String, dynamic> json) =>
-    NotificationVo(
-      id: (json['id'] as num?)?.toInt(),
-      title: json['title'] as String?,
-      content: json['content'] as String?,
-      type: json['type'] as String?,
-      userId: (json['userId'] as num?)?.toInt(),
-      userVo: json['userVO'] == null
-          ? null
-          : UserVo.fromJson(json['userVO'] as Map<String, dynamic>),
-      relatedId: (json['relatedId'] as num?)?.toInt(),
-      relatedType: json['relatedType'] as String?,
-      isRead: (json['isRead'] as num?)?.toInt(),
-      status: (json['status'] as num?)?.toInt(),
-      contentUrl: json['contentUrl'] as String?,
-      bizId: json['bizId'] as String?,
-      createTime: json['createTime'] == null
-          ? null
-          : DateTime.parse(json['createTime'] as String),
-      updateTime: json['updateTime'] == null
-          ? null
-          : DateTime.parse(json['updateTime'] as String),
-    );
+NotificationVo _$NotificationVoFromJson(Map json) =>
+    $checkedCreate('NotificationVo', json, ($checkedConvert) {
+      final val = NotificationVo(
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        title: $checkedConvert('title', (v) => v as String?),
+        content: $checkedConvert('content', (v) => v as String?),
+        type: $checkedConvert('type', (v) => v as String?),
+        userId: $checkedConvert('userId', (v) => (v as num?)?.toInt()),
+        userVo: $checkedConvert(
+          'userVO',
+          (v) => v == null
+              ? null
+              : UserVo.fromJson(Map<String, Object?>.from(v as Map)),
+        ),
+        relatedId: $checkedConvert('relatedId', (v) => (v as num?)?.toInt()),
+        relatedType: $checkedConvert('relatedType', (v) => v as String?),
+        isRead: $checkedConvert('isRead', (v) => (v as num?)?.toInt()),
+        status: $checkedConvert('status', (v) => (v as num?)?.toInt()),
+        contentUrl: $checkedConvert('contentUrl', (v) => v as String?),
+        bizId: $checkedConvert('bizId', (v) => v as String?),
+        createTime: $checkedConvert(
+          'createTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        updateTime: $checkedConvert(
+          'updateTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+      );
+      return val;
+    }, fieldKeyMap: const {'userVo': 'userVO'});
 
 Map<String, dynamic> _$NotificationVoToJson(NotificationVo instance) =>
     <String, dynamic>{
@@ -37,7 +45,7 @@ Map<String, dynamic> _$NotificationVoToJson(NotificationVo instance) =>
       'content': instance.content,
       'type': instance.type,
       'userId': instance.userId,
-      'userVO': instance.userVo,
+      'userVO': instance.userVo?.toJson(),
       'relatedId': instance.relatedId,
       'relatedType': instance.relatedType,
       'isRead': instance.isRead,

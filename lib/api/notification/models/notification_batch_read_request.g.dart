@@ -6,11 +6,16 @@ part of 'notification_batch_read_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-NotificationBatchReadRequest _$NotificationBatchReadRequestFromJson(
-  Map<String, dynamic> json,
-) => NotificationBatchReadRequest(
-  ids: (json['ids'] as List<dynamic>).map((e) => (e as num).toInt()).toList(),
-);
+NotificationBatchReadRequest _$NotificationBatchReadRequestFromJson(Map json) =>
+    $checkedCreate('NotificationBatchReadRequest', json, ($checkedConvert) {
+      final val = NotificationBatchReadRequest(
+        ids: $checkedConvert(
+          'ids',
+          (v) => (v as List<dynamic>).map((e) => (e as num).toInt()).toList(),
+        ),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$NotificationBatchReadRequestToJson(
   NotificationBatchReadRequest instance,

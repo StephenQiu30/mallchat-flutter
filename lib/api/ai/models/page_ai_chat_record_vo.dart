@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 import 'ai_chat_record_vo.dart';
@@ -26,9 +28,10 @@ class PageAiChatRecordVo {
     this.countId,
     this.pages,
   });
-  
-  factory PageAiChatRecordVo.fromJson(Map<String, Object?> json) => _$PageAiChatRecordVoFromJson(json);
-  
+
+  factory PageAiChatRecordVo.fromJson(Map<String, Object?> json) =>
+      _$PageAiChatRecordVoFromJson(json);
+
   final List<AiChatRecordVo>? records;
   final int? total;
   final int? size;
@@ -43,3 +46,20 @@ class PageAiChatRecordVo {
 
   Map<String, Object?> toJson() => _$PageAiChatRecordVoToJson(this);
 }
+
+// Flutter compute serialization functions for PageAiChatRecordVo
+FutureOr<PageAiChatRecordVo> deserializePageAiChatRecordVo(
+  Map<String, dynamic> json,
+) => PageAiChatRecordVo.fromJson(json);
+
+FutureOr<List<PageAiChatRecordVo>> deserializePageAiChatRecordVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => PageAiChatRecordVo.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializePageAiChatRecordVo(
+  PageAiChatRecordVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializePageAiChatRecordVoList(
+  List<PageAiChatRecordVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

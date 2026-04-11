@@ -6,21 +6,23 @@ part of 'user_login_log_query_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserLoginLogQueryRequest _$UserLoginLogQueryRequestFromJson(
-  Map<String, dynamic> json,
-) => UserLoginLogQueryRequest(
-  current: (json['current'] as num?)?.toInt(),
-  pageSize: (json['pageSize'] as num?)?.toInt(),
-  sortField: json['sortField'] as String?,
-  sortOrder: json['sortOrder'] as String?,
-  id: (json['id'] as num?)?.toInt(),
-  userId: (json['userId'] as num?)?.toInt(),
-  account: json['account'] as String?,
-  loginType: json['loginType'] as String?,
-  status: json['status'] as String?,
-  clientIp: json['clientIp'] as String?,
-  searchText: json['searchText'] as String?,
-);
+UserLoginLogQueryRequest _$UserLoginLogQueryRequestFromJson(Map json) =>
+    $checkedCreate('UserLoginLogQueryRequest', json, ($checkedConvert) {
+      final val = UserLoginLogQueryRequest(
+        current: $checkedConvert('current', (v) => (v as num?)?.toInt()),
+        pageSize: $checkedConvert('pageSize', (v) => (v as num?)?.toInt()),
+        sortField: $checkedConvert('sortField', (v) => v as String?),
+        sortOrder: $checkedConvert('sortOrder', (v) => v as String?),
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        userId: $checkedConvert('userId', (v) => (v as num?)?.toInt()),
+        account: $checkedConvert('account', (v) => v as String?),
+        loginType: $checkedConvert('loginType', (v) => v as String?),
+        status: $checkedConvert('status', (v) => v as String?),
+        clientIp: $checkedConvert('clientIp', (v) => v as String?),
+        searchText: $checkedConvert('searchText', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$UserLoginLogQueryRequestToJson(
   UserLoginLogQueryRequest instance,

@@ -7,19 +7,29 @@ part of 'base_response_page_file_upload_record_vo.dart';
 // **************************************************************************
 
 BaseResponsePageFileUploadRecordVo _$BaseResponsePageFileUploadRecordVoFromJson(
-  Map<String, dynamic> json,
-) => BaseResponsePageFileUploadRecordVo(
-  code: (json['code'] as num?)?.toInt(),
-  data: json['data'] == null
-      ? null
-      : PageFileUploadRecordVo.fromJson(json['data'] as Map<String, dynamic>),
-  message: json['message'] as String?,
-);
+  Map json,
+) => $checkedCreate('BaseResponsePageFileUploadRecordVo', json, (
+  $checkedConvert,
+) {
+  final val = BaseResponsePageFileUploadRecordVo(
+    code: $checkedConvert('code', (v) => (v as num?)?.toInt()),
+    data: $checkedConvert(
+      'data',
+      (v) => v == null
+          ? null
+          : PageFileUploadRecordVo.fromJson(
+              Map<String, Object?>.from(v as Map),
+            ),
+    ),
+    message: $checkedConvert('message', (v) => v as String?),
+  );
+  return val;
+});
 
 Map<String, dynamic> _$BaseResponsePageFileUploadRecordVoToJson(
   BaseResponsePageFileUploadRecordVo instance,
 ) => <String, dynamic>{
   'code': instance.code,
-  'data': instance.data,
+  'data': instance.data?.toJson(),
   'message': instance.message,
 };

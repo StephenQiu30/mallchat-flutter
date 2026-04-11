@@ -6,21 +6,23 @@ part of 'user_query_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserQueryRequest _$UserQueryRequestFromJson(Map<String, dynamic> json) =>
-    UserQueryRequest(
-      current: (json['current'] as num?)?.toInt(),
-      pageSize: (json['pageSize'] as num?)?.toInt(),
-      sortField: json['sortField'] as String?,
-      sortOrder: json['sortOrder'] as String?,
-      id: (json['id'] as num?)?.toInt(),
-      notId: (json['notId'] as num?)?.toInt(),
-      wxUnionId: json['wxUnionId'] as String?,
-      mpOpenId: json['mpOpenId'] as String?,
-      userName: json['userName'] as String?,
-      userRole: json['userRole'] as String?,
-      userPhone: json['userPhone'] as String?,
-      searchText: json['searchText'] as String?,
-    );
+UserQueryRequest _$UserQueryRequestFromJson(Map json) =>
+    $checkedCreate('UserQueryRequest', json, ($checkedConvert) {
+      final val = UserQueryRequest(
+        current: $checkedConvert('current', (v) => (v as num?)?.toInt()),
+        pageSize: $checkedConvert('pageSize', (v) => (v as num?)?.toInt()),
+        sortField: $checkedConvert('sortField', (v) => v as String?),
+        sortOrder: $checkedConvert('sortOrder', (v) => v as String?),
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        notId: $checkedConvert('notId', (v) => (v as num?)?.toInt()),
+        wxUnionId: $checkedConvert('wxUnionId', (v) => v as String?),
+        userName: $checkedConvert('userName', (v) => v as String?),
+        userRole: $checkedConvert('userRole', (v) => v as String?),
+        userPhone: $checkedConvert('userPhone', (v) => v as String?),
+        searchText: $checkedConvert('searchText', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$UserQueryRequestToJson(UserQueryRequest instance) =>
     <String, dynamic>{
@@ -31,7 +33,6 @@ Map<String, dynamic> _$UserQueryRequestToJson(UserQueryRequest instance) =>
       'id': instance.id,
       'notId': instance.notId,
       'wxUnionId': instance.wxUnionId,
-      'mpOpenId': instance.mpOpenId,
       'userName': instance.userName,
       'userRole': instance.userRole,
       'userPhone': instance.userPhone,

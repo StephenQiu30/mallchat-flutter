@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'ai_chat_request.g.dart';
@@ -15,9 +17,10 @@ class AiChatRequest {
     this.sessionId,
     this.systemMessage,
   });
-  
-  factory AiChatRequest.fromJson(Map<String, Object?> json) => _$AiChatRequestFromJson(json);
-  
+
+  factory AiChatRequest.fromJson(Map<String, Object?> json) =>
+      _$AiChatRequestFromJson(json);
+
   /// 问题内容
   final String? message;
 
@@ -32,3 +35,18 @@ class AiChatRequest {
 
   Map<String, Object?> toJson() => _$AiChatRequestToJson(this);
 }
+
+// Flutter compute serialization functions for AiChatRequest
+FutureOr<AiChatRequest> deserializeAiChatRequest(Map<String, dynamic> json) =>
+    AiChatRequest.fromJson(json);
+
+FutureOr<List<AiChatRequest>> deserializeAiChatRequestList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => AiChatRequest.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeAiChatRequest(AiChatRequest? object) =>
+    object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeAiChatRequestList(
+  List<AiChatRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

@@ -6,12 +6,15 @@ part of 'base_response_integer.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BaseResponseInteger _$BaseResponseIntegerFromJson(Map<String, dynamic> json) =>
-    BaseResponseInteger(
-      code: (json['code'] as num?)?.toInt(),
-      data: (json['data'] as num?)?.toInt(),
-      message: json['message'] as String?,
-    );
+BaseResponseInteger _$BaseResponseIntegerFromJson(Map json) =>
+    $checkedCreate('BaseResponseInteger', json, ($checkedConvert) {
+      final val = BaseResponseInteger(
+        code: $checkedConvert('code', (v) => (v as num?)?.toInt()),
+        data: $checkedConvert('data', (v) => (v as num?)?.toInt()),
+        message: $checkedConvert('message', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$BaseResponseIntegerToJson(
   BaseResponseInteger instance,

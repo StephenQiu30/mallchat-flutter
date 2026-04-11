@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_query_request.g.dart';
@@ -17,15 +19,15 @@ class UserQueryRequest {
     this.id,
     this.notId,
     this.wxUnionId,
-    this.mpOpenId,
     this.userName,
     this.userRole,
     this.userPhone,
     this.searchText,
   });
-  
-  factory UserQueryRequest.fromJson(Map<String, Object?> json) => _$UserQueryRequestFromJson(json);
-  
+
+  factory UserQueryRequest.fromJson(Map<String, Object?> json) =>
+      _$UserQueryRequestFromJson(json);
+
   /// 当前页号
   final int? current;
 
@@ -47,9 +49,6 @@ class UserQueryRequest {
   /// 微信开放平台UnionID
   final String? wxUnionId;
 
-  /// 公众号OpenID
-  final String? mpOpenId;
-
   /// 用户昵称
   final String? userName;
 
@@ -64,3 +63,20 @@ class UserQueryRequest {
 
   Map<String, Object?> toJson() => _$UserQueryRequestToJson(this);
 }
+
+// Flutter compute serialization functions for UserQueryRequest
+FutureOr<UserQueryRequest> deserializeUserQueryRequest(
+  Map<String, dynamic> json,
+) => UserQueryRequest.fromJson(json);
+
+FutureOr<List<UserQueryRequest>> deserializeUserQueryRequestList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => UserQueryRequest.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeUserQueryRequest(
+  UserQueryRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeUserQueryRequestList(
+  List<UserQueryRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];
