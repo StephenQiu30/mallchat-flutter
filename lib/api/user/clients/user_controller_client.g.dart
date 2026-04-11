@@ -31,11 +31,11 @@ class _UserControllerClient implements UserControllerClient {
     final _options = _setStreamType<BaseResponseBoolean>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
-        _dio.options,
-        '/user/update',
-        queryParameters: queryParameters,
-        data: _data,
-      )
+            _dio.options,
+            '/user/update',
+            queryParameters: queryParameters,
+            data: _data,
+          )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
@@ -58,11 +58,11 @@ class _UserControllerClient implements UserControllerClient {
     final _options = _setStreamType<BaseResponseBoolean>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
-        _dio.options,
-        '/user/logout',
-        queryParameters: queryParameters,
-        data: _data,
-      )
+            _dio.options,
+            '/user/logout',
+            queryParameters: queryParameters,
+            data: _data,
+          )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
@@ -88,17 +88,77 @@ class _UserControllerClient implements UserControllerClient {
     final _options = _setStreamType<BaseResponseLoginUserVo>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
-        _dio.options,
-        '/user/login/ma',
-        queryParameters: queryParameters,
-        data: _data,
-      )
+            _dio.options,
+            '/user/login/ma',
+            queryParameters: queryParameters,
+            data: _data,
+          )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
     late BaseResponseLoginUserVo _value;
     try {
       _value = await compute(deserializeBaseResponseLoginUserVo, _result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<BaseResponseLoginUserVo> userLoginByEmail({
+    required UserEmailLoginRequest body,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(await compute(serializeUserEmailLoginRequest, body));
+    final _options = _setStreamType<BaseResponseLoginUserVo>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/user/login/email',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, Object?>>(_options);
+    late BaseResponseLoginUserVo _value;
+    try {
+      _value = await compute(deserializeBaseResponseLoginUserVo, _result.data!);
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
+  Future<BaseResponseBoolean> sendEmailCode({
+    required UserEmailCodeRequest body,
+  }) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    _data.addAll(await compute(serializeUserEmailCodeRequest, body));
+    final _options = _setStreamType<BaseResponseBoolean>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/user/login/email/code',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, Object?>>(_options);
+    late BaseResponseBoolean _value;
+    try {
+      _value = await compute(deserializeBaseResponseBoolean, _result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -118,11 +178,11 @@ class _UserControllerClient implements UserControllerClient {
     final _options = _setStreamType<BaseResponseLoginUserVo>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
-        _dio.options,
-        '/user/login/apple',
-        queryParameters: queryParameters,
-        data: _data,
-      )
+            _dio.options,
+            '/user/login/apple',
+            queryParameters: queryParameters,
+            data: _data,
+          )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
@@ -148,11 +208,11 @@ class _UserControllerClient implements UserControllerClient {
     final _options = _setStreamType<BaseResponseLoginUserVo>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
-        _dio.options,
-        '/user/login/app',
-        queryParameters: queryParameters,
-        data: _data,
-      )
+            _dio.options,
+            '/user/login/app',
+            queryParameters: queryParameters,
+            data: _data,
+          )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
@@ -178,11 +238,11 @@ class _UserControllerClient implements UserControllerClient {
     final _options = _setStreamType<BaseResponsePageUser>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
-        _dio.options,
-        '/user/list/page',
-        queryParameters: queryParameters,
-        data: _data,
-      )
+            _dio.options,
+            '/user/list/page',
+            queryParameters: queryParameters,
+            data: _data,
+          )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
@@ -208,11 +268,11 @@ class _UserControllerClient implements UserControllerClient {
     final _options = _setStreamType<BaseResponsePageUserVo>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
-        _dio.options,
-        '/user/list/page/vo',
-        queryParameters: queryParameters,
-        data: _data,
-      )
+            _dio.options,
+            '/user/list/page/vo',
+            queryParameters: queryParameters,
+            data: _data,
+          )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
@@ -236,11 +296,11 @@ class _UserControllerClient implements UserControllerClient {
     final _options = _setStreamType<BaseResponseBoolean>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
-        _dio.options,
-        '/user/edit',
-        queryParameters: queryParameters,
-        data: _data,
-      )
+            _dio.options,
+            '/user/edit',
+            queryParameters: queryParameters,
+            data: _data,
+          )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
@@ -264,11 +324,11 @@ class _UserControllerClient implements UserControllerClient {
     final _options = _setStreamType<BaseResponseBoolean>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
-        _dio.options,
-        '/user/delete',
-        queryParameters: queryParameters,
-        data: _data,
-      )
+            _dio.options,
+            '/user/delete',
+            queryParameters: queryParameters,
+            data: _data,
+          )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
@@ -292,11 +352,11 @@ class _UserControllerClient implements UserControllerClient {
     final _options = _setStreamType<BaseResponseLong>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
-        _dio.options,
-        '/user/add',
-        queryParameters: queryParameters,
-        data: _data,
-      )
+            _dio.options,
+            '/user/add',
+            queryParameters: queryParameters,
+            data: _data,
+          )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
@@ -319,11 +379,11 @@ class _UserControllerClient implements UserControllerClient {
     final _options = _setStreamType<BaseResponseBoolean>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
-        _dio.options,
-        '/user/is/admin',
-        queryParameters: queryParameters,
-        data: _data,
-      )
+            _dio.options,
+            '/user/is/admin',
+            queryParameters: queryParameters,
+            data: _data,
+          )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
@@ -346,11 +406,11 @@ class _UserControllerClient implements UserControllerClient {
     final _options = _setStreamType<BaseResponseUser>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
-        _dio.options,
-        '/user/get',
-        queryParameters: queryParameters,
-        data: _data,
-      )
+            _dio.options,
+            '/user/get',
+            queryParameters: queryParameters,
+            data: _data,
+          )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
@@ -373,11 +433,11 @@ class _UserControllerClient implements UserControllerClient {
     final _options = _setStreamType<BaseResponseUserVo>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
-        _dio.options,
-        '/user/get/vo',
-        queryParameters: queryParameters,
-        data: _data,
-      )
+            _dio.options,
+            '/user/get/vo',
+            queryParameters: queryParameters,
+            data: _data,
+          )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
@@ -402,11 +462,11 @@ class _UserControllerClient implements UserControllerClient {
     final _options = _setStreamType<BaseResponseListUserVo>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
-        _dio.options,
-        '/user/get/vo/batch',
-        queryParameters: queryParameters,
-        data: _data,
-      )
+            _dio.options,
+            '/user/get/vo/batch',
+            queryParameters: queryParameters,
+            data: _data,
+          )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
@@ -429,11 +489,11 @@ class _UserControllerClient implements UserControllerClient {
     final _options = _setStreamType<BaseResponseLoginUserVo>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
-        _dio.options,
-        '/user/get/login',
-        queryParameters: queryParameters,
-        data: _data,
-      )
+            _dio.options,
+            '/user/get/login',
+            queryParameters: queryParameters,
+            data: _data,
+          )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
@@ -461,9 +521,7 @@ class _UserControllerClient implements UserControllerClient {
   }
 
   String _combineBaseUrls(String dioBaseUrl, String? baseUrl) {
-    if (baseUrl == null || baseUrl
-        .trim()
-        .isEmpty) {
+    if (baseUrl == null || baseUrl.trim().isEmpty) {
       return dioBaseUrl;
     }
 

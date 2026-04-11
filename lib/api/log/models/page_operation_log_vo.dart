@@ -28,10 +28,9 @@ class PageOperationLogVo {
     this.countId,
     this.pages,
   });
-
-  factory PageOperationLogVo.fromJson(Map<String, Object?> json) =>
-      _$PageOperationLogVoFromJson(json);
-
+  
+  factory PageOperationLogVo.fromJson(Map<String, Object?> json) => _$PageOperationLogVoFromJson(json);
+  
   final List<OperationLogVo>? records;
   final int? total;
   final int? size;
@@ -48,18 +47,14 @@ class PageOperationLogVo {
 }
 
 // Flutter compute serialization functions for PageOperationLogVo
-FutureOr<PageOperationLogVo> deserializePageOperationLogVo(
-  Map<String, dynamic> json,
-) => PageOperationLogVo.fromJson(json);
+FutureOr<PageOperationLogVo> deserializePageOperationLogVo(Map<String, dynamic> json) =>
+    PageOperationLogVo.fromJson(json);
 
-FutureOr<List<PageOperationLogVo>> deserializePageOperationLogVoList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => PageOperationLogVo.fromJson(e)).toList();
+FutureOr<List<PageOperationLogVo>> deserializePageOperationLogVoList(List<Map<String, dynamic>> json) =>
+    json.map((e) => PageOperationLogVo.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializePageOperationLogVo(
-  PageOperationLogVo? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializePageOperationLogVo(PageOperationLogVo? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializePageOperationLogVoList(
-  List<PageOperationLogVo>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializePageOperationLogVoList(List<PageOperationLogVo>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

@@ -18,10 +18,12 @@ class ChatDetailPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
-        leading: IconButton(
-          icon: const Icon(TDIcons.chevron_left, color: Color(0xFF1F2937)),
-          onPressed: () => Get.back(),
-        ),
+        leading: Navigator.canPop(context) 
+          ? IconButton(
+              icon: const Icon(TDIcons.chevron_left, color: Color(0xFF1F2937)),
+              onPressed: () => Get.back(),
+            )
+          : null,
         title: Obx(() {
           final activeRoom = chatController.chatRooms.firstWhereOrNull((r) => r.id == chatController.activeRoomId.value);
           final roomName = activeRoom?.name ?? "聊天详情";

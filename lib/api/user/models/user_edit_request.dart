@@ -18,10 +18,9 @@ class UserEditRequest {
     this.userPhone,
     this.userEmail,
   });
-
-  factory UserEditRequest.fromJson(Map<String, Object?> json) =>
-      _$UserEditRequestFromJson(json);
-
+  
+  factory UserEditRequest.fromJson(Map<String, Object?> json) => _$UserEditRequestFromJson(json);
+  
   /// 用户昵称
   final String? userName;
 
@@ -41,18 +40,14 @@ class UserEditRequest {
 }
 
 // Flutter compute serialization functions for UserEditRequest
-FutureOr<UserEditRequest> deserializeUserEditRequest(
-  Map<String, dynamic> json,
-) => UserEditRequest.fromJson(json);
+FutureOr<UserEditRequest> deserializeUserEditRequest(Map<String, dynamic> json) =>
+    UserEditRequest.fromJson(json);
 
-FutureOr<List<UserEditRequest>> deserializeUserEditRequestList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => UserEditRequest.fromJson(e)).toList();
+FutureOr<List<UserEditRequest>> deserializeUserEditRequestList(List<Map<String, dynamic>> json) =>
+    json.map((e) => UserEditRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeUserEditRequest(
-  UserEditRequest? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeUserEditRequest(UserEditRequest? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeUserEditRequestList(
-  List<UserEditRequest>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeUserEditRequestList(List<UserEditRequest>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

@@ -18,10 +18,9 @@ class ChatMessageSendRequest {
     this.extra,
     this.replyMsgId,
   });
-
-  factory ChatMessageSendRequest.fromJson(Map<String, Object?> json) =>
-      _$ChatMessageSendRequestFromJson(json);
-
+  
+  factory ChatMessageSendRequest.fromJson(Map<String, Object?> json) => _$ChatMessageSendRequestFromJson(json);
+  
   /// 房间ID
   final int roomId;
 
@@ -41,18 +40,14 @@ class ChatMessageSendRequest {
 }
 
 // Flutter compute serialization functions for ChatMessageSendRequest
-FutureOr<ChatMessageSendRequest> deserializeChatMessageSendRequest(
-  Map<String, dynamic> json,
-) => ChatMessageSendRequest.fromJson(json);
+FutureOr<ChatMessageSendRequest> deserializeChatMessageSendRequest(Map<String, dynamic> json) =>
+    ChatMessageSendRequest.fromJson(json);
 
-FutureOr<List<ChatMessageSendRequest>> deserializeChatMessageSendRequestList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => ChatMessageSendRequest.fromJson(e)).toList();
+FutureOr<List<ChatMessageSendRequest>> deserializeChatMessageSendRequestList(List<Map<String, dynamic>> json) =>
+    json.map((e) => ChatMessageSendRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeChatMessageSendRequest(
-  ChatMessageSendRequest? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeChatMessageSendRequest(ChatMessageSendRequest? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeChatMessageSendRequestList(
-  List<ChatMessageSendRequest>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeChatMessageSendRequestList(List<ChatMessageSendRequest>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

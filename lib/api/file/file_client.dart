@@ -8,7 +8,11 @@ import 'clients/file_controller_client.dart';
 
 /// OpenAPI definition `vv0`
 class FileClient {
-  FileClient(Dio dio, {String? baseUrl}) : _dio = dio, _baseUrl = baseUrl;
+  FileClient(
+    Dio dio, {
+    String? baseUrl,
+  })  : _dio = dio,
+        _baseUrl = baseUrl;
 
   final Dio _dio;
   final String? _baseUrl;
@@ -17,6 +21,5 @@ class FileClient {
 
   FileControllerClient? _fileController;
 
-  FileControllerClient get fileController =>
-      _fileController ??= FileControllerClient(_dio, baseUrl: _baseUrl);
+  FileControllerClient get fileController => _fileController ??= FileControllerClient(_dio, baseUrl: _baseUrl);
 }

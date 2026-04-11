@@ -14,8 +14,7 @@ part 'chat_session_controller_client.g.dart';
 
 @RestApi(parser: Parser.FlutterCompute)
 abstract class ChatSessionControllerClient {
-  factory ChatSessionControllerClient(Dio dio, {String? baseUrl}) =
-      _ChatSessionControllerClient;
+  factory ChatSessionControllerClient(Dio dio, {String? baseUrl}) = _ChatSessionControllerClient;
 
   /// 置顶会话.
   ///

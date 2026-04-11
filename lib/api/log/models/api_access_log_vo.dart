@@ -27,10 +27,9 @@ class ApiAccessLogVo {
     this.responseSize,
     this.createTime,
   });
-
-  factory ApiAccessLogVo.fromJson(Map<String, Object?> json) =>
-      _$ApiAccessLogVoFromJson(json);
-
+  
+  factory ApiAccessLogVo.fromJson(Map<String, Object?> json) => _$ApiAccessLogVoFromJson(json);
+  
   /// 主键
   final int? id;
 
@@ -80,14 +79,11 @@ class ApiAccessLogVo {
 FutureOr<ApiAccessLogVo> deserializeApiAccessLogVo(Map<String, dynamic> json) =>
     ApiAccessLogVo.fromJson(json);
 
-FutureOr<List<ApiAccessLogVo>> deserializeApiAccessLogVoList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => ApiAccessLogVo.fromJson(e)).toList();
+FutureOr<List<ApiAccessLogVo>> deserializeApiAccessLogVoList(List<Map<String, dynamic>> json) =>
+    json.map((e) => ApiAccessLogVo.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeApiAccessLogVo(
-  ApiAccessLogVo? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeApiAccessLogVo(ApiAccessLogVo? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeApiAccessLogVoList(
-  List<ApiAccessLogVo>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeApiAccessLogVoList(List<ApiAccessLogVo>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

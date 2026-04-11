@@ -13,11 +13,14 @@ part 'base_response_page_api_access_log_vo.g.dart';
 /// 通用返回类
 @JsonSerializable()
 class BaseResponsePageApiAccessLogVo {
-  const BaseResponsePageApiAccessLogVo({this.code, this.data, this.message});
-
-  factory BaseResponsePageApiAccessLogVo.fromJson(Map<String, Object?> json) =>
-      _$BaseResponsePageApiAccessLogVoFromJson(json);
-
+  const BaseResponsePageApiAccessLogVo({
+    this.code,
+    this.data,
+    this.message,
+  });
+  
+  factory BaseResponsePageApiAccessLogVo.fromJson(Map<String, Object?> json) => _$BaseResponsePageApiAccessLogVoFromJson(json);
+  
   /// 状态码
   final int? code;
   final PageApiAccessLogVo? data;
@@ -29,20 +32,14 @@ class BaseResponsePageApiAccessLogVo {
 }
 
 // Flutter compute serialization functions for BaseResponsePageApiAccessLogVo
-FutureOr<BaseResponsePageApiAccessLogVo>
-deserializeBaseResponsePageApiAccessLogVo(Map<String, dynamic> json) =>
+FutureOr<BaseResponsePageApiAccessLogVo> deserializeBaseResponsePageApiAccessLogVo(Map<String, dynamic> json) =>
     BaseResponsePageApiAccessLogVo.fromJson(json);
 
-FutureOr<List<BaseResponsePageApiAccessLogVo>>
-deserializeBaseResponsePageApiAccessLogVoList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => BaseResponsePageApiAccessLogVo.fromJson(e)).toList();
+FutureOr<List<BaseResponsePageApiAccessLogVo>> deserializeBaseResponsePageApiAccessLogVoList(List<Map<String, dynamic>> json) =>
+    json.map((e) => BaseResponsePageApiAccessLogVo.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeBaseResponsePageApiAccessLogVo(
-  BaseResponsePageApiAccessLogVo? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeBaseResponsePageApiAccessLogVo(BaseResponsePageApiAccessLogVo? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>>
-serializeBaseResponsePageApiAccessLogVoList(
-  List<BaseResponsePageApiAccessLogVo>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeBaseResponsePageApiAccessLogVoList(List<BaseResponsePageApiAccessLogVo>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

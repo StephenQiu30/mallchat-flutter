@@ -13,11 +13,14 @@ part 'base_response_page_user_login_log_vo.g.dart';
 /// 通用返回类
 @JsonSerializable()
 class BaseResponsePageUserLoginLogVo {
-  const BaseResponsePageUserLoginLogVo({this.code, this.data, this.message});
-
-  factory BaseResponsePageUserLoginLogVo.fromJson(Map<String, Object?> json) =>
-      _$BaseResponsePageUserLoginLogVoFromJson(json);
-
+  const BaseResponsePageUserLoginLogVo({
+    this.code,
+    this.data,
+    this.message,
+  });
+  
+  factory BaseResponsePageUserLoginLogVo.fromJson(Map<String, Object?> json) => _$BaseResponsePageUserLoginLogVoFromJson(json);
+  
   /// 状态码
   final int? code;
   final PageUserLoginLogVo? data;
@@ -29,20 +32,14 @@ class BaseResponsePageUserLoginLogVo {
 }
 
 // Flutter compute serialization functions for BaseResponsePageUserLoginLogVo
-FutureOr<BaseResponsePageUserLoginLogVo>
-deserializeBaseResponsePageUserLoginLogVo(Map<String, dynamic> json) =>
+FutureOr<BaseResponsePageUserLoginLogVo> deserializeBaseResponsePageUserLoginLogVo(Map<String, dynamic> json) =>
     BaseResponsePageUserLoginLogVo.fromJson(json);
 
-FutureOr<List<BaseResponsePageUserLoginLogVo>>
-deserializeBaseResponsePageUserLoginLogVoList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => BaseResponsePageUserLoginLogVo.fromJson(e)).toList();
+FutureOr<List<BaseResponsePageUserLoginLogVo>> deserializeBaseResponsePageUserLoginLogVoList(List<Map<String, dynamic>> json) =>
+    json.map((e) => BaseResponsePageUserLoginLogVo.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeBaseResponsePageUserLoginLogVo(
-  BaseResponsePageUserLoginLogVo? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeBaseResponsePageUserLoginLogVo(BaseResponsePageUserLoginLogVo? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>>
-serializeBaseResponsePageUserLoginLogVoList(
-  List<BaseResponsePageUserLoginLogVo>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeBaseResponsePageUserLoginLogVoList(List<BaseResponsePageUserLoginLogVo>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

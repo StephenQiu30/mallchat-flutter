@@ -25,10 +25,9 @@ class OperationLogQueryRequest {
     this.clientIp,
     this.searchText,
   });
-
-  factory OperationLogQueryRequest.fromJson(Map<String, Object?> json) =>
-      _$OperationLogQueryRequestFromJson(json);
-
+  
+  factory OperationLogQueryRequest.fromJson(Map<String, Object?> json) => _$OperationLogQueryRequestFromJson(json);
+  
   /// 当前页号
   final int? current;
 
@@ -69,18 +68,14 @@ class OperationLogQueryRequest {
 }
 
 // Flutter compute serialization functions for OperationLogQueryRequest
-FutureOr<OperationLogQueryRequest> deserializeOperationLogQueryRequest(
-  Map<String, dynamic> json,
-) => OperationLogQueryRequest.fromJson(json);
+FutureOr<OperationLogQueryRequest> deserializeOperationLogQueryRequest(Map<String, dynamic> json) =>
+    OperationLogQueryRequest.fromJson(json);
 
-FutureOr<List<OperationLogQueryRequest>>
-deserializeOperationLogQueryRequestList(List<Map<String, dynamic>> json) =>
+FutureOr<List<OperationLogQueryRequest>> deserializeOperationLogQueryRequestList(List<Map<String, dynamic>> json) =>
     json.map((e) => OperationLogQueryRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeOperationLogQueryRequest(
-  OperationLogQueryRequest? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeOperationLogQueryRequest(OperationLogQueryRequest? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeOperationLogQueryRequestList(
-  List<OperationLogQueryRequest>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeOperationLogQueryRequestList(List<OperationLogQueryRequest>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

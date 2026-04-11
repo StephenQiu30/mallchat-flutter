@@ -24,10 +24,9 @@ class UserLoginLogQueryRequest {
     this.clientIp,
     this.searchText,
   });
-
-  factory UserLoginLogQueryRequest.fromJson(Map<String, Object?> json) =>
-      _$UserLoginLogQueryRequestFromJson(json);
-
+  
+  factory UserLoginLogQueryRequest.fromJson(Map<String, Object?> json) => _$UserLoginLogQueryRequestFromJson(json);
+  
   /// 当前页号
   final int? current;
 
@@ -65,18 +64,14 @@ class UserLoginLogQueryRequest {
 }
 
 // Flutter compute serialization functions for UserLoginLogQueryRequest
-FutureOr<UserLoginLogQueryRequest> deserializeUserLoginLogQueryRequest(
-  Map<String, dynamic> json,
-) => UserLoginLogQueryRequest.fromJson(json);
+FutureOr<UserLoginLogQueryRequest> deserializeUserLoginLogQueryRequest(Map<String, dynamic> json) =>
+    UserLoginLogQueryRequest.fromJson(json);
 
-FutureOr<List<UserLoginLogQueryRequest>>
-deserializeUserLoginLogQueryRequestList(List<Map<String, dynamic>> json) =>
+FutureOr<List<UserLoginLogQueryRequest>> deserializeUserLoginLogQueryRequestList(List<Map<String, dynamic>> json) =>
     json.map((e) => UserLoginLogQueryRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeUserLoginLogQueryRequest(
-  UserLoginLogQueryRequest? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeUserLoginLogQueryRequest(UserLoginLogQueryRequest? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeUserLoginLogQueryRequestList(
-  List<UserLoginLogQueryRequest>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeUserLoginLogQueryRequestList(List<UserLoginLogQueryRequest>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

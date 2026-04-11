@@ -13,11 +13,14 @@ part 'base_response_ai_chat_response.g.dart';
 /// 通用返回类
 @JsonSerializable()
 class BaseResponseAiChatResponse {
-  const BaseResponseAiChatResponse({this.code, this.data, this.message});
-
-  factory BaseResponseAiChatResponse.fromJson(Map<String, Object?> json) =>
-      _$BaseResponseAiChatResponseFromJson(json);
-
+  const BaseResponseAiChatResponse({
+    this.code,
+    this.data,
+    this.message,
+  });
+  
+  factory BaseResponseAiChatResponse.fromJson(Map<String, Object?> json) => _$BaseResponseAiChatResponseFromJson(json);
+  
   /// 状态码
   final int? code;
   final AiChatResponse? data;
@@ -29,18 +32,14 @@ class BaseResponseAiChatResponse {
 }
 
 // Flutter compute serialization functions for BaseResponseAiChatResponse
-FutureOr<BaseResponseAiChatResponse> deserializeBaseResponseAiChatResponse(
-  Map<String, dynamic> json,
-) => BaseResponseAiChatResponse.fromJson(json);
+FutureOr<BaseResponseAiChatResponse> deserializeBaseResponseAiChatResponse(Map<String, dynamic> json) =>
+    BaseResponseAiChatResponse.fromJson(json);
 
-FutureOr<List<BaseResponseAiChatResponse>>
-deserializeBaseResponseAiChatResponseList(List<Map<String, dynamic>> json) =>
+FutureOr<List<BaseResponseAiChatResponse>> deserializeBaseResponseAiChatResponseList(List<Map<String, dynamic>> json) =>
     json.map((e) => BaseResponseAiChatResponse.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeBaseResponseAiChatResponse(
-  BaseResponseAiChatResponse? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeBaseResponseAiChatResponse(BaseResponseAiChatResponse? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeBaseResponseAiChatResponseList(
-  List<BaseResponseAiChatResponse>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeBaseResponseAiChatResponseList(List<BaseResponseAiChatResponse>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

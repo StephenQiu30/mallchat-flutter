@@ -30,10 +30,9 @@ class FileUploadRecordVo {
     this.createTime,
     this.updateTime,
   });
-
-  factory FileUploadRecordVo.fromJson(Map<String, Object?> json) =>
-      _$FileUploadRecordVoFromJson(json);
-
+  
+  factory FileUploadRecordVo.fromJson(Map<String, Object?> json) => _$FileUploadRecordVoFromJson(json);
+  
   /// 主键
   final int? id;
 
@@ -89,18 +88,14 @@ class FileUploadRecordVo {
 }
 
 // Flutter compute serialization functions for FileUploadRecordVo
-FutureOr<FileUploadRecordVo> deserializeFileUploadRecordVo(
-  Map<String, dynamic> json,
-) => FileUploadRecordVo.fromJson(json);
+FutureOr<FileUploadRecordVo> deserializeFileUploadRecordVo(Map<String, dynamic> json) =>
+    FileUploadRecordVo.fromJson(json);
 
-FutureOr<List<FileUploadRecordVo>> deserializeFileUploadRecordVoList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => FileUploadRecordVo.fromJson(e)).toList();
+FutureOr<List<FileUploadRecordVo>> deserializeFileUploadRecordVoList(List<Map<String, dynamic>> json) =>
+    json.map((e) => FileUploadRecordVo.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeFileUploadRecordVo(
-  FileUploadRecordVo? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeFileUploadRecordVo(FileUploadRecordVo? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeFileUploadRecordVoList(
-  List<FileUploadRecordVo>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeFileUploadRecordVoList(List<FileUploadRecordVo>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

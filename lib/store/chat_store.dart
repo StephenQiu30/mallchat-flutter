@@ -44,7 +44,7 @@ class ChatStore extends GetxController {
       lastMessages[2] = '那个 RabbitMQ 的 ACK 机制我这里再调一下。';
       unreadCounts[2] = 3;
       
-      selectRoom(chatRooms.first.id!);
+      // 注意：初始时不自动调用 selectRoom，由 UI 控制或在 onReady 后执行
     }
   }
 

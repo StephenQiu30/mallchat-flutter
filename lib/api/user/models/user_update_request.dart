@@ -20,10 +20,9 @@ class UserUpdateRequest {
     this.userPhone,
     this.userEmail,
   });
-
-  factory UserUpdateRequest.fromJson(Map<String, Object?> json) =>
-      _$UserUpdateRequestFromJson(json);
-
+  
+  factory UserUpdateRequest.fromJson(Map<String, Object?> json) => _$UserUpdateRequestFromJson(json);
+  
   /// 用户ID
   final int? id;
 
@@ -49,18 +48,14 @@ class UserUpdateRequest {
 }
 
 // Flutter compute serialization functions for UserUpdateRequest
-FutureOr<UserUpdateRequest> deserializeUserUpdateRequest(
-  Map<String, dynamic> json,
-) => UserUpdateRequest.fromJson(json);
+FutureOr<UserUpdateRequest> deserializeUserUpdateRequest(Map<String, dynamic> json) =>
+    UserUpdateRequest.fromJson(json);
 
-FutureOr<List<UserUpdateRequest>> deserializeUserUpdateRequestList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => UserUpdateRequest.fromJson(e)).toList();
+FutureOr<List<UserUpdateRequest>> deserializeUserUpdateRequestList(List<Map<String, dynamic>> json) =>
+    json.map((e) => UserUpdateRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeUserUpdateRequest(
-  UserUpdateRequest? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeUserUpdateRequest(UserUpdateRequest? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeUserUpdateRequestList(
-  List<UserUpdateRequest>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeUserUpdateRequestList(List<UserUpdateRequest>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

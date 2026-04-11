@@ -5,7 +5,6 @@
 // Clients
 export 'clients/ai_chat_record_controller_client.dart';
 export 'clients/ai_chat_controller_client.dart';
-
 // Data classes
 export 'models/ai_chat_record_query_request.dart';
 export 'models/ai_chat_record_vo.dart';
@@ -20,6 +19,6 @@ export 'models/base_response_ai_chat_response.dart';
 export 'models/sse_emitter.dart';
 export 'models/ai_model_vo.dart';
 export 'models/base_response_list_ai_model_vo.dart';
-
 // Root client
 export 'ai_client.dart';
+

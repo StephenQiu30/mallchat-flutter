@@ -28,10 +28,9 @@ class PageChatFriendApplyVo {
     this.countId,
     this.pages,
   });
-
-  factory PageChatFriendApplyVo.fromJson(Map<String, Object?> json) =>
-      _$PageChatFriendApplyVoFromJson(json);
-
+  
+  factory PageChatFriendApplyVo.fromJson(Map<String, Object?> json) => _$PageChatFriendApplyVoFromJson(json);
+  
   final List<ChatFriendApplyVo>? records;
   final int? total;
   final int? size;
@@ -48,18 +47,14 @@ class PageChatFriendApplyVo {
 }
 
 // Flutter compute serialization functions for PageChatFriendApplyVo
-FutureOr<PageChatFriendApplyVo> deserializePageChatFriendApplyVo(
-  Map<String, dynamic> json,
-) => PageChatFriendApplyVo.fromJson(json);
+FutureOr<PageChatFriendApplyVo> deserializePageChatFriendApplyVo(Map<String, dynamic> json) =>
+    PageChatFriendApplyVo.fromJson(json);
 
-FutureOr<List<PageChatFriendApplyVo>> deserializePageChatFriendApplyVoList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => PageChatFriendApplyVo.fromJson(e)).toList();
+FutureOr<List<PageChatFriendApplyVo>> deserializePageChatFriendApplyVoList(List<Map<String, dynamic>> json) =>
+    json.map((e) => PageChatFriendApplyVo.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializePageChatFriendApplyVo(
-  PageChatFriendApplyVo? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializePageChatFriendApplyVo(PageChatFriendApplyVo? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializePageChatFriendApplyVoList(
-  List<PageChatFriendApplyVo>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializePageChatFriendApplyVoList(List<PageChatFriendApplyVo>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];
