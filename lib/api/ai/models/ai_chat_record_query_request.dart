@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'ai_chat_record_query_request.g.dart';
@@ -18,9 +20,10 @@ class AiChatRecordQueryRequest {
     this.modelType,
     this.searchText,
   });
-  
-  factory AiChatRecordQueryRequest.fromJson(Map<String, Object?> json) => _$AiChatRecordQueryRequestFromJson(json);
-  
+
+  factory AiChatRecordQueryRequest.fromJson(Map<String, Object?> json) =>
+      _$AiChatRecordQueryRequestFromJson(json);
+
   /// 当前页号
   final int? current;
 
@@ -44,3 +47,20 @@ class AiChatRecordQueryRequest {
 
   Map<String, Object?> toJson() => _$AiChatRecordQueryRequestToJson(this);
 }
+
+// Flutter compute serialization functions for AiChatRecordQueryRequest
+FutureOr<AiChatRecordQueryRequest> deserializeAiChatRecordQueryRequest(
+  Map<String, dynamic> json,
+) => AiChatRecordQueryRequest.fromJson(json);
+
+FutureOr<List<AiChatRecordQueryRequest>>
+deserializeAiChatRecordQueryRequestList(List<Map<String, dynamic>> json) =>
+    json.map((e) => AiChatRecordQueryRequest.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeAiChatRecordQueryRequest(
+  AiChatRecordQueryRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeAiChatRecordQueryRequestList(
+  List<AiChatRecordQueryRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

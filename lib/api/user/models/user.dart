@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user.g.dart';
@@ -16,21 +18,20 @@ class User {
     this.userProfile,
     this.userRole,
     this.userPhone,
-    this.mpOpenId,
+    this.userEmail,
+    this.maOpenId,
     this.wxUnionId,
     this.wxOpenId,
-    this.githubId,
-    this.githubLogin,
-    this.githubUrl,
+    this.appleId,
     this.lastLoginTime,
     this.lastLoginIp,
     this.createTime,
     this.updateTime,
     this.isDelete,
   });
-  
+
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
-  
+
   /// 用户ID
   final int? id;
 
@@ -49,23 +50,20 @@ class User {
   /// 用户手机号
   final String? userPhone;
 
-  /// 微信公众号 OpenID
-  final String? mpOpenId;
+  /// 用户邮箱
+  final String? userEmail;
+
+  /// 微信小程序 OpenID
+  final String? maOpenId;
 
   /// 微信 UnionID
   final String? wxUnionId;
 
-  /// 微信开放平台 OpenID
+  /// 微信 App OpenID (开放平台 Mobile App)
   final String? wxOpenId;
 
-  /// GitHub ID
-  final String? githubId;
-
-  /// GitHub 账号
-  final String? githubLogin;
-
-  /// GitHub 主页
-  final String? githubUrl;
+  /// Apple ID
+  final String? appleId;
 
   /// 最后登录时间
   final DateTime? lastLoginTime;
@@ -84,3 +82,16 @@ class User {
 
   Map<String, Object?> toJson() => _$UserToJson(this);
 }
+
+// Flutter compute serialization functions for User
+FutureOr<User> deserializeUser(Map<String, dynamic> json) =>
+    User.fromJson(json);
+
+FutureOr<List<User>> deserializeUserList(List<Map<String, dynamic>> json) =>
+    json.map((e) => User.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeUser(User? object) =>
+    object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeUserList(List<User>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'chat_friend_apply_vo.g.dart';
@@ -18,9 +20,10 @@ class ChatFriendApplyVo {
     this.status,
     this.createTime,
   });
-  
-  factory ChatFriendApplyVo.fromJson(Map<String, Object?> json) => _$ChatFriendApplyVoFromJson(json);
-  
+
+  factory ChatFriendApplyVo.fromJson(Map<String, Object?> json) =>
+      _$ChatFriendApplyVoFromJson(json);
+
   /// 申请ID
   final int? id;
 
@@ -44,3 +47,20 @@ class ChatFriendApplyVo {
 
   Map<String, Object?> toJson() => _$ChatFriendApplyVoToJson(this);
 }
+
+// Flutter compute serialization functions for ChatFriendApplyVo
+FutureOr<ChatFriendApplyVo> deserializeChatFriendApplyVo(
+  Map<String, dynamic> json,
+) => ChatFriendApplyVo.fromJson(json);
+
+FutureOr<List<ChatFriendApplyVo>> deserializeChatFriendApplyVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => ChatFriendApplyVo.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeChatFriendApplyVo(
+  ChatFriendApplyVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeChatFriendApplyVoList(
+  List<ChatFriendApplyVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

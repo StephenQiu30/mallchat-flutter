@@ -6,12 +6,17 @@ part of 'chat_message_read_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChatMessageReadRequest _$ChatMessageReadRequestFromJson(
-  Map<String, dynamic> json,
-) => ChatMessageReadRequest(
-  roomId: (json['roomId'] as num).toInt(),
-  lastReadMessageId: (json['lastReadMessageId'] as num).toInt(),
-);
+ChatMessageReadRequest _$ChatMessageReadRequestFromJson(Map json) =>
+    $checkedCreate('ChatMessageReadRequest', json, ($checkedConvert) {
+      final val = ChatMessageReadRequest(
+        roomId: $checkedConvert('roomId', (v) => (v as num).toInt()),
+        lastReadMessageId: $checkedConvert(
+          'lastReadMessageId',
+          (v) => (v as num).toInt(),
+        ),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$ChatMessageReadRequestToJson(
   ChatMessageReadRequest instance,

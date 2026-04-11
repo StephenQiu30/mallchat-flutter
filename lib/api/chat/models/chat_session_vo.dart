@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'chat_session_vo.g.dart';
@@ -19,9 +21,10 @@ class ChatSessionVo {
     this.topStatus,
     this.activeTime,
   });
-  
-  factory ChatSessionVo.fromJson(Map<String, Object?> json) => _$ChatSessionVoFromJson(json);
-  
+
+  factory ChatSessionVo.fromJson(Map<String, Object?> json) =>
+      _$ChatSessionVoFromJson(json);
+
   /// 房间ID
   final int? roomId;
 
@@ -48,3 +51,18 @@ class ChatSessionVo {
 
   Map<String, Object?> toJson() => _$ChatSessionVoToJson(this);
 }
+
+// Flutter compute serialization functions for ChatSessionVo
+FutureOr<ChatSessionVo> deserializeChatSessionVo(Map<String, dynamic> json) =>
+    ChatSessionVo.fromJson(json);
+
+FutureOr<List<ChatSessionVo>> deserializeChatSessionVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => ChatSessionVo.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeChatSessionVo(ChatSessionVo? object) =>
+    object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeChatSessionVoList(
+  List<ChatSessionVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

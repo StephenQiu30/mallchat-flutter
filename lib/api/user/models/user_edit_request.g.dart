@@ -6,13 +6,17 @@ part of 'user_edit_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserEditRequest _$UserEditRequestFromJson(Map<String, dynamic> json) =>
-    UserEditRequest(
-      userName: json['userName'] as String?,
-      userAvatar: json['userAvatar'] as String?,
-      userProfile: json['userProfile'] as String?,
-      userPhone: json['userPhone'] as String?,
-    );
+UserEditRequest _$UserEditRequestFromJson(Map json) =>
+    $checkedCreate('UserEditRequest', json, ($checkedConvert) {
+      final val = UserEditRequest(
+        userName: $checkedConvert('userName', (v) => v as String?),
+        userAvatar: $checkedConvert('userAvatar', (v) => v as String?),
+        userProfile: $checkedConvert('userProfile', (v) => v as String?),
+        userPhone: $checkedConvert('userPhone', (v) => v as String?),
+        userEmail: $checkedConvert('userEmail', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$UserEditRequestToJson(UserEditRequest instance) =>
     <String, dynamic>{
@@ -20,4 +24,5 @@ Map<String, dynamic> _$UserEditRequestToJson(UserEditRequest instance) =>
       'userAvatar': instance.userAvatar,
       'userProfile': instance.userProfile,
       'userPhone': instance.userPhone,
+      'userEmail': instance.userEmail,
     };

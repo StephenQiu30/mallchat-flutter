@@ -7,10 +7,16 @@ part of 'notification_batch_delete_request.dart';
 // **************************************************************************
 
 NotificationBatchDeleteRequest _$NotificationBatchDeleteRequestFromJson(
-  Map<String, dynamic> json,
-) => NotificationBatchDeleteRequest(
-  ids: (json['ids'] as List<dynamic>).map((e) => (e as num).toInt()).toList(),
-);
+  Map json,
+) => $checkedCreate('NotificationBatchDeleteRequest', json, ($checkedConvert) {
+  final val = NotificationBatchDeleteRequest(
+    ids: $checkedConvert(
+      'ids',
+      (v) => (v as List<dynamic>).map((e) => (e as num).toInt()).toList(),
+    ),
+  );
+  return val;
+});
 
 Map<String, dynamic> _$NotificationBatchDeleteRequestToJson(
   NotificationBatchDeleteRequest instance,

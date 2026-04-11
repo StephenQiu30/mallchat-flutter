@@ -6,44 +6,67 @@ part of 'page_file_upload_record_vo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-PageFileUploadRecordVo _$PageFileUploadRecordVoFromJson(
-  Map<String, dynamic> json,
-) => PageFileUploadRecordVo(
-  records: (json['records'] as List<dynamic>?)
-      ?.map((e) => FileUploadRecordVo.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  total: (json['total'] as num?)?.toInt(),
-  size: (json['size'] as num?)?.toInt(),
-  current: (json['current'] as num?)?.toInt(),
-  orders: (json['orders'] as List<dynamic>?)
-      ?.map((e) => OrderItem.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  optimizeCountSql: json['optimizeCountSql'] == null
-      ? null
-      : PageFileUploadRecordVo.fromJson(
-          json['optimizeCountSql'] as Map<String, dynamic>,
+PageFileUploadRecordVo _$PageFileUploadRecordVoFromJson(Map json) =>
+    $checkedCreate('PageFileUploadRecordVo', json, ($checkedConvert) {
+      final val = PageFileUploadRecordVo(
+        records: $checkedConvert(
+          'records',
+          (v) => (v as List<dynamic>?)
+              ?.map(
+                (e) => FileUploadRecordVo.fromJson(
+                  Map<String, Object?>.from(e as Map),
+                ),
+              )
+              .toList(),
         ),
-  searchCount: json['searchCount'] == null
-      ? null
-      : PageFileUploadRecordVo.fromJson(
-          json['searchCount'] as Map<String, dynamic>,
+        total: $checkedConvert('total', (v) => (v as num?)?.toInt()),
+        size: $checkedConvert('size', (v) => (v as num?)?.toInt()),
+        current: $checkedConvert('current', (v) => (v as num?)?.toInt()),
+        orders: $checkedConvert(
+          'orders',
+          (v) => (v as List<dynamic>?)
+              ?.map(
+                (e) => OrderItem.fromJson(Map<String, Object?>.from(e as Map)),
+              )
+              .toList(),
         ),
-  optimizeJoinOfCountSql: json['optimizeJoinOfCountSql'] as bool?,
-  maxLimit: (json['maxLimit'] as num?)?.toInt(),
-  countId: json['countId'] as String?,
-  pages: (json['pages'] as num?)?.toInt(),
-);
+        optimizeCountSql: $checkedConvert(
+          'optimizeCountSql',
+          (v) => v == null
+              ? null
+              : PageFileUploadRecordVo.fromJson(
+                  Map<String, Object?>.from(v as Map),
+                ),
+        ),
+        searchCount: $checkedConvert(
+          'searchCount',
+          (v) => v == null
+              ? null
+              : PageFileUploadRecordVo.fromJson(
+                  Map<String, Object?>.from(v as Map),
+                ),
+        ),
+        optimizeJoinOfCountSql: $checkedConvert(
+          'optimizeJoinOfCountSql',
+          (v) => v as bool?,
+        ),
+        maxLimit: $checkedConvert('maxLimit', (v) => (v as num?)?.toInt()),
+        countId: $checkedConvert('countId', (v) => v as String?),
+        pages: $checkedConvert('pages', (v) => (v as num?)?.toInt()),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$PageFileUploadRecordVoToJson(
   PageFileUploadRecordVo instance,
 ) => <String, dynamic>{
-  'records': instance.records,
+  'records': instance.records?.map((e) => e.toJson()).toList(),
   'total': instance.total,
   'size': instance.size,
   'current': instance.current,
-  'orders': instance.orders,
-  'optimizeCountSql': instance.optimizeCountSql,
-  'searchCount': instance.searchCount,
+  'orders': instance.orders?.map((e) => e.toJson()).toList(),
+  'optimizeCountSql': instance.optimizeCountSql?.toJson(),
+  'searchCount': instance.searchCount?.toJson(),
   'optimizeJoinOfCountSql': instance.optimizeJoinOfCountSql,
   'maxLimit': instance.maxLimit,
   'countId': instance.countId,

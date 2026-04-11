@@ -4,27 +4,39 @@ swagger_parser:
   language: dart
   root_client: true
   root_client_name: ApiClient
+  use_flutter_compute: true
+  enums_to_string: true
+  put_clients_in_folder: true
+  include_null_values: false
+  mark_attributes_as_required: true
+  # 极致简化：使用最精确的字面量替换，不再依赖外部脚本
+  replacement_rules:
+    - pattern: "import 'dart:io';"
+      replacement: ""
+    - pattern: "  final File file;"
+      replacement: "  final String file;"
+    - pattern: "  final File? file;"
+      replacement: "  final String? file;"
+    - pattern: "Map<String, object>"
+      replacement: "Map<String, dynamic>"
+    - pattern: "Object"
+      replacement: "dynamic"
   schemes:
     - schema_url: http://localhost:8081/api/v3/api-docs
       root_client_name: UserClient
       output_directory: lib/api/user
-      
     - schema_url: http://localhost:8082/api/v3/api-docs
       root_client_name: FileClient
       output_directory: lib/api/file
-      
     - schema_url: http://localhost:8083/api/v3/api-docs
       root_client_name: NotificationClient
       output_directory: lib/api/notification
-
     - schema_url: http://localhost:8084/api/v3/api-docs
       root_client_name: LogClient
       output_directory: lib/api/log
-      
     - schema_url: http://localhost:8085/api/v3/api-docs
       root_client_name: AiClient
       output_directory: lib/api/ai
-
     - schema_url: http://localhost:8086/api/v3/api-docs
       root_client_name: ChatClient
       output_directory: lib/api/chat

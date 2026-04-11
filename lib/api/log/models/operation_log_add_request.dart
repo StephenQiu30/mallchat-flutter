@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'operation_log_add_request.g.dart';
@@ -22,10 +24,12 @@ class OperationLogAddRequest {
     this.errorMessage,
     this.clientIp,
     this.location,
+    this.userAgent,
   });
-  
-  factory OperationLogAddRequest.fromJson(Map<String, Object?> json) => _$OperationLogAddRequestFromJson(json);
-  
+
+  factory OperationLogAddRequest.fromJson(Map<String, Object?> json) =>
+      _$OperationLogAddRequestFromJson(json);
+
   /// 操作人ID
   final int? operatorId;
 
@@ -62,5 +66,25 @@ class OperationLogAddRequest {
   /// 归属地
   final String? location;
 
+  /// 浏览器标识
+  final String? userAgent;
+
   Map<String, Object?> toJson() => _$OperationLogAddRequestToJson(this);
 }
+
+// Flutter compute serialization functions for OperationLogAddRequest
+FutureOr<OperationLogAddRequest> deserializeOperationLogAddRequest(
+  Map<String, dynamic> json,
+) => OperationLogAddRequest.fromJson(json);
+
+FutureOr<List<OperationLogAddRequest>> deserializeOperationLogAddRequestList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => OperationLogAddRequest.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeOperationLogAddRequest(
+  OperationLogAddRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeOperationLogAddRequestList(
+  List<OperationLogAddRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

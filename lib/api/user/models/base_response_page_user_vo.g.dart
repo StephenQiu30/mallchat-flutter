@@ -6,20 +6,25 @@ part of 'base_response_page_user_vo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-BaseResponsePageUserVo _$BaseResponsePageUserVoFromJson(
-  Map<String, dynamic> json,
-) => BaseResponsePageUserVo(
-  code: (json['code'] as num?)?.toInt(),
-  data: json['data'] == null
-      ? null
-      : PageUserVo.fromJson(json['data'] as Map<String, dynamic>),
-  message: json['message'] as String?,
-);
+BaseResponsePageUserVo _$BaseResponsePageUserVoFromJson(Map json) =>
+    $checkedCreate('BaseResponsePageUserVo', json, ($checkedConvert) {
+      final val = BaseResponsePageUserVo(
+        code: $checkedConvert('code', (v) => (v as num?)?.toInt()),
+        data: $checkedConvert(
+          'data',
+          (v) => v == null
+              ? null
+              : PageUserVo.fromJson(Map<String, Object?>.from(v as Map)),
+        ),
+        message: $checkedConvert('message', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$BaseResponsePageUserVoToJson(
   BaseResponsePageUserVo instance,
 ) => <String, dynamic>{
   'code': instance.code,
-  'data': instance.data,
+  'data': instance.data?.toJson(),
   'message': instance.message,
 };

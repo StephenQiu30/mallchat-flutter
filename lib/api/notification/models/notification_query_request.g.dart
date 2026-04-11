@@ -6,21 +6,23 @@ part of 'notification_query_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-NotificationQueryRequest _$NotificationQueryRequestFromJson(
-  Map<String, dynamic> json,
-) => NotificationQueryRequest(
-  current: (json['current'] as num?)?.toInt(),
-  pageSize: (json['pageSize'] as num?)?.toInt(),
-  sortField: json['sortField'] as String?,
-  sortOrder: json['sortOrder'] as String?,
-  id: (json['id'] as num?)?.toInt(),
-  type: json['type'] as String?,
-  userId: (json['userId'] as num?)?.toInt(),
-  isRead: (json['isRead'] as num?)?.toInt(),
-  status: (json['status'] as num?)?.toInt(),
-  relatedType: json['relatedType'] as String?,
-  searchText: json['searchText'] as String?,
-);
+NotificationQueryRequest _$NotificationQueryRequestFromJson(Map json) =>
+    $checkedCreate('NotificationQueryRequest', json, ($checkedConvert) {
+      final val = NotificationQueryRequest(
+        current: $checkedConvert('current', (v) => (v as num?)?.toInt()),
+        pageSize: $checkedConvert('pageSize', (v) => (v as num?)?.toInt()),
+        sortField: $checkedConvert('sortField', (v) => v as String?),
+        sortOrder: $checkedConvert('sortOrder', (v) => v as String?),
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        type: $checkedConvert('type', (v) => v as String?),
+        userId: $checkedConvert('userId', (v) => (v as num?)?.toInt()),
+        isRead: $checkedConvert('isRead', (v) => (v as num?)?.toInt()),
+        status: $checkedConvert('status', (v) => (v as num?)?.toInt()),
+        relatedType: $checkedConvert('relatedType', (v) => v as String?),
+        searchText: $checkedConvert('searchText', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$NotificationQueryRequestToJson(
   NotificationQueryRequest instance,

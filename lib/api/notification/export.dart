@@ -3,7 +3,8 @@
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
 // Clients
-export 'notification_controller/notification_controller_client.dart';
+export 'clients/notification_controller_client.dart';
+
 // Data classes
 export 'models/notification_update_request.dart';
 export 'models/base_response_boolean.dart';
@@ -25,6 +26,6 @@ export 'models/notification_add_request.dart';
 export 'models/base_response_list_long.dart';
 export 'models/base_response_long.dart';
 export 'models/base_response_notification_vo.dart';
+
 // Root client
 export 'notification_client.dart';
-

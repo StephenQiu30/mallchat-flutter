@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 import 'page_operation_log_vo.dart';
@@ -11,14 +13,11 @@ part 'base_response_page_operation_log_vo.g.dart';
 /// 通用返回类
 @JsonSerializable()
 class BaseResponsePageOperationLogVo {
-  const BaseResponsePageOperationLogVo({
-    this.code,
-    this.data,
-    this.message,
-  });
-  
-  factory BaseResponsePageOperationLogVo.fromJson(Map<String, Object?> json) => _$BaseResponsePageOperationLogVoFromJson(json);
-  
+  const BaseResponsePageOperationLogVo({this.code, this.data, this.message});
+
+  factory BaseResponsePageOperationLogVo.fromJson(Map<String, Object?> json) =>
+      _$BaseResponsePageOperationLogVoFromJson(json);
+
   /// 状态码
   final int? code;
   final PageOperationLogVo? data;
@@ -28,3 +27,22 @@ class BaseResponsePageOperationLogVo {
 
   Map<String, Object?> toJson() => _$BaseResponsePageOperationLogVoToJson(this);
 }
+
+// Flutter compute serialization functions for BaseResponsePageOperationLogVo
+FutureOr<BaseResponsePageOperationLogVo>
+deserializeBaseResponsePageOperationLogVo(Map<String, dynamic> json) =>
+    BaseResponsePageOperationLogVo.fromJson(json);
+
+FutureOr<List<BaseResponsePageOperationLogVo>>
+deserializeBaseResponsePageOperationLogVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => BaseResponsePageOperationLogVo.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeBaseResponsePageOperationLogVo(
+  BaseResponsePageOperationLogVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>>
+serializeBaseResponsePageOperationLogVoList(
+  List<BaseResponsePageOperationLogVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

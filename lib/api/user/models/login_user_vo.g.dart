@@ -6,26 +6,32 @@ part of 'login_user_vo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-LoginUserVo _$LoginUserVoFromJson(Map<String, dynamic> json) => LoginUserVo(
-  id: (json['id'] as num?)?.toInt(),
-  userName: json['userName'] as String?,
-  userAvatar: json['userAvatar'] as String?,
-  userRole: json['userRole'] as String?,
-  userProfile: json['userProfile'] as String?,
-  githubLogin: json['githubLogin'] as String?,
-  githubUrl: json['githubUrl'] as String?,
-  userPhone: json['userPhone'] as String?,
-  lastLoginTime: json['lastLoginTime'] == null
-      ? null
-      : DateTime.parse(json['lastLoginTime'] as String),
-  createTime: json['createTime'] == null
-      ? null
-      : DateTime.parse(json['createTime'] as String),
-  updateTime: json['updateTime'] == null
-      ? null
-      : DateTime.parse(json['updateTime'] as String),
-  token: json['token'] as String?,
-);
+LoginUserVo _$LoginUserVoFromJson(Map json) =>
+    $checkedCreate('LoginUserVo', json, ($checkedConvert) {
+      final val = LoginUserVo(
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        userName: $checkedConvert('userName', (v) => v as String?),
+        userAvatar: $checkedConvert('userAvatar', (v) => v as String?),
+        userRole: $checkedConvert('userRole', (v) => v as String?),
+        userProfile: $checkedConvert('userProfile', (v) => v as String?),
+        userPhone: $checkedConvert('userPhone', (v) => v as String?),
+        userEmail: $checkedConvert('userEmail', (v) => v as String?),
+        lastLoginTime: $checkedConvert(
+          'lastLoginTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        createTime: $checkedConvert(
+          'createTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        updateTime: $checkedConvert(
+          'updateTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        token: $checkedConvert('token', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$LoginUserVoToJson(LoginUserVo instance) =>
     <String, dynamic>{
@@ -34,9 +40,8 @@ Map<String, dynamic> _$LoginUserVoToJson(LoginUserVo instance) =>
       'userAvatar': instance.userAvatar,
       'userRole': instance.userRole,
       'userProfile': instance.userProfile,
-      'githubLogin': instance.githubLogin,
-      'githubUrl': instance.githubUrl,
       'userPhone': instance.userPhone,
+      'userEmail': instance.userEmail,
       'lastLoginTime': instance.lastLoginTime?.toIso8601String(),
       'createTime': instance.createTime?.toIso8601String(),
       'updateTime': instance.updateTime?.toIso8601String(),

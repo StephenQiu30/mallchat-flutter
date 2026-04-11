@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_vo.g.dart';
@@ -16,14 +18,13 @@ class UserVo {
     this.userProfile,
     this.userRole,
     this.userPhone,
-    this.githubLogin,
-    this.githubUrl,
+    this.userEmail,
     this.createTime,
     this.updateTime,
   });
-  
+
   factory UserVo.fromJson(Map<String, Object?> json) => _$UserVoFromJson(json);
-  
+
   /// 用户ID
   final int? id;
 
@@ -42,11 +43,8 @@ class UserVo {
   /// 用户电话
   final String? userPhone;
 
-  /// GitHub 登录账号
-  final String? githubLogin;
-
-  /// GitHub 主页
-  final String? githubUrl;
+  /// 用户邮箱
+  final String? userEmail;
 
   /// 创建时间
   final DateTime? createTime;
@@ -56,3 +54,17 @@ class UserVo {
 
   Map<String, Object?> toJson() => _$UserVoToJson(this);
 }
+
+// Flutter compute serialization functions for UserVo
+FutureOr<UserVo> deserializeUserVo(Map<String, dynamic> json) =>
+    UserVo.fromJson(json);
+
+FutureOr<List<UserVo>> deserializeUserVoList(List<Map<String, dynamic>> json) =>
+    json.map((e) => UserVo.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeUserVo(UserVo? object) =>
+    object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeUserVoList(
+  List<UserVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

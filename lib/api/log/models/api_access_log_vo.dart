@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'api_access_log_vo.g.dart';
@@ -25,9 +27,10 @@ class ApiAccessLogVo {
     this.responseSize,
     this.createTime,
   });
-  
-  factory ApiAccessLogVo.fromJson(Map<String, Object?> json) => _$ApiAccessLogVoFromJson(json);
-  
+
+  factory ApiAccessLogVo.fromJson(Map<String, Object?> json) =>
+      _$ApiAccessLogVoFromJson(json);
+
   /// 主键
   final int? id;
 
@@ -72,3 +75,19 @@ class ApiAccessLogVo {
 
   Map<String, Object?> toJson() => _$ApiAccessLogVoToJson(this);
 }
+
+// Flutter compute serialization functions for ApiAccessLogVo
+FutureOr<ApiAccessLogVo> deserializeApiAccessLogVo(Map<String, dynamic> json) =>
+    ApiAccessLogVo.fromJson(json);
+
+FutureOr<List<ApiAccessLogVo>> deserializeApiAccessLogVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => ApiAccessLogVo.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeApiAccessLogVo(
+  ApiAccessLogVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeApiAccessLogVoList(
+  List<ApiAccessLogVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

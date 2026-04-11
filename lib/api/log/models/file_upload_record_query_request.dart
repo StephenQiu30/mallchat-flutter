@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'file_upload_record_query_request.g.dart';
@@ -21,9 +23,10 @@ class FileUploadRecordQueryRequest {
     this.status,
     this.searchText,
   });
-  
-  factory FileUploadRecordQueryRequest.fromJson(Map<String, Object?> json) => _$FileUploadRecordQueryRequestFromJson(json);
-  
+
+  factory FileUploadRecordQueryRequest.fromJson(Map<String, Object?> json) =>
+      _$FileUploadRecordQueryRequestFromJson(json);
+
   /// 当前页号
   final int? current;
 
@@ -56,3 +59,20 @@ class FileUploadRecordQueryRequest {
 
   Map<String, Object?> toJson() => _$FileUploadRecordQueryRequestToJson(this);
 }
+
+// Flutter compute serialization functions for FileUploadRecordQueryRequest
+FutureOr<FileUploadRecordQueryRequest> deserializeFileUploadRecordQueryRequest(
+  Map<String, dynamic> json,
+) => FileUploadRecordQueryRequest.fromJson(json);
+
+FutureOr<List<FileUploadRecordQueryRequest>>
+deserializeFileUploadRecordQueryRequestList(List<Map<String, dynamic>> json) =>
+    json.map((e) => FileUploadRecordQueryRequest.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeFileUploadRecordQueryRequest(
+  FileUploadRecordQueryRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeFileUploadRecordQueryRequestList(
+  List<FileUploadRecordQueryRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

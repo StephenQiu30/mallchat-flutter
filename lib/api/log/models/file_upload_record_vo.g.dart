@@ -6,30 +6,35 @@ part of 'file_upload_record_vo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-FileUploadRecordVo _$FileUploadRecordVoFromJson(Map<String, dynamic> json) =>
-    FileUploadRecordVo(
-      id: (json['id'] as num?)?.toInt(),
-      userId: (json['userId'] as num?)?.toInt(),
-      bizType: json['bizType'] as String?,
-      fileName: json['fileName'] as String?,
-      fileSize: (json['fileSize'] as num?)?.toInt(),
-      fileSuffix: json['fileSuffix'] as String?,
-      contentType: json['contentType'] as String?,
-      storageType: json['storageType'] as String?,
-      bucket: json['bucket'] as String?,
-      objectKey: json['objectKey'] as String?,
-      url: json['url'] as String?,
-      md5: json['md5'] as String?,
-      clientIp: json['clientIp'] as String?,
-      status: json['status'] as String?,
-      errorMessage: json['errorMessage'] as String?,
-      createTime: json['createTime'] == null
-          ? null
-          : DateTime.parse(json['createTime'] as String),
-      updateTime: json['updateTime'] == null
-          ? null
-          : DateTime.parse(json['updateTime'] as String),
-    );
+FileUploadRecordVo _$FileUploadRecordVoFromJson(Map json) =>
+    $checkedCreate('FileUploadRecordVo', json, ($checkedConvert) {
+      final val = FileUploadRecordVo(
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        userId: $checkedConvert('userId', (v) => (v as num?)?.toInt()),
+        bizType: $checkedConvert('bizType', (v) => v as String?),
+        fileName: $checkedConvert('fileName', (v) => v as String?),
+        fileSize: $checkedConvert('fileSize', (v) => (v as num?)?.toInt()),
+        fileSuffix: $checkedConvert('fileSuffix', (v) => v as String?),
+        contentType: $checkedConvert('contentType', (v) => v as String?),
+        storageType: $checkedConvert('storageType', (v) => v as String?),
+        bucket: $checkedConvert('bucket', (v) => v as String?),
+        objectKey: $checkedConvert('objectKey', (v) => v as String?),
+        url: $checkedConvert('url', (v) => v as String?),
+        md5: $checkedConvert('md5', (v) => v as String?),
+        clientIp: $checkedConvert('clientIp', (v) => v as String?),
+        status: $checkedConvert('status', (v) => v as String?),
+        errorMessage: $checkedConvert('errorMessage', (v) => v as String?),
+        createTime: $checkedConvert(
+          'createTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        updateTime: $checkedConvert(
+          'updateTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$FileUploadRecordVoToJson(FileUploadRecordVo instance) =>
     <String, dynamic>{

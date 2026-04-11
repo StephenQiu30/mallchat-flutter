@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'operation_log_query_request.g.dart';
@@ -23,9 +25,10 @@ class OperationLogQueryRequest {
     this.clientIp,
     this.searchText,
   });
-  
-  factory OperationLogQueryRequest.fromJson(Map<String, Object?> json) => _$OperationLogQueryRequestFromJson(json);
-  
+
+  factory OperationLogQueryRequest.fromJson(Map<String, Object?> json) =>
+      _$OperationLogQueryRequestFromJson(json);
+
   /// 当前页号
   final int? current;
 
@@ -64,3 +67,20 @@ class OperationLogQueryRequest {
 
   Map<String, Object?> toJson() => _$OperationLogQueryRequestToJson(this);
 }
+
+// Flutter compute serialization functions for OperationLogQueryRequest
+FutureOr<OperationLogQueryRequest> deserializeOperationLogQueryRequest(
+  Map<String, dynamic> json,
+) => OperationLogQueryRequest.fromJson(json);
+
+FutureOr<List<OperationLogQueryRequest>>
+deserializeOperationLogQueryRequestList(List<Map<String, dynamic>> json) =>
+    json.map((e) => OperationLogQueryRequest.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeOperationLogQueryRequest(
+  OperationLogQueryRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeOperationLogQueryRequestList(
+  List<OperationLogQueryRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

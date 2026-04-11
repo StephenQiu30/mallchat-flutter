@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 import 'operation_log_vo.dart';
@@ -26,9 +28,10 @@ class PageOperationLogVo {
     this.countId,
     this.pages,
   });
-  
-  factory PageOperationLogVo.fromJson(Map<String, Object?> json) => _$PageOperationLogVoFromJson(json);
-  
+
+  factory PageOperationLogVo.fromJson(Map<String, Object?> json) =>
+      _$PageOperationLogVoFromJson(json);
+
   final List<OperationLogVo>? records;
   final int? total;
   final int? size;
@@ -43,3 +46,20 @@ class PageOperationLogVo {
 
   Map<String, Object?> toJson() => _$PageOperationLogVoToJson(this);
 }
+
+// Flutter compute serialization functions for PageOperationLogVo
+FutureOr<PageOperationLogVo> deserializePageOperationLogVo(
+  Map<String, dynamic> json,
+) => PageOperationLogVo.fromJson(json);
+
+FutureOr<List<PageOperationLogVo>> deserializePageOperationLogVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => PageOperationLogVo.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializePageOperationLogVo(
+  PageOperationLogVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializePageOperationLogVoList(
+  List<PageOperationLogVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

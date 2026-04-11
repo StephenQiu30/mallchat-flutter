@@ -7,19 +7,27 @@ part of 'base_response_list_chat_session_vo.dart';
 // **************************************************************************
 
 BaseResponseListChatSessionVo _$BaseResponseListChatSessionVoFromJson(
-  Map<String, dynamic> json,
-) => BaseResponseListChatSessionVo(
-  code: (json['code'] as num?)?.toInt(),
-  data: (json['data'] as List<dynamic>?)
-      ?.map((e) => ChatSessionVo.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  message: json['message'] as String?,
-);
+  Map json,
+) => $checkedCreate('BaseResponseListChatSessionVo', json, ($checkedConvert) {
+  final val = BaseResponseListChatSessionVo(
+    code: $checkedConvert('code', (v) => (v as num?)?.toInt()),
+    data: $checkedConvert(
+      'data',
+      (v) => (v as List<dynamic>?)
+          ?.map(
+            (e) => ChatSessionVo.fromJson(Map<String, Object?>.from(e as Map)),
+          )
+          .toList(),
+    ),
+    message: $checkedConvert('message', (v) => v as String?),
+  );
+  return val;
+});
 
 Map<String, dynamic> _$BaseResponseListChatSessionVoToJson(
   BaseResponseListChatSessionVo instance,
 ) => <String, dynamic>{
   'code': instance.code,
-  'data': instance.data,
+  'data': instance.data?.map((e) => e.toJson()).toList(),
   'message': instance.message,
 };

@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 import 'user_vo.dart';
@@ -27,9 +29,10 @@ class NotificationVo {
     this.createTime,
     this.updateTime,
   });
-  
-  factory NotificationVo.fromJson(Map<String, Object?> json) => _$NotificationVoFromJson(json);
-  
+
+  factory NotificationVo.fromJson(Map<String, Object?> json) =>
+      _$NotificationVoFromJson(json);
+
   /// 通知ID
   final int? id;
 
@@ -73,3 +76,19 @@ class NotificationVo {
 
   Map<String, Object?> toJson() => _$NotificationVoToJson(this);
 }
+
+// Flutter compute serialization functions for NotificationVo
+FutureOr<NotificationVo> deserializeNotificationVo(Map<String, dynamic> json) =>
+    NotificationVo.fromJson(json);
+
+FutureOr<List<NotificationVo>> deserializeNotificationVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => NotificationVo.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeNotificationVo(
+  NotificationVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeNotificationVoList(
+  List<NotificationVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

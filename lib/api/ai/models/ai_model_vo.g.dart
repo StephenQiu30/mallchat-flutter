@@ -6,10 +6,14 @@ part of 'ai_model_vo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AiModelVo _$AiModelVoFromJson(Map<String, dynamic> json) => AiModelVo(
-  name: json['name'] as String?,
-  description: json['description'] as String?,
-);
+AiModelVo _$AiModelVoFromJson(Map json) =>
+    $checkedCreate('AiModelVo', json, ($checkedConvert) {
+      final val = AiModelVo(
+        name: $checkedConvert('name', (v) => v as String?),
+        description: $checkedConvert('description', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$AiModelVoToJson(AiModelVo instance) => <String, dynamic>{
   'name': instance.name,

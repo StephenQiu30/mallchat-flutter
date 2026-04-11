@@ -6,22 +6,24 @@ part of 'operation_log_query_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-OperationLogQueryRequest _$OperationLogQueryRequestFromJson(
-  Map<String, dynamic> json,
-) => OperationLogQueryRequest(
-  current: (json['current'] as num?)?.toInt(),
-  pageSize: (json['pageSize'] as num?)?.toInt(),
-  sortField: json['sortField'] as String?,
-  sortOrder: json['sortOrder'] as String?,
-  id: (json['id'] as num?)?.toInt(),
-  operatorId: (json['operatorId'] as num?)?.toInt(),
-  operatorName: json['operatorName'] as String?,
-  module: json['module'] as String?,
-  action: json['action'] as String?,
-  success: (json['success'] as num?)?.toInt(),
-  clientIp: json['clientIp'] as String?,
-  searchText: json['searchText'] as String?,
-);
+OperationLogQueryRequest _$OperationLogQueryRequestFromJson(Map json) =>
+    $checkedCreate('OperationLogQueryRequest', json, ($checkedConvert) {
+      final val = OperationLogQueryRequest(
+        current: $checkedConvert('current', (v) => (v as num?)?.toInt()),
+        pageSize: $checkedConvert('pageSize', (v) => (v as num?)?.toInt()),
+        sortField: $checkedConvert('sortField', (v) => v as String?),
+        sortOrder: $checkedConvert('sortOrder', (v) => v as String?),
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        operatorId: $checkedConvert('operatorId', (v) => (v as num?)?.toInt()),
+        operatorName: $checkedConvert('operatorName', (v) => v as String?),
+        module: $checkedConvert('module', (v) => v as String?),
+        action: $checkedConvert('action', (v) => v as String?),
+        success: $checkedConvert('success', (v) => (v as num?)?.toInt()),
+        clientIp: $checkedConvert('clientIp', (v) => v as String?),
+        searchText: $checkedConvert('searchText', (v) => v as String?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$OperationLogQueryRequestToJson(
   OperationLogQueryRequest instance,

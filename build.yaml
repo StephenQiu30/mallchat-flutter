@@ -1,0 +1,12 @@
+targets:
+  $default:
+    builders:
+      json_serializable:
+        options:
+          any_map: true
+          checked: true
+          explicit_to_json: true
+          # This helps with custom converters
+      retrofit_generator:
+        options:
+          # Retrofit specific options

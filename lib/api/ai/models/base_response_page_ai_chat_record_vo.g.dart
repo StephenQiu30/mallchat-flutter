@@ -7,19 +7,25 @@ part of 'base_response_page_ai_chat_record_vo.dart';
 // **************************************************************************
 
 BaseResponsePageAiChatRecordVo _$BaseResponsePageAiChatRecordVoFromJson(
-  Map<String, dynamic> json,
-) => BaseResponsePageAiChatRecordVo(
-  code: (json['code'] as num?)?.toInt(),
-  data: json['data'] == null
-      ? null
-      : PageAiChatRecordVo.fromJson(json['data'] as Map<String, dynamic>),
-  message: json['message'] as String?,
-);
+  Map json,
+) => $checkedCreate('BaseResponsePageAiChatRecordVo', json, ($checkedConvert) {
+  final val = BaseResponsePageAiChatRecordVo(
+    code: $checkedConvert('code', (v) => (v as num?)?.toInt()),
+    data: $checkedConvert(
+      'data',
+      (v) => v == null
+          ? null
+          : PageAiChatRecordVo.fromJson(Map<String, Object?>.from(v as Map)),
+    ),
+    message: $checkedConvert('message', (v) => v as String?),
+  );
+  return val;
+});
 
 Map<String, dynamic> _$BaseResponsePageAiChatRecordVoToJson(
   BaseResponsePageAiChatRecordVo instance,
 ) => <String, dynamic>{
   'code': instance.code,
-  'data': instance.data,
+  'data': instance.data?.toJson(),
   'message': instance.message,
 };

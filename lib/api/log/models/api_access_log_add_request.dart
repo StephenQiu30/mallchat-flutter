@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'api_access_log_add_request.g.dart';
@@ -23,9 +25,10 @@ class ApiAccessLogAddRequest {
     this.requestSize,
     this.responseSize,
   });
-  
-  factory ApiAccessLogAddRequest.fromJson(Map<String, Object?> json) => _$ApiAccessLogAddRequestFromJson(json);
-  
+
+  factory ApiAccessLogAddRequest.fromJson(Map<String, Object?> json) =>
+      _$ApiAccessLogAddRequestFromJson(json);
+
   /// 链路追踪ID
   final String? traceId;
 
@@ -64,3 +67,20 @@ class ApiAccessLogAddRequest {
 
   Map<String, Object?> toJson() => _$ApiAccessLogAddRequestToJson(this);
 }
+
+// Flutter compute serialization functions for ApiAccessLogAddRequest
+FutureOr<ApiAccessLogAddRequest> deserializeApiAccessLogAddRequest(
+  Map<String, dynamic> json,
+) => ApiAccessLogAddRequest.fromJson(json);
+
+FutureOr<List<ApiAccessLogAddRequest>> deserializeApiAccessLogAddRequestList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => ApiAccessLogAddRequest.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeApiAccessLogAddRequest(
+  ApiAccessLogAddRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeApiAccessLogAddRequestList(
+  List<ApiAccessLogAddRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

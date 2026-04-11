@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'chat_room_vo.g.dart';
@@ -16,9 +18,10 @@ class ChatRoomVo {
     this.avatar,
     this.createTime,
   });
-  
-  factory ChatRoomVo.fromJson(Map<String, Object?> json) => _$ChatRoomVoFromJson(json);
-  
+
+  factory ChatRoomVo.fromJson(Map<String, Object?> json) =>
+      _$ChatRoomVoFromJson(json);
+
   /// 房间ID
   final int? id;
 
@@ -36,3 +39,18 @@ class ChatRoomVo {
 
   Map<String, Object?> toJson() => _$ChatRoomVoToJson(this);
 }
+
+// Flutter compute serialization functions for ChatRoomVo
+FutureOr<ChatRoomVo> deserializeChatRoomVo(Map<String, dynamic> json) =>
+    ChatRoomVo.fromJson(json);
+
+FutureOr<List<ChatRoomVo>> deserializeChatRoomVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => ChatRoomVo.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeChatRoomVo(ChatRoomVo? object) =>
+    object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeChatRoomVoList(
+  List<ChatRoomVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

@@ -7,19 +7,25 @@ part of 'base_response_page_operation_log_vo.dart';
 // **************************************************************************
 
 BaseResponsePageOperationLogVo _$BaseResponsePageOperationLogVoFromJson(
-  Map<String, dynamic> json,
-) => BaseResponsePageOperationLogVo(
-  code: (json['code'] as num?)?.toInt(),
-  data: json['data'] == null
-      ? null
-      : PageOperationLogVo.fromJson(json['data'] as Map<String, dynamic>),
-  message: json['message'] as String?,
-);
+  Map json,
+) => $checkedCreate('BaseResponsePageOperationLogVo', json, ($checkedConvert) {
+  final val = BaseResponsePageOperationLogVo(
+    code: $checkedConvert('code', (v) => (v as num?)?.toInt()),
+    data: $checkedConvert(
+      'data',
+      (v) => v == null
+          ? null
+          : PageOperationLogVo.fromJson(Map<String, Object?>.from(v as Map)),
+    ),
+    message: $checkedConvert('message', (v) => v as String?),
+  );
+  return val;
+});
 
 Map<String, dynamic> _$BaseResponsePageOperationLogVoToJson(
   BaseResponsePageOperationLogVo instance,
 ) => <String, dynamic>{
   'code': instance.code,
-  'data': instance.data,
+  'data': instance.data?.toJson(),
   'message': instance.message,
 };

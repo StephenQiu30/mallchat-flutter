@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'file_upload_record_add_request.g.dart';
@@ -25,9 +27,10 @@ class FileUploadRecordAddRequest {
     this.status,
     this.errorMessage,
   });
-  
-  factory FileUploadRecordAddRequest.fromJson(Map<String, Object?> json) => _$FileUploadRecordAddRequestFromJson(json);
-  
+
+  factory FileUploadRecordAddRequest.fromJson(Map<String, Object?> json) =>
+      _$FileUploadRecordAddRequestFromJson(json);
+
   /// 上传用户ID
   final int? userId;
 
@@ -72,3 +75,20 @@ class FileUploadRecordAddRequest {
 
   Map<String, Object?> toJson() => _$FileUploadRecordAddRequestToJson(this);
 }
+
+// Flutter compute serialization functions for FileUploadRecordAddRequest
+FutureOr<FileUploadRecordAddRequest> deserializeFileUploadRecordAddRequest(
+  Map<String, dynamic> json,
+) => FileUploadRecordAddRequest.fromJson(json);
+
+FutureOr<List<FileUploadRecordAddRequest>>
+deserializeFileUploadRecordAddRequestList(List<Map<String, dynamic>> json) =>
+    json.map((e) => FileUploadRecordAddRequest.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeFileUploadRecordAddRequest(
+  FileUploadRecordAddRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeFileUploadRecordAddRequestList(
+  List<FileUploadRecordAddRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

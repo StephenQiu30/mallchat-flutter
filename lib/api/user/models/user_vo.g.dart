@@ -6,22 +6,27 @@ part of 'user_vo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserVo _$UserVoFromJson(Map<String, dynamic> json) => UserVo(
-  id: (json['id'] as num?)?.toInt(),
-  userName: json['userName'] as String?,
-  userAvatar: json['userAvatar'] as String?,
-  userProfile: json['userProfile'] as String?,
-  userRole: json['userRole'] as String?,
-  userPhone: json['userPhone'] as String?,
-  githubLogin: json['githubLogin'] as String?,
-  githubUrl: json['githubUrl'] as String?,
-  createTime: json['createTime'] == null
-      ? null
-      : DateTime.parse(json['createTime'] as String),
-  updateTime: json['updateTime'] == null
-      ? null
-      : DateTime.parse(json['updateTime'] as String),
-);
+UserVo _$UserVoFromJson(Map json) =>
+    $checkedCreate('UserVo', json, ($checkedConvert) {
+      final val = UserVo(
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        userName: $checkedConvert('userName', (v) => v as String?),
+        userAvatar: $checkedConvert('userAvatar', (v) => v as String?),
+        userProfile: $checkedConvert('userProfile', (v) => v as String?),
+        userRole: $checkedConvert('userRole', (v) => v as String?),
+        userPhone: $checkedConvert('userPhone', (v) => v as String?),
+        userEmail: $checkedConvert('userEmail', (v) => v as String?),
+        createTime: $checkedConvert(
+          'createTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        updateTime: $checkedConvert(
+          'updateTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$UserVoToJson(UserVo instance) => <String, dynamic>{
   'id': instance.id,
@@ -30,8 +35,7 @@ Map<String, dynamic> _$UserVoToJson(UserVo instance) => <String, dynamic>{
   'userProfile': instance.userProfile,
   'userRole': instance.userRole,
   'userPhone': instance.userPhone,
-  'githubLogin': instance.githubLogin,
-  'githubUrl': instance.githubUrl,
+  'userEmail': instance.userEmail,
   'createTime': instance.createTime?.toIso8601String(),
   'updateTime': instance.updateTime?.toIso8601String(),
 };

@@ -6,8 +6,14 @@ part of 'order_item.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-OrderItem _$OrderItemFromJson(Map<String, dynamic> json) =>
-    OrderItem(column: json['column'] as String?, asc: json['asc'] as bool?);
+OrderItem _$OrderItemFromJson(Map json) =>
+    $checkedCreate('OrderItem', json, ($checkedConvert) {
+      final val = OrderItem(
+        column: $checkedConvert('column', (v) => v as String?),
+        asc: $checkedConvert('asc', (v) => v as bool?),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$OrderItemToJson(OrderItem instance) => <String, dynamic>{
   'column': instance.column,

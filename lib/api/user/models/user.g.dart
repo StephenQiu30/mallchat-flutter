@@ -6,31 +6,37 @@ part of 'user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-User _$UserFromJson(Map<String, dynamic> json) => User(
-  id: (json['id'] as num?)?.toInt(),
-  userName: json['userName'] as String?,
-  userAvatar: json['userAvatar'] as String?,
-  userProfile: json['userProfile'] as String?,
-  userRole: json['userRole'] as String?,
-  userPhone: json['userPhone'] as String?,
-  mpOpenId: json['mpOpenId'] as String?,
-  wxUnionId: json['wxUnionId'] as String?,
-  wxOpenId: json['wxOpenId'] as String?,
-  githubId: json['githubId'] as String?,
-  githubLogin: json['githubLogin'] as String?,
-  githubUrl: json['githubUrl'] as String?,
-  lastLoginTime: json['lastLoginTime'] == null
-      ? null
-      : DateTime.parse(json['lastLoginTime'] as String),
-  lastLoginIp: json['lastLoginIp'] as String?,
-  createTime: json['createTime'] == null
-      ? null
-      : DateTime.parse(json['createTime'] as String),
-  updateTime: json['updateTime'] == null
-      ? null
-      : DateTime.parse(json['updateTime'] as String),
-  isDelete: (json['isDelete'] as num?)?.toInt(),
-);
+User _$UserFromJson(Map json) =>
+    $checkedCreate('User', json, ($checkedConvert) {
+      final val = User(
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        userName: $checkedConvert('userName', (v) => v as String?),
+        userAvatar: $checkedConvert('userAvatar', (v) => v as String?),
+        userProfile: $checkedConvert('userProfile', (v) => v as String?),
+        userRole: $checkedConvert('userRole', (v) => v as String?),
+        userPhone: $checkedConvert('userPhone', (v) => v as String?),
+        userEmail: $checkedConvert('userEmail', (v) => v as String?),
+        maOpenId: $checkedConvert('maOpenId', (v) => v as String?),
+        wxUnionId: $checkedConvert('wxUnionId', (v) => v as String?),
+        wxOpenId: $checkedConvert('wxOpenId', (v) => v as String?),
+        appleId: $checkedConvert('appleId', (v) => v as String?),
+        lastLoginTime: $checkedConvert(
+          'lastLoginTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        lastLoginIp: $checkedConvert('lastLoginIp', (v) => v as String?),
+        createTime: $checkedConvert(
+          'createTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        updateTime: $checkedConvert(
+          'updateTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+        isDelete: $checkedConvert('isDelete', (v) => (v as num?)?.toInt()),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
   'id': instance.id,
@@ -39,12 +45,11 @@ Map<String, dynamic> _$UserToJson(User instance) => <String, dynamic>{
   'userProfile': instance.userProfile,
   'userRole': instance.userRole,
   'userPhone': instance.userPhone,
-  'mpOpenId': instance.mpOpenId,
+  'userEmail': instance.userEmail,
+  'maOpenId': instance.maOpenId,
   'wxUnionId': instance.wxUnionId,
   'wxOpenId': instance.wxOpenId,
-  'githubId': instance.githubId,
-  'githubLogin': instance.githubLogin,
-  'githubUrl': instance.githubUrl,
+  'appleId': instance.appleId,
   'lastLoginTime': instance.lastLoginTime?.toIso8601String(),
   'lastLoginIp': instance.lastLoginIp,
   'createTime': instance.createTime?.toIso8601String(),

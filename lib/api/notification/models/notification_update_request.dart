@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'notification_update_request.g.dart';
@@ -19,9 +21,10 @@ class NotificationUpdateRequest {
     this.relatedType,
     this.contentUrl,
   });
-  
-  factory NotificationUpdateRequest.fromJson(Map<String, Object?> json) => _$NotificationUpdateRequestFromJson(json);
-  
+
+  factory NotificationUpdateRequest.fromJson(Map<String, Object?> json) =>
+      _$NotificationUpdateRequestFromJson(json);
+
   /// 通知ID
   final int? id;
 
@@ -48,3 +51,20 @@ class NotificationUpdateRequest {
 
   Map<String, Object?> toJson() => _$NotificationUpdateRequestToJson(this);
 }
+
+// Flutter compute serialization functions for NotificationUpdateRequest
+FutureOr<NotificationUpdateRequest> deserializeNotificationUpdateRequest(
+  Map<String, dynamic> json,
+) => NotificationUpdateRequest.fromJson(json);
+
+FutureOr<List<NotificationUpdateRequest>>
+deserializeNotificationUpdateRequestList(List<Map<String, dynamic>> json) =>
+    json.map((e) => NotificationUpdateRequest.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeNotificationUpdateRequest(
+  NotificationUpdateRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeNotificationUpdateRequestList(
+  List<NotificationUpdateRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

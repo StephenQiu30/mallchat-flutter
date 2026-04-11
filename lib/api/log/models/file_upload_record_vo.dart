@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'file_upload_record_vo.g.dart';
@@ -28,9 +30,10 @@ class FileUploadRecordVo {
     this.createTime,
     this.updateTime,
   });
-  
-  factory FileUploadRecordVo.fromJson(Map<String, Object?> json) => _$FileUploadRecordVoFromJson(json);
-  
+
+  factory FileUploadRecordVo.fromJson(Map<String, Object?> json) =>
+      _$FileUploadRecordVoFromJson(json);
+
   /// 主键
   final int? id;
 
@@ -84,3 +87,20 @@ class FileUploadRecordVo {
 
   Map<String, Object?> toJson() => _$FileUploadRecordVoToJson(this);
 }
+
+// Flutter compute serialization functions for FileUploadRecordVo
+FutureOr<FileUploadRecordVo> deserializeFileUploadRecordVo(
+  Map<String, dynamic> json,
+) => FileUploadRecordVo.fromJson(json);
+
+FutureOr<List<FileUploadRecordVo>> deserializeFileUploadRecordVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => FileUploadRecordVo.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeFileUploadRecordVo(
+  FileUploadRecordVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeFileUploadRecordVoList(
+  List<FileUploadRecordVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

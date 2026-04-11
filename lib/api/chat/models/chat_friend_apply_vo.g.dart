@@ -6,18 +6,22 @@ part of 'chat_friend_apply_vo.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ChatFriendApplyVo _$ChatFriendApplyVoFromJson(Map<String, dynamic> json) =>
-    ChatFriendApplyVo(
-      id: (json['id'] as num?)?.toInt(),
-      userId: (json['userId'] as num?)?.toInt(),
-      userName: json['userName'] as String?,
-      userAvatar: json['userAvatar'] as String?,
-      msg: json['msg'] as String?,
-      status: (json['status'] as num?)?.toInt(),
-      createTime: json['createTime'] == null
-          ? null
-          : DateTime.parse(json['createTime'] as String),
-    );
+ChatFriendApplyVo _$ChatFriendApplyVoFromJson(Map json) =>
+    $checkedCreate('ChatFriendApplyVo', json, ($checkedConvert) {
+      final val = ChatFriendApplyVo(
+        id: $checkedConvert('id', (v) => (v as num?)?.toInt()),
+        userId: $checkedConvert('userId', (v) => (v as num?)?.toInt()),
+        userName: $checkedConvert('userName', (v) => v as String?),
+        userAvatar: $checkedConvert('userAvatar', (v) => v as String?),
+        msg: $checkedConvert('msg', (v) => v as String?),
+        status: $checkedConvert('status', (v) => (v as num?)?.toInt()),
+        createTime: $checkedConvert(
+          'createTime',
+          (v) => v == null ? null : DateTime.parse(v as String),
+        ),
+      );
+      return val;
+    });
 
 Map<String, dynamic> _$ChatFriendApplyVoToJson(ChatFriendApplyVo instance) =>
     <String, dynamic>{

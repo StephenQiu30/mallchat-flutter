@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'operation_log_vo.g.dart';
@@ -25,9 +27,10 @@ class OperationLogVo {
     this.location,
     this.createTime,
   });
-  
-  factory OperationLogVo.fromJson(Map<String, Object?> json) => _$OperationLogVoFromJson(json);
-  
+
+  factory OperationLogVo.fromJson(Map<String, Object?> json) =>
+      _$OperationLogVoFromJson(json);
+
   /// 主键
   final int? id;
 
@@ -72,3 +75,19 @@ class OperationLogVo {
 
   Map<String, Object?> toJson() => _$OperationLogVoToJson(this);
 }
+
+// Flutter compute serialization functions for OperationLogVo
+FutureOr<OperationLogVo> deserializeOperationLogVo(Map<String, dynamic> json) =>
+    OperationLogVo.fromJson(json);
+
+FutureOr<List<OperationLogVo>> deserializeOperationLogVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => OperationLogVo.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeOperationLogVo(
+  OperationLogVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeOperationLogVoList(
+  List<OperationLogVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

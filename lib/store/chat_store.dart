@@ -4,8 +4,8 @@ import 'package:mallchat_flutter/api/request.dart';
 
 class ChatStore extends GetxController {
   // --- Clients ---
-  // 通过 Request.getInstance() 获取配置好的 Dio 实例
-  late final ChatClient _client = ChatClient(Request.getInstance());
+  // 使用 Request 服务提供的 ChatClient
+  late final ChatClient _client = Request.chatClient;
 
   // --- State ---
   var chatRooms = <ChatRoomVo>[].obs;

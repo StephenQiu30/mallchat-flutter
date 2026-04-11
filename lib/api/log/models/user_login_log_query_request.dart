@@ -2,6 +2,8 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint, unused_import, invalid_annotation_target, unnecessary_import
 
+import 'dart:async';
+
 import 'package:json_annotation/json_annotation.dart';
 
 part 'user_login_log_query_request.g.dart';
@@ -22,9 +24,10 @@ class UserLoginLogQueryRequest {
     this.clientIp,
     this.searchText,
   });
-  
-  factory UserLoginLogQueryRequest.fromJson(Map<String, Object?> json) => _$UserLoginLogQueryRequestFromJson(json);
-  
+
+  factory UserLoginLogQueryRequest.fromJson(Map<String, Object?> json) =>
+      _$UserLoginLogQueryRequestFromJson(json);
+
   /// 当前页号
   final int? current;
 
@@ -60,3 +63,20 @@ class UserLoginLogQueryRequest {
 
   Map<String, Object?> toJson() => _$UserLoginLogQueryRequestToJson(this);
 }
+
+// Flutter compute serialization functions for UserLoginLogQueryRequest
+FutureOr<UserLoginLogQueryRequest> deserializeUserLoginLogQueryRequest(
+  Map<String, dynamic> json,
+) => UserLoginLogQueryRequest.fromJson(json);
+
+FutureOr<List<UserLoginLogQueryRequest>>
+deserializeUserLoginLogQueryRequestList(List<Map<String, dynamic>> json) =>
+    json.map((e) => UserLoginLogQueryRequest.fromJson(e)).toList();
+
+FutureOr<Map<String, dynamic>> serializeUserLoginLogQueryRequest(
+  UserLoginLogQueryRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
+
+FutureOr<List<Map<String, dynamic>>> serializeUserLoginLogQueryRequestList(
+  List<UserLoginLogQueryRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];
