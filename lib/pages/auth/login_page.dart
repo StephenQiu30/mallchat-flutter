@@ -31,27 +31,41 @@ class LoginPage extends StatelessWidget {
 
           // Content
           SafeArea(
-            child: Padding(
+            child: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 32),
-              child: Column(
-                children: [
-                  const Spacer(flex: 2),
-                  
-                  // Logo & Brand
-                  _buildBrandHeader(),
-                  
-                  const Spacer(),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom,
+                ),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 100),
+                    
+                    // Logo & Brand
+                    _buildBrandHeader(),
+                    
+                    const SizedBox(height: 60),
 
-                  // Tabs for Login Method
-                  _buildLoginTabs(controller),
+                    // Login Card
+                    Container(
+                      padding: const EdgeInsets.all(24),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.8),
+                        borderRadius: GlassTheme.radius24,
+                        boxShadow: GlassTheme.deepShadow,
+                        border: Border.all(color: Colors.white.withValues(alpha: 0.5)),
+                      ),
+                      child: _buildLoginTabs(context, controller),
+                    ),
 
-                  const SizedBox(height: 32),
+                    const SizedBox(height: 32),
 
-                  // Agreement
-                  _buildAgreementSection(controller),
+                    // Agreement
+                    _buildAgreementSection(context, controller),
 
-                  const SizedBox(height: 48),
-                ],
+                    const SizedBox(height: 48),
+                  ],
+                ),
               ),
             ),
           ),
@@ -60,28 +74,31 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _buildLoginTabs(LoginController controller) {
+  Widget _buildLoginTabs(BuildContext context, LoginController controller) {
     return DefaultTabController(
       length: 2,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          const TDTabBar(
-            tabs: [
+          TDTabBar(
+            tabs: const [
               TDTab(text: '快捷登录'),
               TDTab(text: '邮件登录'),
             ],
             isScrollable: false,
             indicatorWidth: 24,
-            labelColor: Color(0xFF3B82F6),
-            unselectedLabelColor: Colors.grey,
+            labelColor: GlassTheme.primaryBlue,
+            unselectedLabelColor: GlassTheme.textLightGray,
+            indicatorColor: GlassTheme.primaryBlue,
+            backgroundColor: Colors.transparent,
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 32),
           SizedBox(
-            height: 200, // Fixed height for input area
+            height: 220, // Increased height for better spacing
             child: TabBarView(
               children: [
-                _buildSocialLogin(controller), // Tab 1: WeChat/Apple
-                _buildEmailLogin(controller),  // Tab 2: Email
+                _buildSocialLogin(context, controller),
+                _buildEmailLogin(context, controller),
               ],
             ),
           ),
@@ -90,9 +107,10 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _buildSocialLogin(LoginController controller) {
+  Widget _buildSocialLogin(BuildContext context, LoginController controller) {
     return Column(
       children: [
+        const SizedBox(height: 20),
         // WeChat Login Button
         Obx(() => TDButton(
           text: controller.isLoading.value ? '登录中...' : '微信一键登录',
@@ -103,7 +121,7 @@ class LoginPage extends StatelessWidget {
           width: double.infinity,
           onTap: controller.isLoading.value 
             ? null 
-            : controller.loginWithMock,
+            : controller.loginWithWechat,
         )),
         
         const SizedBox(height: 16),
@@ -116,13 +134,13 @@ class LoginPage extends StatelessWidget {
           theme: TDButtonTheme.defaultTheme,
           shape: TDButtonShape.rectangle,
           width: double.infinity,
-          onTap: () => Get.snackbar('提示', 'Apple 登录暂未开放'),
+          onTap: () => TDToast.showText('Apple 登录暂未开放', context: context),
         ),
       ],
     );
   }
 
-  Widget _buildEmailLogin(LoginController controller) {
+  Widget _buildEmailLogin(BuildContext context, LoginController controller) {
     return Column(
       children: [
         // Email Input
@@ -130,8 +148,8 @@ class LoginPage extends StatelessWidget {
           hintText: '请输入邮箱',
           type: TDInputType.normal,
           onChanged: (v) => controller.email.value = v,
-          leftIcon: const Icon(TDIcons.mail),
-          backgroundColor: Colors.white,
+          leftIcon: const Icon(TDIcons.mail, color: GlassTheme.primaryBlue, size: 20),
+          backgroundColor: GlassTheme.backgroundGray.withValues(alpha: 0.5),
         ),
         
         const SizedBox(height: 12),
@@ -141,8 +159,8 @@ class LoginPage extends StatelessWidget {
           hintText: '验证码',
           type: TDInputType.normal,
           onChanged: (v) => controller.code.value = v,
-          leftIcon: const Icon(TDIcons.secured),
-          backgroundColor: Colors.white,
+          leftIcon: const Icon(TDIcons.secured, color: GlassTheme.primaryBlue, size: 20),
+          backgroundColor: GlassTheme.backgroundGray.withValues(alpha: 0.5),
           rightBtn: Obx(() => TDButton(
             text: controller.timerSeconds.value > 0 
               ? '${controller.timerSeconds.value}s' 
@@ -215,7 +233,7 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget _buildAgreementSection(LoginController controller) {
+  Widget _buildAgreementSection(BuildContext context, LoginController controller) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

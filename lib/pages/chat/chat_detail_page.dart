@@ -38,10 +38,7 @@ class ChatDetailPage extends StatelessWidget {
                   color: Color(0xFF1F2937),
                 ),
               ),
-              const Text(
-                "iPhone 在线",
-                style: TextStyle(fontSize: 11, color: GlassTheme.textLightGray),
-              ),
+              const SizedBox.shrink(), // Remove mock subtitle
             ],
           );
         }),
@@ -71,7 +68,9 @@ class ChatDetailPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final msg = messages[index];
                   final isSelf = chatController.isSelf(msg);
-                  final timeStr = msg.createTime != null ? "${msg.createTime!.hour}:${msg.createTime!.minute.toString().padLeft(2, '0')}" : "14:30";
+                  final timeStr = msg.createTime != null 
+                    ? "${msg.createTime!.hour}:${msg.createTime!.minute.toString().padLeft(2, '0')}" 
+                    : "";
 
                   return _buildMessageBubble(
                     context, 
@@ -103,7 +102,10 @@ class ChatDetailPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!isSelf) ...[
-            MallChatAvatar(size: TDAvatarSize.medium, avatarUrl: avatar),
+            MallChatAvatar(
+              size: TDAvatarSize.medium, 
+              avatarUrl: avatar.isNotEmpty ? avatar : 'https://api.dicebear.com/7.x/notionists/svg?seed=Guest&backgroundColor=e2e8f0',
+            ),
             const SizedBox(width: 10),
           ],
           
@@ -142,7 +144,10 @@ class ChatDetailPage extends StatelessWidget {
           
           if (isSelf) ...[
             const SizedBox(width: 10),
-            MallChatAvatar(size: TDAvatarSize.medium, avatarUrl: avatar),
+            MallChatAvatar(
+              size: TDAvatarSize.medium, 
+              avatarUrl: avatar.isNotEmpty ? avatar : 'https://api.dicebear.com/7.x/notionists/svg?seed=${Request.app.userProfile.value?.id ?? "Me"}&backgroundColor=e2e8f0',
+            ),
           ],
         ],
       ),

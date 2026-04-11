@@ -7,6 +7,7 @@ import 'package:mallchat_flutter/api/request.dart';
 import 'package:mallchat_flutter/api/chat/models/chat_room_vo.dart';
 import 'package:mallchat_flutter/components/common/mallchat_avatar.dart';
 import 'package:mallchat_flutter/pages/chat/chat_detail_page.dart';
+import 'package:mallchat_flutter/common/enums.dart';
 
 class ChatListPage extends StatelessWidget {
   const ChatListPage({super.key});
@@ -24,10 +25,13 @@ class ChatListPage extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16, 50, 16, 12),
             child: Row(
               children: [
-                const MallChatAvatar(
-                  size: TDAvatarSize.medium,
-                  avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?seed=Stephen&backgroundColor=e2e8f0',
-                ),
+                Obx(() {
+                  final user = Request.app.userProfile.value;
+                  return MallChatAvatar(
+                    size: TDAvatarSize.medium,
+                    avatarUrl: user?.userAvatar ?? 'https://api.dicebear.com/7.x/notionists/svg?seed=${user?.id ?? "Guest"}&backgroundColor=e2e8f0',
+                  );
+                }),
                 const SizedBox(width: 12),
                 const Text(
                   "消息",
@@ -76,41 +80,47 @@ class ChatListPage extends StatelessWidget {
             child: Obx(() {
               final rooms = chatController.chatRooms;
               
-              return ListView.builder(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                itemCount: rooms.length,
-                itemBuilder: (context, index) {
-                  final room = rooms[index];
-                  final roomId = room.id ?? 0;
-                  final isActive = chatController.activeRoomId.value == roomId;
-                  
-                  return Slidable(
-                    key: ValueKey(roomId),
-                    endActionPane: ActionPane(
-                      motion: const ScrollMotion(),
-                      children: [
-                        SlidableAction(
-                          onPressed: (_) => chatController.markAsRead(roomId),
-                          backgroundColor: const Color(0xFF3B82F6),
-                          foregroundColor: Colors.white,
-                          icon: Icons.mark_chat_read,
-                          label: '已读',
-                        ),
-                        SlidableAction(
-                          onPressed: (_) => chatController.deleteRoom(roomId),
-                          backgroundColor: Colors.red,
-                          foregroundColor: Colors.white,
-                          icon: Icons.delete,
-                          label: '删除',
-                        ),
-                      ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(bottom: 12),
-                      child: _buildChatCell(room, isActive),
-                    ),
-                  );
-                },
+              return RefreshIndicator(
+                onRefresh: () => chatController.refreshRooms(),
+                displacement: 20,
+                color: GlassTheme.primaryBlue,
+                child: ListView.builder(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  itemCount: rooms.length,
+                  itemBuilder: (context, index) {
+                    final room = rooms[index];
+                    final roomId = room.id ?? 0;
+                    final isActive = chatController.activeRoomId.value == roomId;
+                    
+                    return Slidable(
+                      key: ValueKey(roomId),
+                      endActionPane: ActionPane(
+                        motion: const ScrollMotion(),
+                        children: [
+                          SlidableAction(
+                            onPressed: (_) => chatController.markAsRead(roomId),
+                            backgroundColor: const Color(0xFF3B82F6),
+                            foregroundColor: Colors.white,
+                            icon: Icons.mark_chat_read,
+                            label: '已读',
+                          ),
+                          SlidableAction(
+                            onPressed: (_) => chatController.deleteRoom(roomId),
+                            backgroundColor: Colors.red,
+                            foregroundColor: Colors.white,
+                            icon: Icons.delete,
+                            label: '删除',
+                          ),
+                        ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 12),
+                        child: _buildChatCell(room, isActive),
+                      ),
+                    );
+                  },
+                ),
               );
             }),
           )
@@ -124,10 +134,12 @@ class ChatListPage extends StatelessWidget {
     final roomId = room.id ?? 0;
     final unreadCount = chatController.unreadCounts[roomId] ?? 0;
     final lastMsg = chatController.lastMessages[roomId] ?? "";
-    final isGroup = room.type == 1;
+    final isGroup = room.type == RoomType.group.value;
     
-    // Simple time format for mock
-    final timeStr = room.createTime != null ? "${room.createTime!.hour}:${room.createTime!.minute.toString().padLeft(2, '0')}" : "10:42";
+    // Simple time format
+    final timeStr = room.createTime != null 
+      ? "${room.createTime!.hour}:${room.createTime!.minute.toString().padLeft(2, '0')}" 
+      : "刚刚";
 
     return Container(
       decoration: BoxDecoration(

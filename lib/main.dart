@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mallchat_flutter/store/app_store.dart';
 import 'package:mallchat_flutter/store/chat_store.dart';
+import 'package:mallchat_flutter/store/contact_store.dart';
 import 'layout/responsive_layout.dart';
 
 void main() async {
@@ -15,6 +16,7 @@ void main() async {
   // Initialize Global Stores
   Get.put(AppStore());
   Get.put(ChatStore());
+  Get.put(ContactStore());
 
   runApp(const MallChatApp());
 }

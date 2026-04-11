@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:mallchat_flutter/api/chat/export.dart';
 import 'package:mallchat_flutter/api/request.dart';
+import 'package:mallchat_flutter/common/enums.dart';
 
 class ChatStore extends GetxController {
   // --- Clients ---
@@ -20,31 +21,20 @@ class ChatStore extends GetxController {
     _loadInitialData();
   }
 
-  /// 初始化加载（后续可改为真正调用 API）
-  void _loadInitialData() {
-    // 暂存 Mock 数据以保证 UI 可用
-    chatRooms.assignAll([
-      const ChatRoomVo(
-        id: 1,
-        name: 'MallChat 官方交流群',
-        avatar: 'https://api.dicebear.com/7.x/identicon/svg?seed=mallchat',
-        type: 1,
-      ),
-      const ChatRoomVo(
-        id: 2,
-        name: 'Alice (架构师)',
-        avatar: 'https://api.dicebear.com/7.x/notionists/svg?seed=Alice',
-        type: 2,
-      ),
-    ]);
+  /// 初始化加载（从服务端拉取真实房间列表）
+  Future<void> _loadInitialData() async {
+    await refreshRooms();
+  }
 
-    if (chatRooms.isNotEmpty) {
-      // 填充 Mock 数据
-      lastMessages[1] = '[图片] 本周架构优化报告已生成。';
-      lastMessages[2] = '那个 RabbitMQ 的 ACK 机制我这里再调一下。';
-      unreadCounts[2] = 3;
-      
-      // 注意：初始时不自动调用 selectRoom，由 UI 控制或在 onReady 后执行
+  /// 刷新房间列表
+  Future<void> refreshRooms() async {
+    try {
+      final response = await Request.chatClient.chatRoomController.listUserChatRooms();
+      if (response.code == 0 && response.data != null) {
+        chatRooms.assignAll(response.data!);
+      }
+    } catch (e) {
+      // 错误已由拦截器处理
     }
   }
 
@@ -81,12 +71,14 @@ class ChatStore extends GetxController {
 
     final roomId = activeRoomId.value!;
     
+    final currentUser = Request.app.userProfile.value;
+    
     // 1. 本地立即更新 (Optimistic UI)
     final tempMsg = ChatMessageVo(
       id: DateTime.now().millisecondsSinceEpoch,
       roomId: roomId,
-      fromUserId: 999, // 假设当前用户ID
-      fromUserName: 'Me',
+      fromUserId: currentUser?.id ?? 0,
+      fromUserName: currentUser?.userName ?? 'Me',
       content: content,
       createTime: DateTime.now(),
     );
@@ -99,7 +91,7 @@ class ChatStore extends GetxController {
         body: ChatMessageSendRequest(
           roomId: roomId,
           content: content,
-          type: 1, // 1-文本
+          type: MessageType.text.value,
         ),
       );
     } catch (e) {
@@ -107,5 +99,8 @@ class ChatStore extends GetxController {
     }
   }
 
-  bool isSelf(ChatMessageVo msg) => msg.fromUserId == 999;
+  bool isSelf(ChatMessageVo msg) {
+    final currentUserId = Request.app.userProfile.value?.id;
+    return currentUserId != null && msg.fromUserId == currentUserId;
+  }
 }
