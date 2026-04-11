@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
 import 'package:mallchat_flutter/components/common/mallchat_avatar.dart';
+import 'package:mallchat_flutter/api/request.dart';
+import 'package:mallchat_flutter/styles/glass_theme.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -8,7 +11,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFFF6F7F9),
+      color: GlassTheme.backgroundGray,
       child: Stack(
         children: [
           // Background Gradient Header
@@ -25,117 +28,144 @@ class ProfilePage extends StatelessWidget {
 
           // Main Scrollable Content
           SafeArea(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const SizedBox(height: 10),
-                  // Header Row
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        IconButton(
-                          onPressed: () {},
-                          icon: const Icon(TDIcons.setting, color: Colors.white, size: 24),
+            child: Obx(() {
+              final user = Request.app.userProfile.value;
+              return RefreshIndicator(
+                onRefresh: () => Request.app.refreshUserProfile(),
+                displacement: 20,
+                color: GlassTheme.primaryBlue,
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Column(
+                    children: [
+                      const SizedBox(height: 10),
+                      // Header Row
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            IconButton(
+                              onPressed: () {},
+                              icon: const Icon(TDIcons.setting, color: Colors.white, size: 24),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-
-                  // Profile Card
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                    child: Container(
-                      padding: const EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withValues(alpha: 0.05),
-                            blurRadius: 15,
-                            offset: const Offset(0, 5),
-                          ),
-                        ],
                       ),
-                      child: Column(
-                        children: [
-                          Row(
-                            children: [
-                              const MallChatAvatar(
-                                size: TDAvatarSize.large,
-                                avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?seed=Stephen&backgroundColor=e2e8f0',
-                              ),
-                              const SizedBox(width: 16),
-                              const Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "MallChat Cloud",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Color(0xFF1F2937),
-                                      ),
-                                    ),
-                                    SizedBox(height: 4),
-                                    Text(
-                                      "账号: mallchat_888",
-                                      style: TextStyle(
-                                        fontSize: 14,
-                                        color: Color(0xFF9CA3AF),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Icon(TDIcons.qrcode, size: 24, color: Colors.black.withValues(alpha: 0.3)),
-                            ],
-                          ),
-                          const SizedBox(height: 24),
-                          // Stats
-                           Row(
-                             mainAxisAlignment: MainAxisAlignment.spaceAround,
-                             children: [
-                               _StatItem(label: "最近访问", count: "1.2k", icon: TDIcons.time),
-                               _StatItem(label: "我的好友", count: "482", icon: TDIcons.user),
-                               _StatItem(label: "收藏内容", count: "156", icon: TDIcons.star),
-                             ],
-                           ),
-                        ],
-                      ),
-                    ),
-                  ),
 
-                  // Service Sections
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                    child: Column(
-                      children: [
-                        _buildServiceGroup([
-                          _ServiceItem(icon: TDIcons.wallet, title: "我的钱包", subtitle: "288.50"),
-                          _ServiceItem(icon: TDIcons.app, title: "个性装扮", subtitle: "限时折扣"),
-                        ]),
-                        const SizedBox(height: 16),
-                        _buildServiceGroup([
-                          _ServiceItem(icon: TDIcons.star, title: "我的收藏"),
-                          _ServiceItem(icon: TDIcons.file_copy, title: "文件传输助手"),
-                          _ServiceItem(icon: TDIcons.image, title: "相册动态"),
-                        ]),
-                        const SizedBox(height: 16),
-                        _buildServiceGroup([
-                          _ServiceItem(icon: TDIcons.edit_1, title: "意见反馈"),
-                          _ServiceItem(icon: TDIcons.info_circle, title: "关于 MallChat"),
-                        ]),
-                        const SizedBox(height: 30),
-                      ],
-                    ),
+                      // Profile Card
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                        child: Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: GlassTheme.radius24,
+                          boxShadow: GlassTheme.mediumShadow,
+                        ),
+                        child: Row(
+                          children: [
+                            // 用户头像
+                            MallChatAvatar(
+                              size: TDAvatarSize.large,
+                              avatarUrl: user?.userAvatar ?? 'https://api.dicebear.com/7.x/notionists/svg?seed=${user?.id ?? "Guest"}&backgroundColor=e2e8f0',
+                            ),
+                            const SizedBox(width: 16),
+                            // 用户信息
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    user?.userName ?? "未登录",
+                                    style: const TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold,
+                                      color: GlassTheme.textDark,
+                                      letterSpacing: 0.5,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 6),
+                                  // 优化的 UID 展示 (胶囊样式)
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                                    decoration: BoxDecoration(
+                                      color: GlassTheme.backgroundGray,
+                                      borderRadius: BorderRadius.circular(12),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          "ID: ${user?.id ?? '---'}",
+                                          style: const TextStyle(
+                                            fontSize: 12,
+                                            color: GlassTheme.textGray,
+                                            fontWeight: FontWeight.w500,
+                                            fontFamily: 'Monospace', // 使用等宽字体更有科技感
+                                          ),
+                                        ),
+                                        const SizedBox(width: 4),
+                                        Icon(TDIcons.copy, size: 12, color: Colors.blue.withValues(alpha: 0.6)),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            // 右侧二维码
+                            Container(
+                              padding: const EdgeInsets.all(8),
+                              decoration: BoxDecoration(
+                                color: GlassTheme.backgroundGray,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Icon(TDIcons.qrcode, size: 20, color: Colors.black.withValues(alpha: 0.4)),
+                            ),
+                          ],
+                        ),
+                      ),
+                      ),
+
+                      // Service Sections
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                        child: Column(
+                          children: [
+                            _buildServiceGroup([
+                              const _ServiceItem(icon: TDIcons.wallet, title: "我的钱包"),
+                              const _ServiceItem(icon: TDIcons.app, title: "个性装扮"),
+                            ]),
+                            const SizedBox(height: 16),
+                            _buildServiceGroup([
+                              const _ServiceItem(icon: TDIcons.star, title: "我的收藏"),
+                              const _ServiceItem(icon: TDIcons.file_copy, title: "文件传输助手"),
+                              const _ServiceItem(icon: TDIcons.image, title: "相册动态"),
+                            ]),
+                            const SizedBox(height: 16),
+                            _buildServiceGroup([
+                              const _ServiceItem(icon: TDIcons.edit_1, title: "意见反馈"),
+                              const _ServiceItem(icon: TDIcons.info_circle, title: "关于 MallChat"),
+                            ]),
+                            const SizedBox(height: 24),
+                            // Logout Button
+                            TDButton(
+                              text: '退出登录',
+                              size: TDButtonSize.large,
+                              type: TDButtonType.fill,
+                              theme: TDButtonTheme.danger,
+                              width: double.infinity,
+                              onTap: () => Request.app.logout(),
+                            ),
+                            const SizedBox(height: 48),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
+                ),
+              );
+            }),
           ),
         ],
       ),
@@ -147,13 +177,7 @@ class ProfilePage extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.02),
-            blurRadius: 10,
-            offset: const Offset(0, 2),
-          ),
-        ],
+        boxShadow: GlassTheme.softShadow,
       ),
       child: Column(
         children: children.asMap().entries.map((entry) {
@@ -188,14 +212,14 @@ class _StatItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Icon(icon, size: 24, color: const Color(0xFF3B82F6).withValues(alpha: 0.8)),
+        Icon(icon, size: 24, color: GlassTheme.primaryBlue.withValues(alpha: 0.8)),
         const SizedBox(height: 8),
         Text(
           count,
           style: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: Color(0xFF1F2937),
+            color: GlassTheme.textDark,
           ),
         ),
         const SizedBox(height: 2),
@@ -203,7 +227,7 @@ class _StatItem extends StatelessWidget {
           label,
           style: const TextStyle(
             fontSize: 12,
-            color: Color(0xFF9CA3AF),
+            color: GlassTheme.textGray,
           ),
         ),
       ],
@@ -229,14 +253,14 @@ class _ServiceItem extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
           child: Row(
             children: [
-              Icon(icon, size: 24, color: const Color(0xFF3B82F6)),
+              Icon(icon, size: 24, color: GlassTheme.primaryBlue),
               const SizedBox(width: 16),
               Expanded(
                 child: Text(
                   title,
                   style: const TextStyle(
                     fontSize: 16,
-                    color: Color(0xFF1F2937),
+                    color: GlassTheme.textDark,
                     fontWeight: FontWeight.w500,
                   ),
                 ),
@@ -244,7 +268,7 @@ class _ServiceItem extends StatelessWidget {
               if (subtitle != null)
                 Text(
                   subtitle!,
-                  style: const TextStyle(fontSize: 13, color: Color(0xFF9CA3AF)),
+                  style: const TextStyle(fontSize: 13, color: GlassTheme.textGray),
                 ),
               const SizedBox(width: 4),
               const Icon(TDIcons.chevron_right, size: 20, color: Color(0xFFD1D5DB)),

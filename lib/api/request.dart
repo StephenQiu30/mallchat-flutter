@@ -4,6 +4,7 @@ import 'package:get/get.dart' hide Response; // Avoid conflict with Dio Response
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mallchat_flutter/store/app_store.dart';
 import 'package:mallchat_flutter/store/chat_store.dart';
+import 'package:mallchat_flutter/store/contact_store.dart';
 
 // Clients imports
 import 'package:mallchat_flutter/api/user/user_client.dart';
@@ -37,6 +38,7 @@ class Request {
   // --- 数据存储 (Stores) ---
   static AppStore get app => Get.find<AppStore>();
   static ChatStore get chat => Get.find<ChatStore>();
+  static ContactStore get contact => Get.find<ContactStore>();
 
   // --- API 客户端 (Clients) ---
   static UserClient get userClient => UserClient(instance.dio);

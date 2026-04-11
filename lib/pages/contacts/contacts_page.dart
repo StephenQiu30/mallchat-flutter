@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
 import 'package:mallchat_flutter/components/common/mallchat_avatar.dart';
+import 'package:mallchat_flutter/api/request.dart';
+import 'package:get/get.dart';
+import 'package:mallchat_flutter/api/chat/models/chat_friend_user_vo.dart';
 
 class ContactsPage extends StatelessWidget {
   const ContactsPage({super.key});
@@ -16,10 +19,13 @@ class ContactsPage extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(16, 50, 16, 12),
             child: Row(
               children: [
-                const MallChatAvatar(
-                  size: TDAvatarSize.medium,
-                  avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?seed=Stephen&backgroundColor=e2e8f0',
-                ),
+                Obx(() {
+                  final user = Request.app.userProfile.value;
+                  return MallChatAvatar(
+                    size: TDAvatarSize.medium,
+                    avatarUrl: user?.userAvatar ?? 'https://api.dicebear.com/7.x/notionists/svg?seed=${user?.id ?? "Guest"}&backgroundColor=e2e8f0',
+                  );
+                }),
                 const SizedBox(width: 12),
                 const Text(
                   "联系人",
@@ -70,30 +76,47 @@ class ContactsPage extends StatelessWidget {
           ),
 
           Expanded(
-            child: ListView(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              children: [
-                // Activity Cards
-                _buildFunctionalCard(
-                  title: "新朋友",
-                  icon: TDIcons.user_add,
-                  iconColor: const Color(0xFF3B82F6),
-                ),
-                const SizedBox(height: 12),
-                _buildFunctionalCard(
-                  title: "群通知",
-                  icon: TDIcons.notification,
-                  iconColor: const Color(0xFFF59E0B),
-                ),
-                const SizedBox(height: 24),
+            child: Obx(() {
+              final contactStore = Request.contact;
+              final friends = contactStore.sortedFriends;
 
-                // Friend Groups
-                _buildExpandableGroup("特别关心", "2/2"),
-                _buildExpandableGroup("我的好友", "12/48"),
-                _buildExpandableGroup("大学同学", "5/20"),
-                _buildExpandableGroup("不常联系", "0/50"),
-              ],
-            ),
+              return RefreshIndicator(
+                onRefresh: () => contactStore.refreshFriends(),
+                displacement: 20,
+                color: const Color(0xFF3B82F6),
+                child: ListView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  children: [
+                    // Activity Cards
+                    _buildFunctionalCard(
+                      title: "新朋友",
+                      icon: TDIcons.user_add,
+                      iconColor: const Color(0xFF3B82F6),
+                    ),
+                    const SizedBox(height: 12),
+                    _buildFunctionalCard(
+                      title: "群通知",
+                      icon: TDIcons.notification,
+                      iconColor: const Color(0xFFF59E0B),
+                    ),
+                    const SizedBox(height: 24),
+
+                    // Authentic Friend List
+                    if (friends.isEmpty && !contactStore.isLoading.value)
+                      const Center(
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 40),
+                          child: Text("暂无联系人", style: TextStyle(color: Color(0xFF9CA3AF))),
+                        ),
+                      ),
+                      
+                    if (friends.isNotEmpty)
+                      _buildExpandableGroup("我的好友", "${friends.length}/${friends.length}", friends),
+                  ],
+                ),
+              );
+            }),
           ),
         ],
       ),
@@ -149,7 +172,7 @@ class ContactsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildExpandableGroup(String title, String status) {
+  Widget _buildExpandableGroup(String title, String status, List<ChatFriendUserVo> friends) {
     return Container(
       margin: const EdgeInsets.only(bottom: 1),
       decoration: const BoxDecoration(
@@ -177,25 +200,17 @@ class ContactsPage extends StatelessWidget {
             const Icon(TDIcons.chevron_down, size: 16, color: Color(0xFF9CA3AF)),
           ],
         ),
-        children: [
-          // Simplified friends for now
-          ListTile(
-            leading: MallChatAvatar(
-              size: TDAvatarSize.small,
-              avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?seed=ZhangSan&backgroundColor=ffedd5',
-            ),
-            title: const Text("张三"),
-            subtitle: const Text("[在线] 这种设计真好看"),
+        children: friends.map((friend) => ListTile(
+          onTap: () {},
+          leading: MallChatAvatar(
+            size: TDAvatarSize.small,
+            avatarUrl: friend.userAvatar ?? 'https://api.dicebear.com/7.x/notionists/svg?seed=${friend.id}&backgroundColor=f3f4f6',
           ),
-          ListTile(
-            leading: MallChatAvatar(
-              size: TDAvatarSize.small,
-              avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?seed=LiSi&backgroundColor=dcfce7',
-            ),
-            title: const Text("李四"),
-            subtitle: const Text("[离线] 稍后联系"),
+          title: Text(
+            friend.userName ?? "未知用户",
+            style: const TextStyle(fontWeight: FontWeight.w500),
           ),
-        ],
+        )).toList(),
       ),
     );
   }
