@@ -1,5 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart' hide Response; // Avoid conflict with Dio Response
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mallchat_flutter/store/app_store.dart';
+import 'package:mallchat_flutter/store/chat_store.dart';
+
+// Clients imports
 import 'package:mallchat_flutter/api/user/user_client.dart';
 import 'package:mallchat_flutter/api/file/file_client.dart';
 import 'package:mallchat_flutter/api/notification/notification_client.dart';
@@ -28,24 +34,30 @@ class Request {
     dio.interceptors.add(_LogInterceptor());
   }
 
-  // 为各子微服务提供 API Client
-  static UserClient get user => UserClient(instance.dio);
+  // --- 数据存储 (Stores) ---
+  static AppStore get app => Get.find<AppStore>();
+  static ChatStore get chat => Get.find<ChatStore>();
 
-  static FileClient get file => FileClient(instance.dio);
-
-  static NotificationClient get notification =>
+  // --- API 客户端 (Clients) ---
+  static UserClient get userClient => UserClient(instance.dio);
+  static FileClient get fileClient => FileClient(instance.dio);
+  static NotificationClient get notificationClient =>
       NotificationClient(instance.dio);
-
-  static LogClient get log => LogClient(instance.dio);
-
-  static AiClient get ai => AiClient(instance.dio);
-
-  static ChatClient get chat => ChatClient(instance.dio);
+  static LogClient get logClient => LogClient(instance.dio);
+  static AiClient get aiClient => AiClient(instance.dio);
+  static ChatClient get chatClient => ChatClient(instance.dio);
 }
 
 class _LogInterceptor extends Interceptor {
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    // 注入 Token
+    final prefs = Get.find<SharedPreferences>();
+    final token = prefs.getString('token');
+    if (token != null && token.isNotEmpty) {
+      options.headers['Authorization'] = 'Bearer $token';
+    }
+
     debugPrint('[API Request] ${options.method} ${options.uri}');
     handler.next(options);
   }

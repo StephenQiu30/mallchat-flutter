@@ -19,6 +19,8 @@ import '../models/user_add_request.dart';
 import '../models/user_app_login_request.dart';
 import '../models/user_apple_login_request.dart';
 import '../models/user_edit_request.dart';
+import '../models/user_email_code_request.dart';
+import '../models/user_email_login_request.dart';
 import '../models/user_ma_login_request.dart';
 import '../models/user_query_request.dart';
 import '../models/user_update_request.dart';
@@ -27,8 +29,7 @@ part 'user_controller_client.g.dart';
 
 @RestApi(parser: Parser.FlutterCompute)
 abstract class UserControllerClient {
-  factory UserControllerClient(Dio dio, {String? baseUrl}) =
-      _UserControllerClient;
+  factory UserControllerClient(Dio dio, {String? baseUrl}) = _UserControllerClient;
 
   /// 更新用户.
   ///
@@ -50,6 +51,22 @@ abstract class UserControllerClient {
   @POST('/user/login/ma')
   Future<BaseResponseLoginUserVo> userLoginByMa({
     @Body() required UserMaLoginRequest body,
+  });
+
+  /// 邮箱登录.
+  ///
+  /// 通过邮箱和验证码进行登录或注册.
+  @POST('/user/login/email')
+  Future<BaseResponseLoginUserVo> userLoginByEmail({
+    @Body() required UserEmailLoginRequest body,
+  });
+
+  /// 发送邮箱验证码.
+  ///
+  /// 向指定邮箱发送 6 位数登录验证码.
+  @POST('/user/login/email/code')
+  Future<BaseResponseBoolean> sendEmailCode({
+    @Body() required UserEmailCodeRequest body,
   });
 
   /// Apple 登录.
@@ -88,19 +105,25 @@ abstract class UserControllerClient {
   ///
   /// 当前登录用户编辑自己的个人资料.
   @POST('/user/edit')
-  Future<BaseResponseBoolean> editUser({@Body() required UserEditRequest body});
+  Future<BaseResponseBoolean> editUser({
+    @Body() required UserEditRequest body,
+  });
 
   /// 删除用户.
   ///
   /// 删除指定 ID 的用户（仅本人或管理员）.
   @POST('/user/delete')
-  Future<BaseResponseBoolean> deleteUser({@Body() required DeleteRequest body});
+  Future<BaseResponseBoolean> deleteUser({
+    @Body() required DeleteRequest body,
+  });
 
   /// 创建用户.
   ///
   /// 管理员手动创建新用户.
   @POST('/user/add')
-  Future<BaseResponseLong> addUser({@Body() required UserAddRequest body});
+  Future<BaseResponseLong> addUser({
+    @Body() required UserAddRequest body,
+  });
 
   /// 是否管理员.
   ///
@@ -114,7 +137,9 @@ abstract class UserControllerClient {
   ///
   /// [id] - 用户ID.
   @GET('/user/get')
-  Future<BaseResponseUser> getUserById({@Query('id') required int id});
+  Future<BaseResponseUser> getUserById({
+    @Query('id') required int id,
+  });
 
   /// 根据ID获取用户视图对象.
   ///
@@ -122,7 +147,9 @@ abstract class UserControllerClient {
   ///
   /// [id] - 用户ID.
   @GET('/user/get/vo')
-  Future<BaseResponseUserVo> getUserVoById({@Query('id') required int id});
+  Future<BaseResponseUserVo> getUserVoById({
+    @Query('id') required int id,
+  });
 
   /// 批量获取用户视图对象.
   ///

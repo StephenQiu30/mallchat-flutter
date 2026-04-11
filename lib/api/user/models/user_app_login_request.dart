@@ -11,11 +11,12 @@ part 'user_app_login_request.g.dart';
 /// 用户微信 App 登录请求
 @JsonSerializable()
 class UserAppLoginRequest {
-  const UserAppLoginRequest({this.code});
-
-  factory UserAppLoginRequest.fromJson(Map<String, Object?> json) =>
-      _$UserAppLoginRequestFromJson(json);
-
+  const UserAppLoginRequest({
+    this.code,
+  });
+  
+  factory UserAppLoginRequest.fromJson(Map<String, Object?> json) => _$UserAppLoginRequestFromJson(json);
+  
   /// 微信 App 登录 code
   final String? code;
 
@@ -23,18 +24,14 @@ class UserAppLoginRequest {
 }
 
 // Flutter compute serialization functions for UserAppLoginRequest
-FutureOr<UserAppLoginRequest> deserializeUserAppLoginRequest(
-  Map<String, dynamic> json,
-) => UserAppLoginRequest.fromJson(json);
+FutureOr<UserAppLoginRequest> deserializeUserAppLoginRequest(Map<String, dynamic> json) =>
+    UserAppLoginRequest.fromJson(json);
 
-FutureOr<List<UserAppLoginRequest>> deserializeUserAppLoginRequestList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => UserAppLoginRequest.fromJson(e)).toList();
+FutureOr<List<UserAppLoginRequest>> deserializeUserAppLoginRequestList(List<Map<String, dynamic>> json) =>
+    json.map((e) => UserAppLoginRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeUserAppLoginRequest(
-  UserAppLoginRequest? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeUserAppLoginRequest(UserAppLoginRequest? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeUserAppLoginRequestList(
-  List<UserAppLoginRequest>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeUserAppLoginRequestList(List<UserAppLoginRequest>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

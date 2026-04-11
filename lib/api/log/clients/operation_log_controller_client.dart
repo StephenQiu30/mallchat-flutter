@@ -16,8 +16,7 @@ part 'operation_log_controller_client.g.dart';
 
 @RestApi(parser: Parser.FlutterCompute)
 abstract class OperationLogControllerClient {
-  factory OperationLogControllerClient(Dio dio, {String? baseUrl}) =
-      _OperationLogControllerClient;
+  factory OperationLogControllerClient(Dio dio, {String? baseUrl}) = _OperationLogControllerClient;
 
   /// 分页获取操作日志列表.
   ///

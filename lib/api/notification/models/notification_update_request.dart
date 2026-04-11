@@ -21,10 +21,9 @@ class NotificationUpdateRequest {
     this.relatedType,
     this.contentUrl,
   });
-
-  factory NotificationUpdateRequest.fromJson(Map<String, Object?> json) =>
-      _$NotificationUpdateRequestFromJson(json);
-
+  
+  factory NotificationUpdateRequest.fromJson(Map<String, Object?> json) => _$NotificationUpdateRequestFromJson(json);
+  
   /// 通知ID
   final int? id;
 
@@ -53,18 +52,14 @@ class NotificationUpdateRequest {
 }
 
 // Flutter compute serialization functions for NotificationUpdateRequest
-FutureOr<NotificationUpdateRequest> deserializeNotificationUpdateRequest(
-  Map<String, dynamic> json,
-) => NotificationUpdateRequest.fromJson(json);
+FutureOr<NotificationUpdateRequest> deserializeNotificationUpdateRequest(Map<String, dynamic> json) =>
+    NotificationUpdateRequest.fromJson(json);
 
-FutureOr<List<NotificationUpdateRequest>>
-deserializeNotificationUpdateRequestList(List<Map<String, dynamic>> json) =>
+FutureOr<List<NotificationUpdateRequest>> deserializeNotificationUpdateRequestList(List<Map<String, dynamic>> json) =>
     json.map((e) => NotificationUpdateRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeNotificationUpdateRequest(
-  NotificationUpdateRequest? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeNotificationUpdateRequest(NotificationUpdateRequest? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeNotificationUpdateRequestList(
-  List<NotificationUpdateRequest>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeNotificationUpdateRequestList(List<NotificationUpdateRequest>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

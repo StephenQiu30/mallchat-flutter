@@ -28,10 +28,9 @@ class PageNotification {
     this.countId,
     this.pages,
   });
-
-  factory PageNotification.fromJson(Map<String, Object?> json) =>
-      _$PageNotificationFromJson(json);
-
+  
+  factory PageNotification.fromJson(Map<String, Object?> json) => _$PageNotificationFromJson(json);
+  
   final List<Notification>? records;
   final int? total;
   final int? size;
@@ -48,18 +47,14 @@ class PageNotification {
 }
 
 // Flutter compute serialization functions for PageNotification
-FutureOr<PageNotification> deserializePageNotification(
-  Map<String, dynamic> json,
-) => PageNotification.fromJson(json);
+FutureOr<PageNotification> deserializePageNotification(Map<String, dynamic> json) =>
+    PageNotification.fromJson(json);
 
-FutureOr<List<PageNotification>> deserializePageNotificationList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => PageNotification.fromJson(e)).toList();
+FutureOr<List<PageNotification>> deserializePageNotificationList(List<Map<String, dynamic>> json) =>
+    json.map((e) => PageNotification.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializePageNotification(
-  PageNotification? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializePageNotification(PageNotification? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializePageNotificationList(
-  List<PageNotification>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializePageNotificationList(List<PageNotification>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

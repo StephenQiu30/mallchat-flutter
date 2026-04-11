@@ -4,13 +4,14 @@
 
 // Clients
 export 'clients/user_controller_client.dart';
-
 // Data classes
 export 'models/user_update_request.dart';
 export 'models/base_response_boolean.dart';
 export 'models/user_ma_login_request.dart';
 export 'models/base_response_login_user_vo.dart';
 export 'models/login_user_vo.dart';
+export 'models/user_email_login_request.dart';
+export 'models/user_email_code_request.dart';
 export 'models/user_apple_login_request.dart';
 export 'models/user_app_login_request.dart';
 export 'models/user_query_request.dart';
@@ -28,6 +29,6 @@ export 'models/base_response_long.dart';
 export 'models/base_response_user.dart';
 export 'models/base_response_user_vo.dart';
 export 'models/base_response_list_user_vo.dart';
-
 // Root client
 export 'user_client.dart';
+

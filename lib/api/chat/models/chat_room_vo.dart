@@ -18,10 +18,9 @@ class ChatRoomVo {
     this.avatar,
     this.createTime,
   });
-
-  factory ChatRoomVo.fromJson(Map<String, Object?> json) =>
-      _$ChatRoomVoFromJson(json);
-
+  
+  factory ChatRoomVo.fromJson(Map<String, Object?> json) => _$ChatRoomVoFromJson(json);
+  
   /// 房间ID
   final int? id;
 
@@ -44,13 +43,11 @@ class ChatRoomVo {
 FutureOr<ChatRoomVo> deserializeChatRoomVo(Map<String, dynamic> json) =>
     ChatRoomVo.fromJson(json);
 
-FutureOr<List<ChatRoomVo>> deserializeChatRoomVoList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => ChatRoomVo.fromJson(e)).toList();
+FutureOr<List<ChatRoomVo>> deserializeChatRoomVoList(List<Map<String, dynamic>> json) =>
+    json.map((e) => ChatRoomVo.fromJson(e)).toList();
 
 FutureOr<Map<String, dynamic>> serializeChatRoomVo(ChatRoomVo? object) =>
     object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeChatRoomVoList(
-  List<ChatRoomVo>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeChatRoomVoList(List<ChatRoomVo>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

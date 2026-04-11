@@ -24,10 +24,9 @@ class LoginUserVo {
     this.updateTime,
     this.token,
   });
-
-  factory LoginUserVo.fromJson(Map<String, Object?> json) =>
-      _$LoginUserVoFromJson(json);
-
+  
+  factory LoginUserVo.fromJson(Map<String, Object?> json) => _$LoginUserVoFromJson(json);
+  
   /// 用户ID
   final int? id;
 
@@ -68,13 +67,11 @@ class LoginUserVo {
 FutureOr<LoginUserVo> deserializeLoginUserVo(Map<String, dynamic> json) =>
     LoginUserVo.fromJson(json);
 
-FutureOr<List<LoginUserVo>> deserializeLoginUserVoList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => LoginUserVo.fromJson(e)).toList();
+FutureOr<List<LoginUserVo>> deserializeLoginUserVoList(List<Map<String, dynamic>> json) =>
+    json.map((e) => LoginUserVo.fromJson(e)).toList();
 
 FutureOr<Map<String, dynamic>> serializeLoginUserVo(LoginUserVo? object) =>
     object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeLoginUserVoList(
-  List<LoginUserVo>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeLoginUserVoList(List<LoginUserVo>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

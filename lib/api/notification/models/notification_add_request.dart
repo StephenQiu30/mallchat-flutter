@@ -17,10 +17,9 @@ class NotificationAddRequest {
     this.content,
     this.contentUrl,
   });
-
-  factory NotificationAddRequest.fromJson(Map<String, Object?> json) =>
-      _$NotificationAddRequestFromJson(json);
-
+  
+  factory NotificationAddRequest.fromJson(Map<String, Object?> json) => _$NotificationAddRequestFromJson(json);
+  
   /// 发送目标标识
   final String? target;
 
@@ -37,18 +36,14 @@ class NotificationAddRequest {
 }
 
 // Flutter compute serialization functions for NotificationAddRequest
-FutureOr<NotificationAddRequest> deserializeNotificationAddRequest(
-  Map<String, dynamic> json,
-) => NotificationAddRequest.fromJson(json);
+FutureOr<NotificationAddRequest> deserializeNotificationAddRequest(Map<String, dynamic> json) =>
+    NotificationAddRequest.fromJson(json);
 
-FutureOr<List<NotificationAddRequest>> deserializeNotificationAddRequestList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => NotificationAddRequest.fromJson(e)).toList();
+FutureOr<List<NotificationAddRequest>> deserializeNotificationAddRequestList(List<Map<String, dynamic>> json) =>
+    json.map((e) => NotificationAddRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeNotificationAddRequest(
-  NotificationAddRequest? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeNotificationAddRequest(NotificationAddRequest? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeNotificationAddRequestList(
-  List<NotificationAddRequest>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeNotificationAddRequestList(List<NotificationAddRequest>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

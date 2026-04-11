@@ -11,11 +11,13 @@ part 'chat_friend_approve_request.g.dart';
 /// 好友审核请求
 @JsonSerializable()
 class ChatFriendApproveRequest {
-  const ChatFriendApproveRequest({required this.applyId, required this.status});
-
-  factory ChatFriendApproveRequest.fromJson(Map<String, Object?> json) =>
-      _$ChatFriendApproveRequestFromJson(json);
-
+  const ChatFriendApproveRequest({
+    required this.applyId,
+    required this.status,
+  });
+  
+  factory ChatFriendApproveRequest.fromJson(Map<String, Object?> json) => _$ChatFriendApproveRequestFromJson(json);
+  
   /// 申请记录ID
   final int applyId;
 
@@ -26,18 +28,14 @@ class ChatFriendApproveRequest {
 }
 
 // Flutter compute serialization functions for ChatFriendApproveRequest
-FutureOr<ChatFriendApproveRequest> deserializeChatFriendApproveRequest(
-  Map<String, dynamic> json,
-) => ChatFriendApproveRequest.fromJson(json);
+FutureOr<ChatFriendApproveRequest> deserializeChatFriendApproveRequest(Map<String, dynamic> json) =>
+    ChatFriendApproveRequest.fromJson(json);
 
-FutureOr<List<ChatFriendApproveRequest>>
-deserializeChatFriendApproveRequestList(List<Map<String, dynamic>> json) =>
+FutureOr<List<ChatFriendApproveRequest>> deserializeChatFriendApproveRequestList(List<Map<String, dynamic>> json) =>
     json.map((e) => ChatFriendApproveRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeChatFriendApproveRequest(
-  ChatFriendApproveRequest? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeChatFriendApproveRequest(ChatFriendApproveRequest? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeChatFriendApproveRequestList(
-  List<ChatFriendApproveRequest>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeChatFriendApproveRequestList(List<ChatFriendApproveRequest>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

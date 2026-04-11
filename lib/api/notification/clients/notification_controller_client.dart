@@ -25,8 +25,7 @@ part 'notification_controller_client.g.dart';
 
 @RestApi(parser: Parser.FlutterCompute)
 abstract class NotificationControllerClient {
-  factory NotificationControllerClient(Dio dio, {String? baseUrl}) =
-      _NotificationControllerClient;
+  factory NotificationControllerClient(Dio dio, {String? baseUrl}) = _NotificationControllerClient;
 
   /// 更新通知.
   ///

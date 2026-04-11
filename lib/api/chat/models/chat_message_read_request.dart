@@ -15,10 +15,9 @@ class ChatMessageReadRequest {
     required this.roomId,
     required this.lastReadMessageId,
   });
-
-  factory ChatMessageReadRequest.fromJson(Map<String, Object?> json) =>
-      _$ChatMessageReadRequestFromJson(json);
-
+  
+  factory ChatMessageReadRequest.fromJson(Map<String, Object?> json) => _$ChatMessageReadRequestFromJson(json);
+  
   /// 房间ID
   final int roomId;
 
@@ -29,18 +28,14 @@ class ChatMessageReadRequest {
 }
 
 // Flutter compute serialization functions for ChatMessageReadRequest
-FutureOr<ChatMessageReadRequest> deserializeChatMessageReadRequest(
-  Map<String, dynamic> json,
-) => ChatMessageReadRequest.fromJson(json);
+FutureOr<ChatMessageReadRequest> deserializeChatMessageReadRequest(Map<String, dynamic> json) =>
+    ChatMessageReadRequest.fromJson(json);
 
-FutureOr<List<ChatMessageReadRequest>> deserializeChatMessageReadRequestList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => ChatMessageReadRequest.fromJson(e)).toList();
+FutureOr<List<ChatMessageReadRequest>> deserializeChatMessageReadRequestList(List<Map<String, dynamic>> json) =>
+    json.map((e) => ChatMessageReadRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeChatMessageReadRequest(
-  ChatMessageReadRequest? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeChatMessageReadRequest(ChatMessageReadRequest? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeChatMessageReadRequestList(
-  List<ChatMessageReadRequest>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeChatMessageReadRequestList(List<ChatMessageReadRequest>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

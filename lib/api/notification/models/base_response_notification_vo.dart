@@ -13,11 +13,14 @@ part 'base_response_notification_vo.g.dart';
 /// 通用返回类
 @JsonSerializable()
 class BaseResponseNotificationVo {
-  const BaseResponseNotificationVo({this.code, this.data, this.message});
-
-  factory BaseResponseNotificationVo.fromJson(Map<String, Object?> json) =>
-      _$BaseResponseNotificationVoFromJson(json);
-
+  const BaseResponseNotificationVo({
+    this.code,
+    this.data,
+    this.message,
+  });
+  
+  factory BaseResponseNotificationVo.fromJson(Map<String, Object?> json) => _$BaseResponseNotificationVoFromJson(json);
+  
   /// 状态码
   final int? code;
   final NotificationVo? data;
@@ -29,18 +32,14 @@ class BaseResponseNotificationVo {
 }
 
 // Flutter compute serialization functions for BaseResponseNotificationVo
-FutureOr<BaseResponseNotificationVo> deserializeBaseResponseNotificationVo(
-  Map<String, dynamic> json,
-) => BaseResponseNotificationVo.fromJson(json);
+FutureOr<BaseResponseNotificationVo> deserializeBaseResponseNotificationVo(Map<String, dynamic> json) =>
+    BaseResponseNotificationVo.fromJson(json);
 
-FutureOr<List<BaseResponseNotificationVo>>
-deserializeBaseResponseNotificationVoList(List<Map<String, dynamic>> json) =>
+FutureOr<List<BaseResponseNotificationVo>> deserializeBaseResponseNotificationVoList(List<Map<String, dynamic>> json) =>
     json.map((e) => BaseResponseNotificationVo.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeBaseResponseNotificationVo(
-  BaseResponseNotificationVo? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeBaseResponseNotificationVo(BaseResponseNotificationVo? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeBaseResponseNotificationVoList(
-  List<BaseResponseNotificationVo>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeBaseResponseNotificationVoList(List<BaseResponseNotificationVo>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

@@ -15,8 +15,7 @@ part 'ai_chat_record_controller_client.g.dart';
 
 @RestApi(parser: Parser.FlutterCompute)
 abstract class AiChatRecordControllerClient {
-  factory AiChatRecordControllerClient(Dio dio, {String? baseUrl}) =
-      _AiChatRecordControllerClient;
+  factory AiChatRecordControllerClient(Dio dio, {String? baseUrl}) = _AiChatRecordControllerClient;
 
   /// 分页获取我的对话记录.
   ///

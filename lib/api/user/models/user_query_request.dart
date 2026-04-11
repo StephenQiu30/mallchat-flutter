@@ -24,10 +24,9 @@ class UserQueryRequest {
     this.userPhone,
     this.searchText,
   });
-
-  factory UserQueryRequest.fromJson(Map<String, Object?> json) =>
-      _$UserQueryRequestFromJson(json);
-
+  
+  factory UserQueryRequest.fromJson(Map<String, Object?> json) => _$UserQueryRequestFromJson(json);
+  
   /// 当前页号
   final int? current;
 
@@ -65,18 +64,14 @@ class UserQueryRequest {
 }
 
 // Flutter compute serialization functions for UserQueryRequest
-FutureOr<UserQueryRequest> deserializeUserQueryRequest(
-  Map<String, dynamic> json,
-) => UserQueryRequest.fromJson(json);
+FutureOr<UserQueryRequest> deserializeUserQueryRequest(Map<String, dynamic> json) =>
+    UserQueryRequest.fromJson(json);
 
-FutureOr<List<UserQueryRequest>> deserializeUserQueryRequestList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => UserQueryRequest.fromJson(e)).toList();
+FutureOr<List<UserQueryRequest>> deserializeUserQueryRequestList(List<Map<String, dynamic>> json) =>
+    json.map((e) => UserQueryRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeUserQueryRequest(
-  UserQueryRequest? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeUserQueryRequest(UserQueryRequest? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeUserQueryRequestList(
-  List<UserQueryRequest>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeUserQueryRequestList(List<UserQueryRequest>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

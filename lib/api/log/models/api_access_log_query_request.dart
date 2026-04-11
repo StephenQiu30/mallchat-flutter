@@ -25,10 +25,9 @@ class ApiAccessLogQueryRequest {
     this.clientIp,
     this.searchText,
   });
-
-  factory ApiAccessLogQueryRequest.fromJson(Map<String, Object?> json) =>
-      _$ApiAccessLogQueryRequestFromJson(json);
-
+  
+  factory ApiAccessLogQueryRequest.fromJson(Map<String, Object?> json) => _$ApiAccessLogQueryRequestFromJson(json);
+  
   /// 当前页号
   final int? current;
 
@@ -69,18 +68,14 @@ class ApiAccessLogQueryRequest {
 }
 
 // Flutter compute serialization functions for ApiAccessLogQueryRequest
-FutureOr<ApiAccessLogQueryRequest> deserializeApiAccessLogQueryRequest(
-  Map<String, dynamic> json,
-) => ApiAccessLogQueryRequest.fromJson(json);
+FutureOr<ApiAccessLogQueryRequest> deserializeApiAccessLogQueryRequest(Map<String, dynamic> json) =>
+    ApiAccessLogQueryRequest.fromJson(json);
 
-FutureOr<List<ApiAccessLogQueryRequest>>
-deserializeApiAccessLogQueryRequestList(List<Map<String, dynamic>> json) =>
+FutureOr<List<ApiAccessLogQueryRequest>> deserializeApiAccessLogQueryRequestList(List<Map<String, dynamic>> json) =>
     json.map((e) => ApiAccessLogQueryRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeApiAccessLogQueryRequest(
-  ApiAccessLogQueryRequest? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeApiAccessLogQueryRequest(ApiAccessLogQueryRequest? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeApiAccessLogQueryRequestList(
-  List<ApiAccessLogQueryRequest>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeApiAccessLogQueryRequestList(List<ApiAccessLogQueryRequest>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

@@ -11,11 +11,14 @@ part 'base_response_list_long.g.dart';
 /// 通用返回类
 @JsonSerializable()
 class BaseResponseListLong {
-  const BaseResponseListLong({this.code, this.data, this.message});
-
-  factory BaseResponseListLong.fromJson(Map<String, Object?> json) =>
-      _$BaseResponseListLongFromJson(json);
-
+  const BaseResponseListLong({
+    this.code,
+    this.data,
+    this.message,
+  });
+  
+  factory BaseResponseListLong.fromJson(Map<String, Object?> json) => _$BaseResponseListLongFromJson(json);
+  
   /// 状态码
   final int? code;
 
@@ -29,18 +32,14 @@ class BaseResponseListLong {
 }
 
 // Flutter compute serialization functions for BaseResponseListLong
-FutureOr<BaseResponseListLong> deserializeBaseResponseListLong(
-  Map<String, dynamic> json,
-) => BaseResponseListLong.fromJson(json);
+FutureOr<BaseResponseListLong> deserializeBaseResponseListLong(Map<String, dynamic> json) =>
+    BaseResponseListLong.fromJson(json);
 
-FutureOr<List<BaseResponseListLong>> deserializeBaseResponseListLongList(
-  List<Map<String, dynamic>> json,
-) => json.map((e) => BaseResponseListLong.fromJson(e)).toList();
+FutureOr<List<BaseResponseListLong>> deserializeBaseResponseListLongList(List<Map<String, dynamic>> json) =>
+    json.map((e) => BaseResponseListLong.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeBaseResponseListLong(
-  BaseResponseListLong? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeBaseResponseListLong(BaseResponseListLong? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeBaseResponseListLongList(
-  List<BaseResponseListLong>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeBaseResponseListLongList(List<BaseResponseListLong>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

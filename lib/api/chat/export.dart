@@ -8,7 +8,6 @@ export 'clients/chat_room_controller_client.dart';
 export 'clients/chat_message_controller_client.dart';
 export 'clients/chat_friend_apply_controller_client.dart';
 export 'clients/chat_friend_controller_client.dart';
-
 // Data classes
 export 'models/base_response_boolean.dart';
 export 'models/delete_request.dart';
@@ -34,6 +33,6 @@ export 'models/chat_message_vo.dart';
 export 'models/reply_msg_vo.dart';
 export 'models/base_response_list_chat_friend_user_vo.dart';
 export 'models/chat_friend_user_vo.dart';
-
 // Root client
 export 'chat_client.dart';
+

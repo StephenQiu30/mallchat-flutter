@@ -27,10 +27,9 @@ class FileUploadRecordAddRequest {
     this.status,
     this.errorMessage,
   });
-
-  factory FileUploadRecordAddRequest.fromJson(Map<String, Object?> json) =>
-      _$FileUploadRecordAddRequestFromJson(json);
-
+  
+  factory FileUploadRecordAddRequest.fromJson(Map<String, Object?> json) => _$FileUploadRecordAddRequestFromJson(json);
+  
   /// 上传用户ID
   final int? userId;
 
@@ -77,18 +76,14 @@ class FileUploadRecordAddRequest {
 }
 
 // Flutter compute serialization functions for FileUploadRecordAddRequest
-FutureOr<FileUploadRecordAddRequest> deserializeFileUploadRecordAddRequest(
-  Map<String, dynamic> json,
-) => FileUploadRecordAddRequest.fromJson(json);
+FutureOr<FileUploadRecordAddRequest> deserializeFileUploadRecordAddRequest(Map<String, dynamic> json) =>
+    FileUploadRecordAddRequest.fromJson(json);
 
-FutureOr<List<FileUploadRecordAddRequest>>
-deserializeFileUploadRecordAddRequestList(List<Map<String, dynamic>> json) =>
+FutureOr<List<FileUploadRecordAddRequest>> deserializeFileUploadRecordAddRequestList(List<Map<String, dynamic>> json) =>
     json.map((e) => FileUploadRecordAddRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeFileUploadRecordAddRequest(
-  FileUploadRecordAddRequest? object,
-) => object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeFileUploadRecordAddRequest(FileUploadRecordAddRequest? object) =>
+    object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeFileUploadRecordAddRequestList(
-  List<FileUploadRecordAddRequest>? objects,
-) => objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeFileUploadRecordAddRequestList(List<FileUploadRecordAddRequest>? objects) =>
+    objects?.map((e) => e.toJson()).toList() ?? [];

@@ -9,14 +9,14 @@ swagger_parser:
   put_clients_in_folder: true
   include_null_values: false
   mark_attributes_as_required: true
-  # 极致简化：使用最精确的字面量替换，不再依赖外部脚本
+  # 极致简化：使用最精确的字面量替换
   replacement_rules:
     - pattern: "import 'dart:io';"
       replacement: ""
-    - pattern: "  final File file;"
-      replacement: "  final String file;"
-    - pattern: "  final File? file;"
-      replacement: "  final String? file;"
+    - pattern: "final File file;"
+      replacement: "final String file;"
+    - pattern: "final File? file;"
+      replacement: "final String? file;"
     - pattern: "Map<String, object>"
       replacement: "Map<String, dynamic>"
     - pattern: "Object"
