@@ -75,6 +75,9 @@ class _LogInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
     debugPrint('[API Error] ${err.message}');
+    if (err.response?.statusCode == 401 && Get.isRegistered<AppStore>()) {
+      Request.app.logoutLocal();
+    }
     handler.next(err);
   }
 }

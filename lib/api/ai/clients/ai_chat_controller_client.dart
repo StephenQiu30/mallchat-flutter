@@ -15,7 +15,8 @@ part 'ai_chat_controller_client.g.dart';
 
 @RestApi(parser: Parser.FlutterCompute)
 abstract class AiChatControllerClient {
-  factory AiChatControllerClient(Dio dio, {String? baseUrl}) = _AiChatControllerClient;
+  factory AiChatControllerClient(Dio dio, {String? baseUrl}) =
+      _AiChatControllerClient;
 
   /// AI 对话 (标准).
   ///
@@ -29,9 +30,7 @@ abstract class AiChatControllerClient {
   ///
   /// 发送问题并通过 SSE 获取 AI 实时、逐字下发的回答内容.
   @POST('/ai/chat/stream')
-  Future<SseEmitter> doStreamAiChat({
-    @Body() required AiChatRequest body,
-  });
+  Future<SseEmitter> doStreamAiChat({@Body() required AiChatRequest body});
 
   /// 获取支持的模型列表.
   ///

@@ -1,14 +1,15 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:tdesign_flutter/tdesign_flutter.dart';
-import 'package:mallchat_flutter/api/request.dart';
-import 'package:mallchat_flutter/api/user/export.dart';
-import 'package:mallchat_flutter/store/app_store.dart';
 import 'dart:async';
+
+import 'package:mallchat_flutter/services/service_exception.dart';
+import 'package:mallchat_flutter/services/user_service.dart';
+import 'package:mallchat_flutter/store/app_store.dart';
+import 'package:tdesign_flutter/tdesign_flutter.dart';
 
 class LoginController extends GetxController {
   final appStore = Get.find<AppStore>();
-  
+  final UserService _userService = const UserService();
+
   var isLoading = false.obs;
   var isAgreed = false.obs;
 
@@ -35,19 +36,15 @@ class LoginController extends GetxController {
 
     isLoading.value = true;
     try {
-      final response = await Request.userClient.userController.userLoginByMa(
-        body: const UserMaLoginRequest(code: "test_code") // TODO: 获取真实的微信 code
-      );
-
-      if (response.code == 0 && response.data != null) {
-        appStore.saveLoginInfo(response.data!);
-        if (Get.overlayContext != null) {
-          TDToast.showSuccess('登录成功', context: Get.overlayContext!);
-        }
-      } else {
-        if (Get.overlayContext != null) {
-          TDToast.showFail(response.message ?? '登录失败', context: Get.overlayContext!);
-        }
+      final loginUser = await _userService.loginByWechat('test_code');
+      appStore.saveLoginInfo(loginUser);
+      await appStore.bootstrapAfterLogin();
+      if (Get.overlayContext != null) {
+        TDToast.showSuccess('登录成功', context: Get.overlayContext!);
+      }
+    } on ServiceException catch (e) {
+      if (Get.overlayContext != null) {
+        TDToast.showFail(e.message, context: Get.overlayContext!);
       }
     } catch (e) {
       if (Get.overlayContext != null) {
@@ -70,19 +67,14 @@ class LoginController extends GetxController {
     if (timerSeconds.value > 0) return;
 
     try {
-      final response = await Request.userClient.userController.sendEmailCode(
-        body: UserEmailCodeRequest(email: email.value),
-      );
-
-      if (response.code == 0) {
-        if (Get.overlayContext != null) {
-          TDToast.showSuccess('验证码已发送', context: Get.overlayContext!);
-        }
-        _startTimer();
-      } else {
-        if (Get.overlayContext != null) {
-          TDToast.showFail(response.message ?? '发送失败', context: Get.overlayContext!);
-        }
+      await _userService.sendEmailCode(email.value);
+      if (Get.overlayContext != null) {
+        TDToast.showSuccess('验证码已发送', context: Get.overlayContext!);
+      }
+      _startTimer();
+    } on ServiceException catch (e) {
+      if (Get.overlayContext != null) {
+        TDToast.showFail(e.message, context: Get.overlayContext!);
       }
     } catch (e) {
       if (Get.overlayContext != null) {
@@ -109,19 +101,18 @@ class LoginController extends GetxController {
 
     isLoading.value = true;
     try {
-      final response = await Request.userClient.userController.userLoginByEmail(
-        body: UserEmailLoginRequest(email: email.value, code: code.value),
+      final loginUser = await _userService.loginByEmail(
+        email: email.value,
+        code: code.value,
       );
-
-      if (response.code == 0 && response.data != null) {
-        appStore.saveLoginInfo(response.data!);
-        if (Get.overlayContext != null) {
-          TDToast.showSuccess('欢迎回来', context: Get.overlayContext!);
-        }
-      } else {
-        if (Get.overlayContext != null) {
-          TDToast.showFail(response.message ?? '登录失败', context: Get.overlayContext!);
-        }
+      appStore.saveLoginInfo(loginUser);
+      await appStore.bootstrapAfterLogin();
+      if (Get.overlayContext != null) {
+        TDToast.showSuccess('欢迎回来', context: Get.overlayContext!);
+      }
+    } on ServiceException catch (e) {
+      if (Get.overlayContext != null) {
+        TDToast.showFail(e.message, context: Get.overlayContext!);
       }
     } catch (e) {
       if (Get.overlayContext != null) {
