@@ -8,7 +8,7 @@ import 'layout/responsive_layout.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
   // Initialize Global Persistence
   final prefs = await SharedPreferences.getInstance();
   Get.put(prefs, permanent: true);
@@ -17,6 +17,7 @@ void main() async {
   Get.put(AppStore());
   Get.put(ChatStore());
   Get.put(ContactStore());
+  Get.find<AppStore>().bootstrapAfterLogin();
 
   runApp(const MallChatApp());
 }
@@ -40,7 +41,9 @@ class MallChatApp extends StatelessWidget {
           secondary: const Color(0xFFEFF6FF), // Light blue background
           surface: Colors.white,
           onSurface: const Color(0xFF1F2937), // Dark gray text
-          surfaceContainerHighest: const Color(0xFFF3F4F6), // Message bubble light gray
+          surfaceContainerHighest: const Color(
+            0xFFF3F4F6,
+          ), // Message bubble light gray
         ),
         fontFamily: 'Inter',
         useMaterial3: true,

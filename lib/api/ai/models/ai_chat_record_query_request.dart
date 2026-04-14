@@ -20,9 +20,10 @@ class AiChatRecordQueryRequest {
     this.modelType,
     this.searchText,
   });
-  
-  factory AiChatRecordQueryRequest.fromJson(Map<String, Object?> json) => _$AiChatRecordQueryRequestFromJson(json);
-  
+
+  factory AiChatRecordQueryRequest.fromJson(Map<String, Object?> json) =>
+      _$AiChatRecordQueryRequestFromJson(json);
+
   /// 当前页号
   final int? current;
 
@@ -48,14 +49,18 @@ class AiChatRecordQueryRequest {
 }
 
 // Flutter compute serialization functions for AiChatRecordQueryRequest
-FutureOr<AiChatRecordQueryRequest> deserializeAiChatRecordQueryRequest(Map<String, dynamic> json) =>
-    AiChatRecordQueryRequest.fromJson(json);
+FutureOr<AiChatRecordQueryRequest> deserializeAiChatRecordQueryRequest(
+  Map<String, dynamic> json,
+) => AiChatRecordQueryRequest.fromJson(json);
 
-FutureOr<List<AiChatRecordQueryRequest>> deserializeAiChatRecordQueryRequestList(List<Map<String, dynamic>> json) =>
+FutureOr<List<AiChatRecordQueryRequest>>
+deserializeAiChatRecordQueryRequestList(List<Map<String, dynamic>> json) =>
     json.map((e) => AiChatRecordQueryRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeAiChatRecordQueryRequest(AiChatRecordQueryRequest? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeAiChatRecordQueryRequest(
+  AiChatRecordQueryRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeAiChatRecordQueryRequestList(List<AiChatRecordQueryRequest>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeAiChatRecordQueryRequestList(
+  List<AiChatRecordQueryRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];
