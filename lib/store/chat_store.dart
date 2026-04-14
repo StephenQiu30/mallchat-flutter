@@ -6,7 +6,7 @@ import 'package:mallchat_flutter/common/enums.dart';
 import 'package:mallchat_flutter/models/chat_message_item.dart';
 import 'package:mallchat_flutter/services/chat_service.dart';
 import 'package:mallchat_flutter/services/service_exception.dart';
-import 'package:tdesign_flutter/tdesign_flutter.dart';
+import 'package:mallchat_flutter/utils/app_toast.dart';
 
 class ChatStore extends GetxController {
   static const int _pageSize = 20;
@@ -392,9 +392,6 @@ class ChatStore extends GetxController {
   }
 
   void _showError(String message) {
-    final context = Get.overlayContext;
-    if (context != null) {
-      TDToast.showFail(message, context: context);
-    }
+    AppToast.showFail(message);
   }
 }

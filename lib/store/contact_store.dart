@@ -4,7 +4,7 @@ import 'package:mallchat_flutter/api/chat/export.dart';
 import 'package:mallchat_flutter/api/request.dart';
 import 'package:mallchat_flutter/services/chat_service.dart';
 import 'package:mallchat_flutter/services/service_exception.dart';
-import 'package:tdesign_flutter/tdesign_flutter.dart';
+import 'package:mallchat_flutter/utils/app_toast.dart';
 
 class ContactStore extends GetxController {
   static const int _pageSize = 20;
@@ -130,16 +130,10 @@ class ContactStore extends GetxController {
   }
 
   void _showError(String message) {
-    final context = Get.overlayContext;
-    if (context != null) {
-      TDToast.showFail(message, context: context);
-    }
+    AppToast.showFail(message);
   }
 
   void _showSuccess(String message) {
-    final context = Get.overlayContext;
-    if (context != null) {
-      TDToast.showSuccess(message, context: context);
-    }
+    AppToast.showSuccess(message);
   }
 }
