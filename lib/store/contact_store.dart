@@ -1,37 +1,145 @@
-import 'package:get/get.dart';
-import 'package:mallchat_flutter/api/request.dart';
-import 'package:mallchat_flutter/api/chat/models/chat_friend_user_vo.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
+import 'package:mallchat_flutter/api/chat/export.dart';
+import 'package:mallchat_flutter/api/request.dart';
+import 'package:mallchat_flutter/services/chat_service.dart';
+import 'package:mallchat_flutter/services/service_exception.dart';
+import 'package:tdesign_flutter/tdesign_flutter.dart';
 
 class ContactStore extends GetxController {
-  // --- State ---
-  final friends = <ChatFriendUserVo>[].obs;
-  final isLoading = false.obs;
+  static const int _pageSize = 20;
 
-  @override
-  void onInit() {
-    super.onInit();
-    refreshFriends();
+  final ChatService _chatService = const ChatService();
+
+  final friends = <ChatFriendUserVo>[].obs;
+  final friendApplies = <ChatFriendApplyVo>[].obs;
+  final contactLoading = false.obs;
+  final friendApplyLoading = false.obs;
+  final friendApplyPage = 0.obs;
+  final friendApplyHasMore = false.obs;
+  final friendApplyTotal = 0.obs;
+
+  List<ChatFriendUserVo> get sortedFriends =>
+      friends.toList()
+        ..sort((a, b) => (a.userName ?? '').compareTo(b.userName ?? ''));
+
+  void resetState() {
+    friends.clear();
+    friendApplies.clear();
+    contactLoading.value = false;
+    friendApplyLoading.value = false;
+    friendApplyPage.value = 0;
+    friendApplyHasMore.value = false;
+    friendApplyTotal.value = 0;
   }
 
-  /// 刷新好友列表 (从真实 API 获取)
   Future<void> refreshFriends() async {
-    isLoading.value = true;
+    contactLoading.value = true;
     try {
-      final response = await Request.chatClient.chatFriendController.listFriends();
-      if (response.code == 0 && response.data != null) {
-        friends.assignAll(response.data!);
-        debugPrint('[ContactStore] Friends list refreshed: ${friends.length}');
-      }
+      final result = await _chatService.listFriends();
+      friends.assignAll(result);
+      debugPrint('[ContactStore] Friends list refreshed: ${friends.length}');
+    } on ServiceException catch (e) {
+      _showError(e.message);
     } catch (e) {
       debugPrint('[ContactStore] Failed to refresh friends: $e');
     } finally {
-      isLoading.value = false;
+      contactLoading.value = false;
     }
   }
 
-  /// 计算分类 (目前 API 返回扁平列表，我们在本地做简单分类或直接展示)
-  /// 如果需要按拼音排序，后续可以引入 azlist
-  List<ChatFriendUserVo> get sortedFriends => friends.toList()
-    ..sort((a, b) => (a.userName ?? '').compareTo(b.userName ?? ''));
+  Future<void> refreshFriendApplies({bool reset = true}) async {
+    if (friendApplyLoading.value) {
+      return;
+    }
+
+    friendApplyLoading.value = true;
+    try {
+      final nextPage = reset ? 1 : friendApplyPage.value + 1;
+      final result = await _chatService.listFriendApplies(
+        current: nextPage,
+        pageSize: _pageSize,
+      );
+      final records = result.records ?? const <ChatFriendApplyVo>[];
+      final nextData = reset
+          ? records
+          : [...friendApplies, ..._dedupeApplies(friendApplies, records)];
+      friendApplies.assignAll(nextData);
+      friendApplyPage.value = result.current ?? nextPage;
+      friendApplyTotal.value = result.total ?? friendApplies.length;
+      final pages = result.pages ?? friendApplyPage.value;
+      friendApplyHasMore.value = friendApplyPage.value < pages;
+    } on ServiceException catch (e) {
+      _showError(e.message);
+    } catch (e) {
+      debugPrint('[ContactStore] Failed to refresh applies: $e');
+    } finally {
+      friendApplyLoading.value = false;
+    }
+  }
+
+  Future<void> approveFriendApply(int applyId, int status) async {
+    try {
+      await _chatService.approveFriendApply(applyId: applyId, status: status);
+      await Future.wait([refreshFriends(), refreshFriendApplies(reset: true)]);
+      _showSuccess(status == 2 ? '已通过好友申请' : '已忽略好友申请');
+    } on ServiceException catch (e) {
+      _showError(e.message);
+    } catch (e) {
+      debugPrint('[ContactStore] Failed to approve apply: $e');
+    }
+  }
+
+  Future<int?> startPrivateChat(int userId) async {
+    try {
+      final roomId = await _chatService.getOrCreatePrivateRoom(userId);
+      await Request.chat.refreshSessions();
+      await Request.chat.openSession(roomId);
+      return roomId;
+    } on ServiceException catch (e) {
+      _showError(e.message);
+    } catch (e) {
+      debugPrint('[ContactStore] Failed to open private room: $e');
+    }
+    return null;
+  }
+
+  Future<void> applyFriendByUserId(int userId, String message) async {
+    try {
+      await _chatService.applyFriend(userId: userId, message: message);
+      _showSuccess('好友申请已发送');
+      await refreshFriendApplies(reset: true);
+    } on ServiceException catch (e) {
+      _showError(e.message);
+    } catch (e) {
+      debugPrint('[ContactStore] Failed to apply friend: $e');
+    }
+  }
+
+  List<ChatFriendApplyVo> _dedupeApplies(
+    List<ChatFriendApplyVo> existing,
+    List<ChatFriendApplyVo> incoming,
+  ) {
+    final existingIds = existing
+        .map((item) => item.id)
+        .whereType<int>()
+        .toSet();
+    return incoming
+        .where((item) => item.id == null || !existingIds.contains(item.id))
+        .toList();
+  }
+
+  void _showError(String message) {
+    final context = Get.overlayContext;
+    if (context != null) {
+      TDToast.showFail(message, context: context);
+    }
+  }
+
+  void _showSuccess(String message) {
+    final context = Get.overlayContext;
+    if (context != null) {
+      TDToast.showSuccess(message, context: context);
+    }
+  }
 }
