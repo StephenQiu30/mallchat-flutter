@@ -27,9 +27,10 @@ class Notification {
     this.updateTime,
     this.isDelete,
   });
-  
-  factory Notification.fromJson(Map<String, Object?> json) => _$NotificationFromJson(json);
-  
+
+  factory Notification.fromJson(Map<String, Object?> json) =>
+      _$NotificationFromJson(json);
+
   /// 通知ID
   final int? id;
 
@@ -79,11 +80,13 @@ class Notification {
 FutureOr<Notification> deserializeNotification(Map<String, dynamic> json) =>
     Notification.fromJson(json);
 
-FutureOr<List<Notification>> deserializeNotificationList(List<Map<String, dynamic>> json) =>
-    json.map((e) => Notification.fromJson(e)).toList();
+FutureOr<List<Notification>> deserializeNotificationList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => Notification.fromJson(e)).toList();
 
 FutureOr<Map<String, dynamic>> serializeNotification(Notification? object) =>
     object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeNotificationList(List<Notification>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeNotificationList(
+  List<Notification>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

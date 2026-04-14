@@ -17,9 +17,10 @@ class AiChatResponse {
     this.promptTokens,
     this.completionTokens,
   });
-  
-  factory AiChatResponse.fromJson(Map<String, Object?> json) => _$AiChatResponseFromJson(json);
-  
+
+  factory AiChatResponse.fromJson(Map<String, Object?> json) =>
+      _$AiChatResponseFromJson(json);
+
   /// AI 回答的结果文本
   final String? content;
 
@@ -39,11 +40,14 @@ class AiChatResponse {
 FutureOr<AiChatResponse> deserializeAiChatResponse(Map<String, dynamic> json) =>
     AiChatResponse.fromJson(json);
 
-FutureOr<List<AiChatResponse>> deserializeAiChatResponseList(List<Map<String, dynamic>> json) =>
-    json.map((e) => AiChatResponse.fromJson(e)).toList();
+FutureOr<List<AiChatResponse>> deserializeAiChatResponseList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => AiChatResponse.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeAiChatResponse(AiChatResponse? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeAiChatResponse(
+  AiChatResponse? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeAiChatResponseList(List<AiChatResponse>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeAiChatResponseList(
+  List<AiChatResponse>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

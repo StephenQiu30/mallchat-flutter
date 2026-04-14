@@ -15,29 +15,41 @@ class ChatPanel extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           decoration: BoxDecoration(
             color: Colors.white.withValues(alpha: 0.95),
-            border: Border(bottom: BorderSide(color: Colors.grey.shade300, width: 1)),
+            border: Border(
+              bottom: BorderSide(color: Colors.grey.shade300, width: 1),
+            ),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  const Text("MallChat 官方交流群", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+                  const Text(
+                    "MallChat 官方交流群",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                  ),
                   const SizedBox(width: 8),
-                  Text("(42人)", style: TextStyle(fontSize: 12, color: Colors.grey.shade600)),
+                  Text(
+                    "(42人)",
+                    style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+                  ),
                 ],
               ),
               Row(
                 children: [
                   Icon(TDIcons.search, color: Colors.grey.shade600, size: 24),
                   const SizedBox(width: 16),
-                  Icon(TDIcons.bulletpoint, color: Colors.grey.shade600, size: 24),
+                  Icon(
+                    TDIcons.bulletpoint,
+                    color: Colors.grey.shade600,
+                    size: 24,
+                  ),
                 ],
-              )
+              ),
             ],
           ),
         ),
-        
+
         // 2. Message List (Using reverse ListView)
         Expanded(
           child: ListView(
@@ -47,7 +59,8 @@ class ChatPanel extends StatelessWidget {
               _buildMessageBubble(
                 context,
                 isSelf: true,
-                avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=Stephen&backgroundColor=e2e8f0",
+                avatar:
+                    "https://api.dicebear.com/7.x/notionists/svg?seed=Stephen&backgroundColor=e2e8f0",
                 sender: "Me",
                 content: "收到，我这边的 RabbitMQ 消息补偿机制已经上线了，可以随便测没问题。",
               ),
@@ -55,17 +68,23 @@ class ChatPanel extends StatelessWidget {
               _buildMessageBubble(
                 context,
                 isSelf: false,
-                avatar: "https://api.dicebear.com/7.x/notionists/svg?seed=Alice&backgroundColor=fcd34d",
+                avatar:
+                    "https://api.dicebear.com/7.x/notionists/svg?seed=Alice&backgroundColor=fcd34d",
                 sender: "Alice",
                 content: "大家早上好！今天主要针对 MallChat 的 AI总结功能做测试。",
               ),
               const SizedBox(height: 20),
               // Simulate older messages pushed up
-              Center(child: Text("10:35 AM", style: TextStyle(color: Colors.grey.shade500, fontSize: 12))),
+              Center(
+                child: Text(
+                  "10:35 AM",
+                  style: TextStyle(color: Colors.grey.shade500, fontSize: 12),
+                ),
+              ),
             ],
           ),
         ),
-        
+
         // 3. Input Area
         InputToolbar(
           onSend: (text) {
@@ -77,29 +96,45 @@ class ChatPanel extends StatelessWidget {
     );
   }
 
-  Widget _buildMessageBubble(BuildContext context, {required bool isSelf, required String avatar, required String sender, required String content}) {
+  Widget _buildMessageBubble(
+    BuildContext context, {
+    required bool isSelf,
+    required String avatar,
+    required String sender,
+    required String content,
+  }) {
     final primaryColor = Theme.of(context).primaryColor;
-    
+
     return Row(
-      mainAxisAlignment: isSelf ? MainAxisAlignment.end : MainAxisAlignment.start,
+      mainAxisAlignment: isSelf
+          ? MainAxisAlignment.end
+          : MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (!isSelf) ...[
           TDAvatar(size: TDAvatarSize.large, avatarUrl: avatar),
           const SizedBox(width: 12),
         ],
-        
+
         Flexible(
           child: Column(
-            crossAxisAlignment: isSelf ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+            crossAxisAlignment: isSelf
+                ? CrossAxisAlignment.end
+                : CrossAxisAlignment.start,
             children: [
               if (!isSelf)
                 Padding(
                   padding: const EdgeInsets.only(bottom: 4, left: 4),
-                  child: Text(sender, style: TextStyle(color: Colors.grey.shade500, fontSize: 12)),
+                  child: Text(
+                    sender,
+                    style: TextStyle(color: Colors.grey.shade500, fontSize: 12),
+                  ),
                 ),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
                 decoration: BoxDecoration(
                   color: isSelf ? primaryColor : Colors.white,
                   borderRadius: BorderRadius.only(
@@ -109,7 +144,11 @@ class ChatPanel extends StatelessWidget {
                     bottomRight: Radius.circular(isSelf ? 2 : 12),
                   ),
                   boxShadow: [
-                    BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 4, offset: const Offset(0, 2))
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.05),
+                      blurRadius: 4,
+                      offset: const Offset(0, 2),
+                    ),
                   ],
                 ),
                 child: Text(
@@ -124,7 +163,7 @@ class ChatPanel extends StatelessWidget {
             ],
           ),
         ),
-        
+
         if (isSelf) ...[
           const SizedBox(width: 12),
           TDAvatar(size: TDAvatarSize.large, avatarUrl: avatar),

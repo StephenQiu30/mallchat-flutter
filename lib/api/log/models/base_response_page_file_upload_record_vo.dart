@@ -18,9 +18,11 @@ class BaseResponsePageFileUploadRecordVo {
     this.data,
     this.message,
   });
-  
-  factory BaseResponsePageFileUploadRecordVo.fromJson(Map<String, Object?> json) => _$BaseResponsePageFileUploadRecordVoFromJson(json);
-  
+
+  factory BaseResponsePageFileUploadRecordVo.fromJson(
+    Map<String, Object?> json,
+  ) => _$BaseResponsePageFileUploadRecordVoFromJson(json);
+
   /// 状态码
   final int? code;
   final PageFileUploadRecordVo? data;
@@ -28,18 +30,25 @@ class BaseResponsePageFileUploadRecordVo {
   /// 消息
   final String? message;
 
-  Map<String, Object?> toJson() => _$BaseResponsePageFileUploadRecordVoToJson(this);
+  Map<String, Object?> toJson() =>
+      _$BaseResponsePageFileUploadRecordVoToJson(this);
 }
 
 // Flutter compute serialization functions for BaseResponsePageFileUploadRecordVo
-FutureOr<BaseResponsePageFileUploadRecordVo> deserializeBaseResponsePageFileUploadRecordVo(Map<String, dynamic> json) =>
+FutureOr<BaseResponsePageFileUploadRecordVo>
+deserializeBaseResponsePageFileUploadRecordVo(Map<String, dynamic> json) =>
     BaseResponsePageFileUploadRecordVo.fromJson(json);
 
-FutureOr<List<BaseResponsePageFileUploadRecordVo>> deserializeBaseResponsePageFileUploadRecordVoList(List<Map<String, dynamic>> json) =>
-    json.map((e) => BaseResponsePageFileUploadRecordVo.fromJson(e)).toList();
+FutureOr<List<BaseResponsePageFileUploadRecordVo>>
+deserializeBaseResponsePageFileUploadRecordVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => BaseResponsePageFileUploadRecordVo.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeBaseResponsePageFileUploadRecordVo(BaseResponsePageFileUploadRecordVo? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeBaseResponsePageFileUploadRecordVo(
+  BaseResponsePageFileUploadRecordVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeBaseResponsePageFileUploadRecordVoList(List<BaseResponsePageFileUploadRecordVo>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>>
+serializeBaseResponsePageFileUploadRecordVoList(
+  List<BaseResponsePageFileUploadRecordVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

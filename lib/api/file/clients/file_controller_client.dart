@@ -13,7 +13,8 @@ part 'file_controller_client.g.dart';
 
 @RestApi(parser: Parser.FlutterCompute)
 abstract class FileControllerClient {
-  factory FileControllerClient(Dio dio, {String? baseUrl}) = _FileControllerClient;
+  factory FileControllerClient(Dio dio, {String? baseUrl}) =
+      _FileControllerClient;
 
   /// 上传文件.
   ///

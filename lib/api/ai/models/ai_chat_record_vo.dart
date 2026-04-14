@@ -21,9 +21,10 @@ class AiChatRecordVo {
     this.createTime,
     this.updateTime,
   });
-  
-  factory AiChatRecordVo.fromJson(Map<String, Object?> json) => _$AiChatRecordVoFromJson(json);
-  
+
+  factory AiChatRecordVo.fromJson(Map<String, Object?> json) =>
+      _$AiChatRecordVoFromJson(json);
+
   /// 主键
   final int? id;
 
@@ -55,11 +56,14 @@ class AiChatRecordVo {
 FutureOr<AiChatRecordVo> deserializeAiChatRecordVo(Map<String, dynamic> json) =>
     AiChatRecordVo.fromJson(json);
 
-FutureOr<List<AiChatRecordVo>> deserializeAiChatRecordVoList(List<Map<String, dynamic>> json) =>
-    json.map((e) => AiChatRecordVo.fromJson(e)).toList();
+FutureOr<List<AiChatRecordVo>> deserializeAiChatRecordVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => AiChatRecordVo.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeAiChatRecordVo(AiChatRecordVo? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeAiChatRecordVo(
+  AiChatRecordVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeAiChatRecordVoList(List<AiChatRecordVo>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeAiChatRecordVoList(
+  List<AiChatRecordVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

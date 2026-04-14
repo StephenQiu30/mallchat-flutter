@@ -15,11 +15,7 @@ class ResponsiveLayout extends StatelessWidget {
 
     return Obx(() {
       if (!appStore.isInitialized) {
-        return const Scaffold(
-          body: Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
+        return const Scaffold(body: Center(child: CircularProgressIndicator()));
       }
 
       if (!appStore.isLoggedIn) {

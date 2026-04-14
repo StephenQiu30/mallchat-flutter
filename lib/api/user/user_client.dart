@@ -10,11 +10,7 @@ import 'clients/user_controller_client.dart';
 ///
 /// MallChat Cloud 微服务接口文档.
 class UserClient {
-  UserClient(
-    Dio dio, {
-    String? baseUrl,
-  })  : _dio = dio,
-        _baseUrl = baseUrl;
+  UserClient(Dio dio, {String? baseUrl}) : _dio = dio, _baseUrl = baseUrl;
 
   final Dio _dio;
   final String? _baseUrl;
@@ -23,5 +19,6 @@ class UserClient {
 
   UserControllerClient? _userController;
 
-  UserControllerClient get userController => _userController ??= UserControllerClient(_dio, baseUrl: _baseUrl);
+  UserControllerClient get userController =>
+      _userController ??= UserControllerClient(_dio, baseUrl: _baseUrl);
 }

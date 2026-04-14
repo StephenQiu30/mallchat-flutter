@@ -13,14 +13,12 @@ part 'base_response_page_chat_friend_apply_vo.g.dart';
 /// 通用返回类
 @JsonSerializable()
 class BaseResponsePageChatFriendApplyVo {
-  const BaseResponsePageChatFriendApplyVo({
-    this.code,
-    this.data,
-    this.message,
-  });
-  
-  factory BaseResponsePageChatFriendApplyVo.fromJson(Map<String, Object?> json) => _$BaseResponsePageChatFriendApplyVoFromJson(json);
-  
+  const BaseResponsePageChatFriendApplyVo({this.code, this.data, this.message});
+
+  factory BaseResponsePageChatFriendApplyVo.fromJson(
+    Map<String, Object?> json,
+  ) => _$BaseResponsePageChatFriendApplyVoFromJson(json);
+
   /// 状态码
   final int? code;
   final PageChatFriendApplyVo? data;
@@ -28,18 +26,25 @@ class BaseResponsePageChatFriendApplyVo {
   /// 消息
   final String? message;
 
-  Map<String, Object?> toJson() => _$BaseResponsePageChatFriendApplyVoToJson(this);
+  Map<String, Object?> toJson() =>
+      _$BaseResponsePageChatFriendApplyVoToJson(this);
 }
 
 // Flutter compute serialization functions for BaseResponsePageChatFriendApplyVo
-FutureOr<BaseResponsePageChatFriendApplyVo> deserializeBaseResponsePageChatFriendApplyVo(Map<String, dynamic> json) =>
+FutureOr<BaseResponsePageChatFriendApplyVo>
+deserializeBaseResponsePageChatFriendApplyVo(Map<String, dynamic> json) =>
     BaseResponsePageChatFriendApplyVo.fromJson(json);
 
-FutureOr<List<BaseResponsePageChatFriendApplyVo>> deserializeBaseResponsePageChatFriendApplyVoList(List<Map<String, dynamic>> json) =>
-    json.map((e) => BaseResponsePageChatFriendApplyVo.fromJson(e)).toList();
+FutureOr<List<BaseResponsePageChatFriendApplyVo>>
+deserializeBaseResponsePageChatFriendApplyVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => BaseResponsePageChatFriendApplyVo.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeBaseResponsePageChatFriendApplyVo(BaseResponsePageChatFriendApplyVo? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeBaseResponsePageChatFriendApplyVo(
+  BaseResponsePageChatFriendApplyVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeBaseResponsePageChatFriendApplyVoList(List<BaseResponsePageChatFriendApplyVo>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>>
+serializeBaseResponsePageChatFriendApplyVoList(
+  List<BaseResponsePageChatFriendApplyVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

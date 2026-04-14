@@ -13,14 +13,11 @@ part 'base_response_page_notification.g.dart';
 /// 通用返回类
 @JsonSerializable()
 class BaseResponsePageNotification {
-  const BaseResponsePageNotification({
-    this.code,
-    this.data,
-    this.message,
-  });
-  
-  factory BaseResponsePageNotification.fromJson(Map<String, Object?> json) => _$BaseResponsePageNotificationFromJson(json);
-  
+  const BaseResponsePageNotification({this.code, this.data, this.message});
+
+  factory BaseResponsePageNotification.fromJson(Map<String, Object?> json) =>
+      _$BaseResponsePageNotificationFromJson(json);
+
   /// 状态码
   final int? code;
   final PageNotification? data;
@@ -32,14 +29,18 @@ class BaseResponsePageNotification {
 }
 
 // Flutter compute serialization functions for BaseResponsePageNotification
-FutureOr<BaseResponsePageNotification> deserializeBaseResponsePageNotification(Map<String, dynamic> json) =>
-    BaseResponsePageNotification.fromJson(json);
+FutureOr<BaseResponsePageNotification> deserializeBaseResponsePageNotification(
+  Map<String, dynamic> json,
+) => BaseResponsePageNotification.fromJson(json);
 
-FutureOr<List<BaseResponsePageNotification>> deserializeBaseResponsePageNotificationList(List<Map<String, dynamic>> json) =>
+FutureOr<List<BaseResponsePageNotification>>
+deserializeBaseResponsePageNotificationList(List<Map<String, dynamic>> json) =>
     json.map((e) => BaseResponsePageNotification.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeBaseResponsePageNotification(BaseResponsePageNotification? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeBaseResponsePageNotification(
+  BaseResponsePageNotification? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeBaseResponsePageNotificationList(List<BaseResponsePageNotification>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeBaseResponsePageNotificationList(
+  List<BaseResponsePageNotification>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

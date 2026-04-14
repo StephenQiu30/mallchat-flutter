@@ -11,12 +11,11 @@ part 'user_email_code_request.g.dart';
 /// 用户发送邮箱验证码请求
 @JsonSerializable()
 class UserEmailCodeRequest {
-  const UserEmailCodeRequest({
-    this.email,
-  });
-  
-  factory UserEmailCodeRequest.fromJson(Map<String, Object?> json) => _$UserEmailCodeRequestFromJson(json);
-  
+  const UserEmailCodeRequest({this.email});
+
+  factory UserEmailCodeRequest.fromJson(Map<String, Object?> json) =>
+      _$UserEmailCodeRequestFromJson(json);
+
   /// 邮箱
   final String? email;
 
@@ -24,14 +23,18 @@ class UserEmailCodeRequest {
 }
 
 // Flutter compute serialization functions for UserEmailCodeRequest
-FutureOr<UserEmailCodeRequest> deserializeUserEmailCodeRequest(Map<String, dynamic> json) =>
-    UserEmailCodeRequest.fromJson(json);
+FutureOr<UserEmailCodeRequest> deserializeUserEmailCodeRequest(
+  Map<String, dynamic> json,
+) => UserEmailCodeRequest.fromJson(json);
 
-FutureOr<List<UserEmailCodeRequest>> deserializeUserEmailCodeRequestList(List<Map<String, dynamic>> json) =>
-    json.map((e) => UserEmailCodeRequest.fromJson(e)).toList();
+FutureOr<List<UserEmailCodeRequest>> deserializeUserEmailCodeRequestList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => UserEmailCodeRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeUserEmailCodeRequest(UserEmailCodeRequest? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeUserEmailCodeRequest(
+  UserEmailCodeRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeUserEmailCodeRequestList(List<UserEmailCodeRequest>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeUserEmailCodeRequestList(
+  List<UserEmailCodeRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

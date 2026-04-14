@@ -11,14 +11,11 @@ part 'chat_friend_user_vo.g.dart';
 /// 好友用户简要信息
 @JsonSerializable()
 class ChatFriendUserVo {
-  const ChatFriendUserVo({
-    this.id,
-    this.userName,
-    this.userAvatar,
-  });
-  
-  factory ChatFriendUserVo.fromJson(Map<String, Object?> json) => _$ChatFriendUserVoFromJson(json);
-  
+  const ChatFriendUserVo({this.id, this.userName, this.userAvatar});
+
+  factory ChatFriendUserVo.fromJson(Map<String, Object?> json) =>
+      _$ChatFriendUserVoFromJson(json);
+
   /// 用户ID
   final int? id;
 
@@ -32,14 +29,18 @@ class ChatFriendUserVo {
 }
 
 // Flutter compute serialization functions for ChatFriendUserVo
-FutureOr<ChatFriendUserVo> deserializeChatFriendUserVo(Map<String, dynamic> json) =>
-    ChatFriendUserVo.fromJson(json);
+FutureOr<ChatFriendUserVo> deserializeChatFriendUserVo(
+  Map<String, dynamic> json,
+) => ChatFriendUserVo.fromJson(json);
 
-FutureOr<List<ChatFriendUserVo>> deserializeChatFriendUserVoList(List<Map<String, dynamic>> json) =>
-    json.map((e) => ChatFriendUserVo.fromJson(e)).toList();
+FutureOr<List<ChatFriendUserVo>> deserializeChatFriendUserVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => ChatFriendUserVo.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeChatFriendUserVo(ChatFriendUserVo? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeChatFriendUserVo(
+  ChatFriendUserVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeChatFriendUserVoList(List<ChatFriendUserVo>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeChatFriendUserVoList(
+  List<ChatFriendUserVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

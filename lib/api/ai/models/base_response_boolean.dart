@@ -11,14 +11,11 @@ part 'base_response_boolean.g.dart';
 /// 通用返回类
 @JsonSerializable()
 class BaseResponseBoolean {
-  const BaseResponseBoolean({
-    this.code,
-    this.data,
-    this.message,
-  });
-  
-  factory BaseResponseBoolean.fromJson(Map<String, Object?> json) => _$BaseResponseBooleanFromJson(json);
-  
+  const BaseResponseBoolean({this.code, this.data, this.message});
+
+  factory BaseResponseBoolean.fromJson(Map<String, Object?> json) =>
+      _$BaseResponseBooleanFromJson(json);
+
   /// 状态码
   final int? code;
 
@@ -32,14 +29,18 @@ class BaseResponseBoolean {
 }
 
 // Flutter compute serialization functions for BaseResponseBoolean
-FutureOr<BaseResponseBoolean> deserializeBaseResponseBoolean(Map<String, dynamic> json) =>
-    BaseResponseBoolean.fromJson(json);
+FutureOr<BaseResponseBoolean> deserializeBaseResponseBoolean(
+  Map<String, dynamic> json,
+) => BaseResponseBoolean.fromJson(json);
 
-FutureOr<List<BaseResponseBoolean>> deserializeBaseResponseBooleanList(List<Map<String, dynamic>> json) =>
-    json.map((e) => BaseResponseBoolean.fromJson(e)).toList();
+FutureOr<List<BaseResponseBoolean>> deserializeBaseResponseBooleanList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => BaseResponseBoolean.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeBaseResponseBoolean(BaseResponseBoolean? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeBaseResponseBoolean(
+  BaseResponseBoolean? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeBaseResponseBooleanList(List<BaseResponseBoolean>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeBaseResponseBooleanList(
+  List<BaseResponseBoolean>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

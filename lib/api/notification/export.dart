@@ -27,4 +27,3 @@ export 'models/base_response_long.dart';
 export 'models/base_response_notification_vo.dart';
 // Root client
 export 'notification_client.dart';
-

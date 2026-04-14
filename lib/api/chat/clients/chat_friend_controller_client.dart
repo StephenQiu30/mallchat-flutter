@@ -14,7 +14,8 @@ part 'chat_friend_controller_client.g.dart';
 
 @RestApi(parser: Parser.FlutterCompute)
 abstract class ChatFriendControllerClient {
-  factory ChatFriendControllerClient(Dio dio, {String? baseUrl}) = _ChatFriendControllerClient;
+  factory ChatFriendControllerClient(Dio dio, {String? baseUrl}) =
+      _ChatFriendControllerClient;
 
   /// 直接添加好友.
   ///

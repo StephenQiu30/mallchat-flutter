@@ -10,12 +10,11 @@ part 'sse_emitter.g.dart';
 
 @JsonSerializable()
 class SseEmitter {
-  const SseEmitter({
-    this.timeout,
-  });
-  
-  factory SseEmitter.fromJson(Map<String, Object?> json) => _$SseEmitterFromJson(json);
-  
+  const SseEmitter({this.timeout});
+
+  factory SseEmitter.fromJson(Map<String, Object?> json) =>
+      _$SseEmitterFromJson(json);
+
   final int? timeout;
 
   Map<String, Object?> toJson() => _$SseEmitterToJson(this);
@@ -25,11 +24,13 @@ class SseEmitter {
 FutureOr<SseEmitter> deserializeSseEmitter(Map<String, dynamic> json) =>
     SseEmitter.fromJson(json);
 
-FutureOr<List<SseEmitter>> deserializeSseEmitterList(List<Map<String, dynamic>> json) =>
-    json.map((e) => SseEmitter.fromJson(e)).toList();
+FutureOr<List<SseEmitter>> deserializeSseEmitterList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => SseEmitter.fromJson(e)).toList();
 
 FutureOr<Map<String, dynamic>> serializeSseEmitter(SseEmitter? object) =>
     object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeSseEmitterList(List<SseEmitter>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeSseEmitterList(
+  List<SseEmitter>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

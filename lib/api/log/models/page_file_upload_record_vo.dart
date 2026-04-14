@@ -28,9 +28,10 @@ class PageFileUploadRecordVo {
     this.countId,
     this.pages,
   });
-  
-  factory PageFileUploadRecordVo.fromJson(Map<String, Object?> json) => _$PageFileUploadRecordVoFromJson(json);
-  
+
+  factory PageFileUploadRecordVo.fromJson(Map<String, Object?> json) =>
+      _$PageFileUploadRecordVoFromJson(json);
+
   final List<FileUploadRecordVo>? records;
   final int? total;
   final int? size;
@@ -47,14 +48,18 @@ class PageFileUploadRecordVo {
 }
 
 // Flutter compute serialization functions for PageFileUploadRecordVo
-FutureOr<PageFileUploadRecordVo> deserializePageFileUploadRecordVo(Map<String, dynamic> json) =>
-    PageFileUploadRecordVo.fromJson(json);
+FutureOr<PageFileUploadRecordVo> deserializePageFileUploadRecordVo(
+  Map<String, dynamic> json,
+) => PageFileUploadRecordVo.fromJson(json);
 
-FutureOr<List<PageFileUploadRecordVo>> deserializePageFileUploadRecordVoList(List<Map<String, dynamic>> json) =>
-    json.map((e) => PageFileUploadRecordVo.fromJson(e)).toList();
+FutureOr<List<PageFileUploadRecordVo>> deserializePageFileUploadRecordVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => PageFileUploadRecordVo.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializePageFileUploadRecordVo(PageFileUploadRecordVo? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializePageFileUploadRecordVo(
+  PageFileUploadRecordVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializePageFileUploadRecordVoList(List<PageFileUploadRecordVo>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializePageFileUploadRecordVoList(
+  List<PageFileUploadRecordVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

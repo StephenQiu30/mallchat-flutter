@@ -21,10 +21,10 @@ class MallChatAvatar extends StatelessWidget {
     this.onTap,
   });
 
-  bool get _isSvg => 
-    avatarUrl.toLowerCase().contains('.svg') || 
-    avatarUrl.toLowerCase().contains('svg?') || 
-    avatarUrl.startsWith('data:image/svg+xml');
+  bool get _isSvg =>
+      avatarUrl.toLowerCase().contains('.svg') ||
+      avatarUrl.toLowerCase().contains('svg?') ||
+      avatarUrl.startsWith('data:image/svg+xml');
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +38,16 @@ class MallChatAvatar extends StatelessWidget {
           clipBehavior: Clip.antiAlias,
           decoration: BoxDecoration(
             color: GlassTheme.backgroundGray,
-            shape: shape == TDAvatarShape.circle ? BoxShape.circle : BoxShape.rectangle,
-            borderRadius: shape == TDAvatarShape.circle ? null : BorderRadius.circular(12),
-            border: Border.all(color: Colors.white.withValues(alpha: 0.1), width: 0.5),
+            shape: shape == TDAvatarShape.circle
+                ? BoxShape.circle
+                : BoxShape.rectangle,
+            borderRadius: shape == TDAvatarShape.circle
+                ? null
+                : BorderRadius.circular(12),
+            border: Border.all(
+              color: Colors.white.withValues(alpha: 0.1),
+              width: 0.5,
+            ),
           ),
           child: SvgPicture.network(
             avatarUrl,
@@ -48,7 +55,11 @@ class MallChatAvatar extends StatelessWidget {
             placeholderBuilder: (BuildContext context) => Container(
               color: GlassTheme.backgroundGray.withValues(alpha: 0.5),
               child: const Center(
-                child: Icon(TDIcons.user, color: GlassTheme.textLightGray, size: 20),
+                child: Icon(
+                  TDIcons.user,
+                  color: GlassTheme.textLightGray,
+                  size: 20,
+                ),
               ),
             ),
           ),

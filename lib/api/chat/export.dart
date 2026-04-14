@@ -35,4 +35,3 @@ export 'models/base_response_list_chat_friend_user_vo.dart';
 export 'models/chat_friend_user_vo.dart';
 // Root client
 export 'chat_client.dart';
-

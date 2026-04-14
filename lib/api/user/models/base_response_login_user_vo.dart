@@ -13,14 +13,11 @@ part 'base_response_login_user_vo.g.dart';
 /// 通用返回类
 @JsonSerializable()
 class BaseResponseLoginUserVo {
-  const BaseResponseLoginUserVo({
-    this.code,
-    this.data,
-    this.message,
-  });
-  
-  factory BaseResponseLoginUserVo.fromJson(Map<String, Object?> json) => _$BaseResponseLoginUserVoFromJson(json);
-  
+  const BaseResponseLoginUserVo({this.code, this.data, this.message});
+
+  factory BaseResponseLoginUserVo.fromJson(Map<String, Object?> json) =>
+      _$BaseResponseLoginUserVoFromJson(json);
+
   /// 状态码
   final int? code;
   final LoginUserVo? data;
@@ -32,14 +29,18 @@ class BaseResponseLoginUserVo {
 }
 
 // Flutter compute serialization functions for BaseResponseLoginUserVo
-FutureOr<BaseResponseLoginUserVo> deserializeBaseResponseLoginUserVo(Map<String, dynamic> json) =>
-    BaseResponseLoginUserVo.fromJson(json);
+FutureOr<BaseResponseLoginUserVo> deserializeBaseResponseLoginUserVo(
+  Map<String, dynamic> json,
+) => BaseResponseLoginUserVo.fromJson(json);
 
-FutureOr<List<BaseResponseLoginUserVo>> deserializeBaseResponseLoginUserVoList(List<Map<String, dynamic>> json) =>
-    json.map((e) => BaseResponseLoginUserVo.fromJson(e)).toList();
+FutureOr<List<BaseResponseLoginUserVo>> deserializeBaseResponseLoginUserVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => BaseResponseLoginUserVo.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeBaseResponseLoginUserVo(BaseResponseLoginUserVo? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeBaseResponseLoginUserVo(
+  BaseResponseLoginUserVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeBaseResponseLoginUserVoList(List<BaseResponseLoginUserVo>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeBaseResponseLoginUserVoList(
+  List<BaseResponseLoginUserVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

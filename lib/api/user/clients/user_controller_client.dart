@@ -29,7 +29,8 @@ part 'user_controller_client.g.dart';
 
 @RestApi(parser: Parser.FlutterCompute)
 abstract class UserControllerClient {
-  factory UserControllerClient(Dio dio, {String? baseUrl}) = _UserControllerClient;
+  factory UserControllerClient(Dio dio, {String? baseUrl}) =
+      _UserControllerClient;
 
   /// 更新用户.
   ///
@@ -105,25 +106,19 @@ abstract class UserControllerClient {
   ///
   /// 当前登录用户编辑自己的个人资料.
   @POST('/user/edit')
-  Future<BaseResponseBoolean> editUser({
-    @Body() required UserEditRequest body,
-  });
+  Future<BaseResponseBoolean> editUser({@Body() required UserEditRequest body});
 
   /// 删除用户.
   ///
   /// 删除指定 ID 的用户（仅本人或管理员）.
   @POST('/user/delete')
-  Future<BaseResponseBoolean> deleteUser({
-    @Body() required DeleteRequest body,
-  });
+  Future<BaseResponseBoolean> deleteUser({@Body() required DeleteRequest body});
 
   /// 创建用户.
   ///
   /// 管理员手动创建新用户.
   @POST('/user/add')
-  Future<BaseResponseLong> addUser({
-    @Body() required UserAddRequest body,
-  });
+  Future<BaseResponseLong> addUser({@Body() required UserAddRequest body});
 
   /// 是否管理员.
   ///
@@ -137,9 +132,7 @@ abstract class UserControllerClient {
   ///
   /// [id] - 用户ID.
   @GET('/user/get')
-  Future<BaseResponseUser> getUserById({
-    @Query('id') required int id,
-  });
+  Future<BaseResponseUser> getUserById({@Query('id') required int id});
 
   /// 根据ID获取用户视图对象.
   ///
@@ -147,9 +140,7 @@ abstract class UserControllerClient {
   ///
   /// [id] - 用户ID.
   @GET('/user/get/vo')
-  Future<BaseResponseUserVo> getUserVoById({
-    @Query('id') required int id,
-  });
+  Future<BaseResponseUserVo> getUserVoById({@Query('id') required int id});
 
   /// 批量获取用户视图对象.
   ///

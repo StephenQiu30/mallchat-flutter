@@ -16,7 +16,8 @@ part 'chat_room_controller_client.g.dart';
 
 @RestApi(parser: Parser.FlutterCompute)
 abstract class ChatRoomControllerClient {
-  factory ChatRoomControllerClient(Dio dio, {String? baseUrl}) = _ChatRoomControllerClient;
+  factory ChatRoomControllerClient(Dio dio, {String? baseUrl}) =
+      _ChatRoomControllerClient;
 
   /// 获取或创建私聊房间.
   ///
