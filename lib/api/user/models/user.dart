@@ -29,9 +29,9 @@ class User {
     this.updateTime,
     this.isDelete,
   });
-  
+
   factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
-  
+
   /// 用户ID
   final int? id;
 

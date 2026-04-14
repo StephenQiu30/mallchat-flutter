@@ -11,12 +11,11 @@ part 'delete_request.g.dart';
 /// 删除请求
 @JsonSerializable()
 class DeleteRequest {
-  const DeleteRequest({
-    required this.id,
-  });
-  
-  factory DeleteRequest.fromJson(Map<String, Object?> json) => _$DeleteRequestFromJson(json);
-  
+  const DeleteRequest({required this.id});
+
+  factory DeleteRequest.fromJson(Map<String, Object?> json) =>
+      _$DeleteRequestFromJson(json);
+
   /// id
   final int id;
 
@@ -27,11 +26,13 @@ class DeleteRequest {
 FutureOr<DeleteRequest> deserializeDeleteRequest(Map<String, dynamic> json) =>
     DeleteRequest.fromJson(json);
 
-FutureOr<List<DeleteRequest>> deserializeDeleteRequestList(List<Map<String, dynamic>> json) =>
-    json.map((e) => DeleteRequest.fromJson(e)).toList();
+FutureOr<List<DeleteRequest>> deserializeDeleteRequestList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => DeleteRequest.fromJson(e)).toList();
 
 FutureOr<Map<String, dynamic>> serializeDeleteRequest(DeleteRequest? object) =>
     object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeDeleteRequestList(List<DeleteRequest>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeDeleteRequestList(
+  List<DeleteRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

@@ -16,7 +16,8 @@ part 'file_upload_record_controller_client.g.dart';
 
 @RestApi(parser: Parser.FlutterCompute)
 abstract class FileUploadRecordControllerClient {
-  factory FileUploadRecordControllerClient(Dio dio, {String? baseUrl}) = _FileUploadRecordControllerClient;
+  factory FileUploadRecordControllerClient(Dio dio, {String? baseUrl}) =
+      _FileUploadRecordControllerClient;
 
   /// 分页获取文件上传记录列表.
   ///

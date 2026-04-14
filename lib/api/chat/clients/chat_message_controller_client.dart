@@ -17,7 +17,8 @@ part 'chat_message_controller_client.g.dart';
 
 @RestApi(parser: Parser.FlutterCompute)
 abstract class ChatMessageControllerClient {
-  factory ChatMessageControllerClient(Dio dio, {String? baseUrl}) = _ChatMessageControllerClient;
+  factory ChatMessageControllerClient(Dio dio, {String? baseUrl}) =
+      _ChatMessageControllerClient;
 
   /// 发送消息.
   ///

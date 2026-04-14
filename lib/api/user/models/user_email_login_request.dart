@@ -11,13 +11,11 @@ part 'user_email_login_request.g.dart';
 /// 用户邮箱登录请求
 @JsonSerializable()
 class UserEmailLoginRequest {
-  const UserEmailLoginRequest({
-    this.email,
-    this.code,
-  });
-  
-  factory UserEmailLoginRequest.fromJson(Map<String, Object?> json) => _$UserEmailLoginRequestFromJson(json);
-  
+  const UserEmailLoginRequest({this.email, this.code});
+
+  factory UserEmailLoginRequest.fromJson(Map<String, Object?> json) =>
+      _$UserEmailLoginRequestFromJson(json);
+
   /// 邮箱
   final String? email;
 
@@ -28,14 +26,18 @@ class UserEmailLoginRequest {
 }
 
 // Flutter compute serialization functions for UserEmailLoginRequest
-FutureOr<UserEmailLoginRequest> deserializeUserEmailLoginRequest(Map<String, dynamic> json) =>
-    UserEmailLoginRequest.fromJson(json);
+FutureOr<UserEmailLoginRequest> deserializeUserEmailLoginRequest(
+  Map<String, dynamic> json,
+) => UserEmailLoginRequest.fromJson(json);
 
-FutureOr<List<UserEmailLoginRequest>> deserializeUserEmailLoginRequestList(List<Map<String, dynamic>> json) =>
-    json.map((e) => UserEmailLoginRequest.fromJson(e)).toList();
+FutureOr<List<UserEmailLoginRequest>> deserializeUserEmailLoginRequestList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => UserEmailLoginRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeUserEmailLoginRequest(UserEmailLoginRequest? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeUserEmailLoginRequest(
+  UserEmailLoginRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeUserEmailLoginRequestList(List<UserEmailLoginRequest>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeUserEmailLoginRequestList(
+  List<UserEmailLoginRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

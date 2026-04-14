@@ -17,9 +17,10 @@ class ChatFriendApplyQueryRequest {
     this.sortField,
     this.sortOrder,
   });
-  
-  factory ChatFriendApplyQueryRequest.fromJson(Map<String, Object?> json) => _$ChatFriendApplyQueryRequestFromJson(json);
-  
+
+  factory ChatFriendApplyQueryRequest.fromJson(Map<String, Object?> json) =>
+      _$ChatFriendApplyQueryRequestFromJson(json);
+
   /// 当前页号
   final int? current;
 
@@ -36,14 +37,18 @@ class ChatFriendApplyQueryRequest {
 }
 
 // Flutter compute serialization functions for ChatFriendApplyQueryRequest
-FutureOr<ChatFriendApplyQueryRequest> deserializeChatFriendApplyQueryRequest(Map<String, dynamic> json) =>
-    ChatFriendApplyQueryRequest.fromJson(json);
+FutureOr<ChatFriendApplyQueryRequest> deserializeChatFriendApplyQueryRequest(
+  Map<String, dynamic> json,
+) => ChatFriendApplyQueryRequest.fromJson(json);
 
-FutureOr<List<ChatFriendApplyQueryRequest>> deserializeChatFriendApplyQueryRequestList(List<Map<String, dynamic>> json) =>
+FutureOr<List<ChatFriendApplyQueryRequest>>
+deserializeChatFriendApplyQueryRequestList(List<Map<String, dynamic>> json) =>
     json.map((e) => ChatFriendApplyQueryRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeChatFriendApplyQueryRequest(ChatFriendApplyQueryRequest? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeChatFriendApplyQueryRequest(
+  ChatFriendApplyQueryRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeChatFriendApplyQueryRequestList(List<ChatFriendApplyQueryRequest>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeChatFriendApplyQueryRequestList(
+  List<ChatFriendApplyQueryRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

@@ -26,9 +26,10 @@ class ChatMessageVo {
     this.status,
     this.createTime,
   });
-  
-  factory ChatMessageVo.fromJson(Map<String, Object?> json) => _$ChatMessageVoFromJson(json);
-  
+
+  factory ChatMessageVo.fromJson(Map<String, Object?> json) =>
+      _$ChatMessageVoFromJson(json);
+
   /// 消息ID
   final int? id;
 
@@ -67,11 +68,13 @@ class ChatMessageVo {
 FutureOr<ChatMessageVo> deserializeChatMessageVo(Map<String, dynamic> json) =>
     ChatMessageVo.fromJson(json);
 
-FutureOr<List<ChatMessageVo>> deserializeChatMessageVoList(List<Map<String, dynamic>> json) =>
-    json.map((e) => ChatMessageVo.fromJson(e)).toList();
+FutureOr<List<ChatMessageVo>> deserializeChatMessageVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => ChatMessageVo.fromJson(e)).toList();
 
 FutureOr<Map<String, dynamic>> serializeChatMessageVo(ChatMessageVo? object) =>
     object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeChatMessageVoList(List<ChatMessageVo>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeChatMessageVoList(
+  List<ChatMessageVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

@@ -24,9 +24,10 @@ class NotificationQueryRequest {
     this.relatedType,
     this.searchText,
   });
-  
-  factory NotificationQueryRequest.fromJson(Map<String, Object?> json) => _$NotificationQueryRequestFromJson(json);
-  
+
+  factory NotificationQueryRequest.fromJson(Map<String, Object?> json) =>
+      _$NotificationQueryRequestFromJson(json);
+
   /// 当前页号
   final int? current;
 
@@ -64,14 +65,18 @@ class NotificationQueryRequest {
 }
 
 // Flutter compute serialization functions for NotificationQueryRequest
-FutureOr<NotificationQueryRequest> deserializeNotificationQueryRequest(Map<String, dynamic> json) =>
-    NotificationQueryRequest.fromJson(json);
+FutureOr<NotificationQueryRequest> deserializeNotificationQueryRequest(
+  Map<String, dynamic> json,
+) => NotificationQueryRequest.fromJson(json);
 
-FutureOr<List<NotificationQueryRequest>> deserializeNotificationQueryRequestList(List<Map<String, dynamic>> json) =>
+FutureOr<List<NotificationQueryRequest>>
+deserializeNotificationQueryRequestList(List<Map<String, dynamic>> json) =>
     json.map((e) => NotificationQueryRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeNotificationQueryRequest(NotificationQueryRequest? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeNotificationQueryRequest(
+  NotificationQueryRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeNotificationQueryRequestList(List<NotificationQueryRequest>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeNotificationQueryRequestList(
+  List<NotificationQueryRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

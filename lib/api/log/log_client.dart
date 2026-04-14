@@ -13,11 +13,7 @@ import 'clients/api_access_log_controller_client.dart';
 ///
 /// MallChat Cloud 微服务接口文档.
 class LogClient {
-  LogClient(
-    Dio dio, {
-    String? baseUrl,
-  })  : _dio = dio,
-        _baseUrl = baseUrl;
+  LogClient(Dio dio, {String? baseUrl}) : _dio = dio, _baseUrl = baseUrl;
 
   final Dio _dio;
   final String? _baseUrl;
@@ -29,11 +25,27 @@ class LogClient {
   FileUploadRecordControllerClient? _fileUploadRecordController;
   ApiAccessLogControllerClient? _apiAccessLogController;
 
-  OperationLogControllerClient get operationLogController => _operationLogController ??= OperationLogControllerClient(_dio, baseUrl: _baseUrl);
+  OperationLogControllerClient get operationLogController =>
+      _operationLogController ??= OperationLogControllerClient(
+        _dio,
+        baseUrl: _baseUrl,
+      );
 
-  UserLoginLogControllerClient get userLoginLogController => _userLoginLogController ??= UserLoginLogControllerClient(_dio, baseUrl: _baseUrl);
+  UserLoginLogControllerClient get userLoginLogController =>
+      _userLoginLogController ??= UserLoginLogControllerClient(
+        _dio,
+        baseUrl: _baseUrl,
+      );
 
-  FileUploadRecordControllerClient get fileUploadRecordController => _fileUploadRecordController ??= FileUploadRecordControllerClient(_dio, baseUrl: _baseUrl);
+  FileUploadRecordControllerClient get fileUploadRecordController =>
+      _fileUploadRecordController ??= FileUploadRecordControllerClient(
+        _dio,
+        baseUrl: _baseUrl,
+      );
 
-  ApiAccessLogControllerClient get apiAccessLogController => _apiAccessLogController ??= ApiAccessLogControllerClient(_dio, baseUrl: _baseUrl);
+  ApiAccessLogControllerClient get apiAccessLogController =>
+      _apiAccessLogController ??= ApiAccessLogControllerClient(
+        _dio,
+        baseUrl: _baseUrl,
+      );
 }

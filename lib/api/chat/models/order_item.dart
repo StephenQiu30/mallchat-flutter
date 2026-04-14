@@ -10,13 +10,11 @@ part 'order_item.g.dart';
 
 @JsonSerializable()
 class OrderItem {
-  const OrderItem({
-    this.column,
-    this.asc,
-  });
-  
-  factory OrderItem.fromJson(Map<String, Object?> json) => _$OrderItemFromJson(json);
-  
+  const OrderItem({this.column, this.asc});
+
+  factory OrderItem.fromJson(Map<String, Object?> json) =>
+      _$OrderItemFromJson(json);
+
   final String? column;
   final bool? asc;
 
@@ -27,11 +25,13 @@ class OrderItem {
 FutureOr<OrderItem> deserializeOrderItem(Map<String, dynamic> json) =>
     OrderItem.fromJson(json);
 
-FutureOr<List<OrderItem>> deserializeOrderItemList(List<Map<String, dynamic>> json) =>
-    json.map((e) => OrderItem.fromJson(e)).toList();
+FutureOr<List<OrderItem>> deserializeOrderItemList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => OrderItem.fromJson(e)).toList();
 
 FutureOr<Map<String, dynamic>> serializeOrderItem(OrderItem? object) =>
     object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeOrderItemList(List<OrderItem>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeOrderItemList(
+  List<OrderItem>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

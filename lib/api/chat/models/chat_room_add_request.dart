@@ -16,9 +16,10 @@ class ChatRoomAddRequest {
     required this.type,
     this.avatar,
   });
-  
-  factory ChatRoomAddRequest.fromJson(Map<String, Object?> json) => _$ChatRoomAddRequestFromJson(json);
-  
+
+  factory ChatRoomAddRequest.fromJson(Map<String, Object?> json) =>
+      _$ChatRoomAddRequestFromJson(json);
+
   /// 房间名称
   final String name;
 
@@ -32,14 +33,18 @@ class ChatRoomAddRequest {
 }
 
 // Flutter compute serialization functions for ChatRoomAddRequest
-FutureOr<ChatRoomAddRequest> deserializeChatRoomAddRequest(Map<String, dynamic> json) =>
-    ChatRoomAddRequest.fromJson(json);
+FutureOr<ChatRoomAddRequest> deserializeChatRoomAddRequest(
+  Map<String, dynamic> json,
+) => ChatRoomAddRequest.fromJson(json);
 
-FutureOr<List<ChatRoomAddRequest>> deserializeChatRoomAddRequestList(List<Map<String, dynamic>> json) =>
-    json.map((e) => ChatRoomAddRequest.fromJson(e)).toList();
+FutureOr<List<ChatRoomAddRequest>> deserializeChatRoomAddRequestList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => ChatRoomAddRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeChatRoomAddRequest(ChatRoomAddRequest? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeChatRoomAddRequest(
+  ChatRoomAddRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeChatRoomAddRequestList(List<ChatRoomAddRequest>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeChatRoomAddRequestList(
+  List<ChatRoomAddRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

@@ -16,7 +16,8 @@ part 'user_login_log_controller_client.g.dart';
 
 @RestApi(parser: Parser.FlutterCompute)
 abstract class UserLoginLogControllerClient {
-  factory UserLoginLogControllerClient(Dio dio, {String? baseUrl}) = _UserLoginLogControllerClient;
+  factory UserLoginLogControllerClient(Dio dio, {String? baseUrl}) =
+      _UserLoginLogControllerClient;
 
   /// 分页获取用户登录日志列表.
   ///

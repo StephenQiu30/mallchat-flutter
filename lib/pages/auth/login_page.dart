@@ -20,11 +20,7 @@ class LoginPage extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
-                colors: [
-                  Color(0xFFEFF6FF),
-                  Color(0xFFDBEAFE),
-                  Colors.white,
-                ],
+                colors: [Color(0xFFEFF6FF), Color(0xFFDBEAFE), Colors.white],
               ),
             ),
           ),
@@ -35,15 +31,18 @@ class LoginPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: ConstrainedBox(
                 constraints: BoxConstraints(
-                  minHeight: MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top - MediaQuery.of(context).padding.bottom,
+                  minHeight:
+                      MediaQuery.of(context).size.height -
+                      MediaQuery.of(context).padding.top -
+                      MediaQuery.of(context).padding.bottom,
                 ),
                 child: Column(
                   children: [
                     const SizedBox(height: 100),
-                    
+
                     // Logo & Brand
                     _buildBrandHeader(),
-                    
+
                     const SizedBox(height: 60),
 
                     // Login Card
@@ -53,7 +52,9 @@ class LoginPage extends StatelessWidget {
                         color: Colors.white.withValues(alpha: 0.8),
                         borderRadius: GlassTheme.radius24,
                         boxShadow: GlassTheme.deepShadow,
-                        border: Border.all(color: Colors.white.withValues(alpha: 0.5)),
+                        border: Border.all(
+                          color: Colors.white.withValues(alpha: 0.5),
+                        ),
                       ),
                       child: _buildLoginTabs(context, controller),
                     ),
@@ -112,18 +113,20 @@ class LoginPage extends StatelessWidget {
       children: [
         const SizedBox(height: 20),
         // WeChat Login Button
-        Obx(() => TDButton(
-          text: controller.isLoading.value ? '登录中...' : '微信一键登录',
-          size: TDButtonSize.large,
-          type: TDButtonType.fill,
-          theme: TDButtonTheme.primary,
-          shape: TDButtonShape.rectangle,
-          width: double.infinity,
-          onTap: controller.isLoading.value 
-            ? null 
-            : controller.loginWithWechat,
-        )),
-        
+        Obx(
+          () => TDButton(
+            text: controller.isLoading.value ? '登录中...' : '微信一键登录',
+            size: TDButtonSize.large,
+            type: TDButtonType.fill,
+            theme: TDButtonTheme.primary,
+            shape: TDButtonShape.rectangle,
+            width: double.infinity,
+            onTap: controller.isLoading.value
+                ? null
+                : controller.loginWithWechat,
+          ),
+        ),
+
         const SizedBox(height: 16),
 
         // Apple Login Button
@@ -148,10 +151,14 @@ class LoginPage extends StatelessWidget {
           hintText: '请输入邮箱',
           type: TDInputType.normal,
           onChanged: (v) => controller.email.value = v,
-          leftIcon: const Icon(TDIcons.mail, color: GlassTheme.primaryBlue, size: 20),
+          leftIcon: const Icon(
+            TDIcons.mail,
+            color: GlassTheme.primaryBlue,
+            size: 20,
+          ),
           backgroundColor: GlassTheme.backgroundGray.withValues(alpha: 0.5),
         ),
-        
+
         const SizedBox(height: 12),
 
         // Code Input with Send Button
@@ -159,35 +166,43 @@ class LoginPage extends StatelessWidget {
           hintText: '验证码',
           type: TDInputType.normal,
           onChanged: (v) => controller.code.value = v,
-          leftIcon: const Icon(TDIcons.secured, color: GlassTheme.primaryBlue, size: 20),
+          leftIcon: const Icon(
+            TDIcons.secured,
+            color: GlassTheme.primaryBlue,
+            size: 20,
+          ),
           backgroundColor: GlassTheme.backgroundGray.withValues(alpha: 0.5),
-          rightBtn: Obx(() => TDButton(
-            text: controller.timerSeconds.value > 0 
-              ? '${controller.timerSeconds.value}s' 
-              : '发送验证码',
-            size: TDButtonSize.small,
-            type: TDButtonType.text,
-            theme: TDButtonTheme.primary,
-            onTap: controller.timerSeconds.value > 0 
-              ? null 
-              : controller.sendVerificationCode,
-          )),
+          rightBtn: Obx(
+            () => TDButton(
+              text: controller.timerSeconds.value > 0
+                  ? '${controller.timerSeconds.value}s'
+                  : '发送验证码',
+              size: TDButtonSize.small,
+              type: TDButtonType.text,
+              theme: TDButtonTheme.primary,
+              onTap: controller.timerSeconds.value > 0
+                  ? null
+                  : controller.sendVerificationCode,
+            ),
+          ),
         ),
-        
+
         const SizedBox(height: 24),
 
         // Email Login Submit
-        Obx(() => TDButton(
-          text: controller.isLoading.value ? '登录中...' : '登录',
-          size: TDButtonSize.large,
-          type: TDButtonType.fill,
-          theme: TDButtonTheme.primary,
-          shape: TDButtonShape.rectangle,
-          width: double.infinity,
-          onTap: controller.isLoading.value 
-            ? null 
-            : controller.loginWithEmail,
-        )),
+        Obx(
+          () => TDButton(
+            text: controller.isLoading.value ? '登录中...' : '登录',
+            size: TDButtonSize.large,
+            type: TDButtonType.fill,
+            theme: TDButtonTheme.primary,
+            shape: TDButtonShape.rectangle,
+            width: double.infinity,
+            onTap: controller.isLoading.value
+                ? null
+                : controller.loginWithEmail,
+          ),
+        ),
       ],
     );
   }
@@ -204,11 +219,7 @@ class LoginPage extends StatelessWidget {
             boxShadow: GlassTheme.mediumShadow,
           ),
           child: const Center(
-            child: Icon(
-              TDIcons.chat,
-              size: 40,
-              color: Color(0xFF3B82F6),
-            ),
+            child: Icon(TDIcons.chat, size: 40, color: Color(0xFF3B82F6)),
           ),
         ),
         const SizedBox(height: 24),
@@ -224,23 +235,25 @@ class LoginPage extends StatelessWidget {
         const SizedBox(height: 8),
         Text(
           "连接沟通，创造价值",
-          style: TextStyle(
-            fontSize: 16,
-            color: Colors.grey[600],
-          ),
+          style: TextStyle(fontSize: 16, color: Colors.grey[600]),
         ),
       ],
     );
   }
 
-  Widget _buildAgreementSection(BuildContext context, LoginController controller) {
+  Widget _buildAgreementSection(
+    BuildContext context,
+    LoginController controller,
+  ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Obx(() => TDCheckbox(
-          checked: controller.isAgreed.value,
-          onCheckBoxChanged: (val) => controller.toggleAgreement(),
-        )),
+        Obx(
+          () => TDCheckbox(
+            checked: controller.isAgreed.value,
+            onCheckBoxChanged: (val) => controller.toggleAgreement(),
+          ),
+        ),
         const SizedBox(width: 4),
         Flexible(
           child: RichText(
@@ -250,12 +263,18 @@ class LoginPage extends StatelessWidget {
                 TextSpan(text: "我已阅读并同意"),
                 TextSpan(
                   text: "《用户协议》",
-                  style: TextStyle(color: Color(0xFF3B82F6), fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    color: Color(0xFF3B82F6),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 TextSpan(text: "和"),
                 TextSpan(
                   text: "《隐私政策》",
-                  style: TextStyle(color: Color(0xFF3B82F6), fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    color: Color(0xFF3B82F6),
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),

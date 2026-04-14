@@ -22,9 +22,9 @@ class UserVo {
     this.createTime,
     this.updateTime,
   });
-  
+
   factory UserVo.fromJson(Map<String, Object?> json) => _$UserVoFromJson(json);
-  
+
   /// 用户ID
   final int? id;
 
@@ -65,5 +65,6 @@ FutureOr<List<UserVo>> deserializeUserVoList(List<Map<String, dynamic>> json) =>
 FutureOr<Map<String, dynamic>> serializeUserVo(UserVo? object) =>
     object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeUserVoList(List<UserVo>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeUserVoList(
+  List<UserVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

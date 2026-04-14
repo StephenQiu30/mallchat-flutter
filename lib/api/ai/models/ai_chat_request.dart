@@ -17,9 +17,10 @@ class AiChatRequest {
     this.sessionId,
     this.systemMessage,
   });
-  
-  factory AiChatRequest.fromJson(Map<String, Object?> json) => _$AiChatRequestFromJson(json);
-  
+
+  factory AiChatRequest.fromJson(Map<String, Object?> json) =>
+      _$AiChatRequestFromJson(json);
+
   /// 问题内容
   final String? message;
 
@@ -39,11 +40,13 @@ class AiChatRequest {
 FutureOr<AiChatRequest> deserializeAiChatRequest(Map<String, dynamic> json) =>
     AiChatRequest.fromJson(json);
 
-FutureOr<List<AiChatRequest>> deserializeAiChatRequestList(List<Map<String, dynamic>> json) =>
-    json.map((e) => AiChatRequest.fromJson(e)).toList();
+FutureOr<List<AiChatRequest>> deserializeAiChatRequestList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => AiChatRequest.fromJson(e)).toList();
 
 FutureOr<Map<String, dynamic>> serializeAiChatRequest(AiChatRequest? object) =>
     object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeAiChatRequestList(List<AiChatRequest>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeAiChatRequestList(
+  List<AiChatRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

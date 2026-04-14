@@ -17,9 +17,10 @@ class UserAddRequest {
     this.userRole,
     this.userEmail,
   });
-  
-  factory UserAddRequest.fromJson(Map<String, Object?> json) => _$UserAddRequestFromJson(json);
-  
+
+  factory UserAddRequest.fromJson(Map<String, Object?> json) =>
+      _$UserAddRequestFromJson(json);
+
   /// 用户昵称
   final String? userName;
 
@@ -39,11 +40,14 @@ class UserAddRequest {
 FutureOr<UserAddRequest> deserializeUserAddRequest(Map<String, dynamic> json) =>
     UserAddRequest.fromJson(json);
 
-FutureOr<List<UserAddRequest>> deserializeUserAddRequestList(List<Map<String, dynamic>> json) =>
-    json.map((e) => UserAddRequest.fromJson(e)).toList();
+FutureOr<List<UserAddRequest>> deserializeUserAddRequestList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => UserAddRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeUserAddRequest(UserAddRequest? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeUserAddRequest(
+  UserAddRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeUserAddRequestList(List<UserAddRequest>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeUserAddRequestList(
+  List<UserAddRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

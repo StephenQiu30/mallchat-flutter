@@ -13,14 +13,11 @@ part 'base_response_page_notification_vo.g.dart';
 /// 通用返回类
 @JsonSerializable()
 class BaseResponsePageNotificationVo {
-  const BaseResponsePageNotificationVo({
-    this.code,
-    this.data,
-    this.message,
-  });
-  
-  factory BaseResponsePageNotificationVo.fromJson(Map<String, Object?> json) => _$BaseResponsePageNotificationVoFromJson(json);
-  
+  const BaseResponsePageNotificationVo({this.code, this.data, this.message});
+
+  factory BaseResponsePageNotificationVo.fromJson(Map<String, Object?> json) =>
+      _$BaseResponsePageNotificationVoFromJson(json);
+
   /// 状态码
   final int? code;
   final PageNotificationVo? data;
@@ -32,14 +29,20 @@ class BaseResponsePageNotificationVo {
 }
 
 // Flutter compute serialization functions for BaseResponsePageNotificationVo
-FutureOr<BaseResponsePageNotificationVo> deserializeBaseResponsePageNotificationVo(Map<String, dynamic> json) =>
+FutureOr<BaseResponsePageNotificationVo>
+deserializeBaseResponsePageNotificationVo(Map<String, dynamic> json) =>
     BaseResponsePageNotificationVo.fromJson(json);
 
-FutureOr<List<BaseResponsePageNotificationVo>> deserializeBaseResponsePageNotificationVoList(List<Map<String, dynamic>> json) =>
-    json.map((e) => BaseResponsePageNotificationVo.fromJson(e)).toList();
+FutureOr<List<BaseResponsePageNotificationVo>>
+deserializeBaseResponsePageNotificationVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => BaseResponsePageNotificationVo.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeBaseResponsePageNotificationVo(BaseResponsePageNotificationVo? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeBaseResponsePageNotificationVo(
+  BaseResponsePageNotificationVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeBaseResponsePageNotificationVoList(List<BaseResponsePageNotificationVo>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>>
+serializeBaseResponsePageNotificationVoList(
+  List<BaseResponsePageNotificationVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

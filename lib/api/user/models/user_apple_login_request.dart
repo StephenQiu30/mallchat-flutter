@@ -15,9 +15,10 @@ class UserAppleLoginRequest {
     required this.identityToken,
     required this.userIdentifier,
   });
-  
-  factory UserAppleLoginRequest.fromJson(Map<String, Object?> json) => _$UserAppleLoginRequestFromJson(json);
-  
+
+  factory UserAppleLoginRequest.fromJson(Map<String, Object?> json) =>
+      _$UserAppleLoginRequestFromJson(json);
+
   /// Apple Identity Token (JWT)
   final String identityToken;
 
@@ -28,14 +29,18 @@ class UserAppleLoginRequest {
 }
 
 // Flutter compute serialization functions for UserAppleLoginRequest
-FutureOr<UserAppleLoginRequest> deserializeUserAppleLoginRequest(Map<String, dynamic> json) =>
-    UserAppleLoginRequest.fromJson(json);
+FutureOr<UserAppleLoginRequest> deserializeUserAppleLoginRequest(
+  Map<String, dynamic> json,
+) => UserAppleLoginRequest.fromJson(json);
 
-FutureOr<List<UserAppleLoginRequest>> deserializeUserAppleLoginRequestList(List<Map<String, dynamic>> json) =>
-    json.map((e) => UserAppleLoginRequest.fromJson(e)).toList();
+FutureOr<List<UserAppleLoginRequest>> deserializeUserAppleLoginRequestList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => UserAppleLoginRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeUserAppleLoginRequest(UserAppleLoginRequest? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeUserAppleLoginRequest(
+  UserAppleLoginRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeUserAppleLoginRequestList(List<UserAppleLoginRequest>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeUserAppleLoginRequestList(
+  List<UserAppleLoginRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

@@ -10,7 +10,7 @@ class GlassTheme {
   static const Color textLightGray = Color(0xFF9CA3AF);
   static const Color cardWhite = Colors.white;
   static const Color danger = Color(0xFFEF4444);
-  
+
   // --- Shadows (Liquid Glass Style) ---
   static List<BoxShadow> softShadow = [
     BoxShadow(
@@ -40,7 +40,7 @@ class GlassTheme {
   static BorderRadius radius16 = BorderRadius.circular(16);
   static BorderRadius radius24 = BorderRadius.circular(24);
   static BorderRadius radiusMax = BorderRadius.circular(999);
-  
+
   // --- Border Styles ---
   static BorderSide thinBorder = BorderSide(
     color: Colors.black.withValues(alpha: 0.05),

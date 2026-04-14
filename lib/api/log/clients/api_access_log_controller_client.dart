@@ -16,7 +16,8 @@ part 'api_access_log_controller_client.g.dart';
 
 @RestApi(parser: Parser.FlutterCompute)
 abstract class ApiAccessLogControllerClient {
-  factory ApiAccessLogControllerClient(Dio dio, {String? baseUrl}) = _ApiAccessLogControllerClient;
+  factory ApiAccessLogControllerClient(Dio dio, {String? baseUrl}) =
+      _ApiAccessLogControllerClient;
 
   /// 分页获取API访问日志列表.
   ///

@@ -28,9 +28,10 @@ class PageUserVo {
     this.countId,
     this.pages,
   });
-  
-  factory PageUserVo.fromJson(Map<String, Object?> json) => _$PageUserVoFromJson(json);
-  
+
+  factory PageUserVo.fromJson(Map<String, Object?> json) =>
+      _$PageUserVoFromJson(json);
+
   final List<UserVo>? records;
   final int? total;
   final int? size;
@@ -50,11 +51,13 @@ class PageUserVo {
 FutureOr<PageUserVo> deserializePageUserVo(Map<String, dynamic> json) =>
     PageUserVo.fromJson(json);
 
-FutureOr<List<PageUserVo>> deserializePageUserVoList(List<Map<String, dynamic>> json) =>
-    json.map((e) => PageUserVo.fromJson(e)).toList();
+FutureOr<List<PageUserVo>> deserializePageUserVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => PageUserVo.fromJson(e)).toList();
 
 FutureOr<Map<String, dynamic>> serializePageUserVo(PageUserVo? object) =>
     object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializePageUserVoList(List<PageUserVo>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializePageUserVoList(
+  List<PageUserVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

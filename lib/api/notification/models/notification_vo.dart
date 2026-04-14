@@ -29,9 +29,10 @@ class NotificationVo {
     this.createTime,
     this.updateTime,
   });
-  
-  factory NotificationVo.fromJson(Map<String, Object?> json) => _$NotificationVoFromJson(json);
-  
+
+  factory NotificationVo.fromJson(Map<String, Object?> json) =>
+      _$NotificationVoFromJson(json);
+
   /// 通知ID
   final int? id;
 
@@ -80,11 +81,14 @@ class NotificationVo {
 FutureOr<NotificationVo> deserializeNotificationVo(Map<String, dynamic> json) =>
     NotificationVo.fromJson(json);
 
-FutureOr<List<NotificationVo>> deserializeNotificationVoList(List<Map<String, dynamic>> json) =>
-    json.map((e) => NotificationVo.fromJson(e)).toList();
+FutureOr<List<NotificationVo>> deserializeNotificationVoList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => NotificationVo.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeNotificationVo(NotificationVo? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeNotificationVo(
+  NotificationVo? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeNotificationVoList(List<NotificationVo>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeNotificationVoList(
+  List<NotificationVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

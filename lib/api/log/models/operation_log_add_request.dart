@@ -26,9 +26,10 @@ class OperationLogAddRequest {
     this.location,
     this.userAgent,
   });
-  
-  factory OperationLogAddRequest.fromJson(Map<String, Object?> json) => _$OperationLogAddRequestFromJson(json);
-  
+
+  factory OperationLogAddRequest.fromJson(Map<String, Object?> json) =>
+      _$OperationLogAddRequestFromJson(json);
+
   /// 操作人ID
   final int? operatorId;
 
@@ -72,14 +73,18 @@ class OperationLogAddRequest {
 }
 
 // Flutter compute serialization functions for OperationLogAddRequest
-FutureOr<OperationLogAddRequest> deserializeOperationLogAddRequest(Map<String, dynamic> json) =>
-    OperationLogAddRequest.fromJson(json);
+FutureOr<OperationLogAddRequest> deserializeOperationLogAddRequest(
+  Map<String, dynamic> json,
+) => OperationLogAddRequest.fromJson(json);
 
-FutureOr<List<OperationLogAddRequest>> deserializeOperationLogAddRequestList(List<Map<String, dynamic>> json) =>
-    json.map((e) => OperationLogAddRequest.fromJson(e)).toList();
+FutureOr<List<OperationLogAddRequest>> deserializeOperationLogAddRequestList(
+  List<Map<String, dynamic>> json,
+) => json.map((e) => OperationLogAddRequest.fromJson(e)).toList();
 
-FutureOr<Map<String, dynamic>> serializeOperationLogAddRequest(OperationLogAddRequest? object) =>
-    object?.toJson() ?? <String, dynamic>{};
+FutureOr<Map<String, dynamic>> serializeOperationLogAddRequest(
+  OperationLogAddRequest? object,
+) => object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeOperationLogAddRequestList(List<OperationLogAddRequest>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeOperationLogAddRequestList(
+  List<OperationLogAddRequest>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];

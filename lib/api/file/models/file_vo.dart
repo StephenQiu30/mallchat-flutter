@@ -11,15 +11,10 @@ part 'file_vo.g.dart';
 /// 文件信息视图
 @JsonSerializable()
 class FileVo {
-  const FileVo({
-    this.url,
-    this.key,
-    this.fileName,
-    this.size,
-  });
-  
+  const FileVo({this.url, this.key, this.fileName, this.size});
+
   factory FileVo.fromJson(Map<String, Object?> json) => _$FileVoFromJson(json);
-  
+
   /// 文件访问链接
   final String? url;
 
@@ -45,5 +40,6 @@ FutureOr<List<FileVo>> deserializeFileVoList(List<Map<String, dynamic>> json) =>
 FutureOr<Map<String, dynamic>> serializeFileVo(FileVo? object) =>
     object?.toJson() ?? <String, dynamic>{};
 
-FutureOr<List<Map<String, dynamic>>> serializeFileVoList(List<FileVo>? objects) =>
-    objects?.map((e) => e.toJson()).toList() ?? [];
+FutureOr<List<Map<String, dynamic>>> serializeFileVoList(
+  List<FileVo>? objects,
+) => objects?.map((e) => e.toJson()).toList() ?? [];
