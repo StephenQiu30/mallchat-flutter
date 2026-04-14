@@ -14,11 +14,7 @@ class MobileMainPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final appController = Request.app;
 
-    const pages = [
-      ChatListPage(),
-      ContactsPage(),
-      ProfilePage(),
-    ];
+    const pages = [ChatListPage(), ContactsPage(), ProfilePage()];
 
     return Scaffold(
       body: Obx(() {
@@ -43,7 +39,10 @@ class MobileMainPage extends StatelessWidget {
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(TDIcons.chat_bubble_1),
-                activeIcon: Icon(TDIcons.chat_bubble_1, color: Color(0xFF3B82F6)),
+                activeIcon: Icon(
+                  TDIcons.chat_bubble_1,
+                  color: Color(0xFF3B82F6),
+                ),
                 label: "消息",
               ),
               BottomNavigationBarItem(
@@ -52,9 +51,9 @@ class MobileMainPage extends StatelessWidget {
                 label: "联系人",
               ),
               BottomNavigationBarItem(
-                icon: Icon(TDIcons.course),
-                activeIcon: Icon(TDIcons.course, color: Color(0xFF3B82F6)),
-                label: "动态",
+                icon: Icon(TDIcons.user_circle),
+                activeIcon: Icon(TDIcons.user_circle, color: Color(0xFF3B82F6)),
+                label: "我的",
               ),
             ],
             type: BottomNavigationBarType.fixed,

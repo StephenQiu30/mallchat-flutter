@@ -47,7 +47,11 @@ class ProfilePage extends StatelessWidget {
                           children: [
                             IconButton(
                               onPressed: () {},
-                              icon: const Icon(TDIcons.setting, color: Colors.white, size: 24),
+                              icon: const Icon(
+                                TDIcons.setting,
+                                color: Colors.white,
+                                size: 24,
+                              ),
                             ),
                           ],
                         ),
@@ -55,97 +59,140 @@ class ProfilePage extends StatelessWidget {
 
                       // Profile Card
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 10,
+                        ),
                         child: Container(
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: GlassTheme.radius24,
-                          boxShadow: GlassTheme.mediumShadow,
-                        ),
-                        child: Row(
-                          children: [
-                            // 用户头像
-                            MallChatAvatar(
-                              size: TDAvatarSize.large,
-                              avatarUrl: user?.userAvatar ?? 'https://api.dicebear.com/7.x/notionists/svg?seed=${user?.id ?? "Guest"}&backgroundColor=e2e8f0',
-                            ),
-                            const SizedBox(width: 16),
-                            // 用户信息
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    user?.userName ?? "未登录",
-                                    style: const TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
-                                      color: GlassTheme.textDark,
-                                      letterSpacing: 0.5,
+                          padding: const EdgeInsets.all(20),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: GlassTheme.radius24,
+                            boxShadow: GlassTheme.mediumShadow,
+                          ),
+                          child: Row(
+                            children: [
+                              // 用户头像
+                              MallChatAvatar(
+                                size: TDAvatarSize.large,
+                                avatarUrl:
+                                    user?.userAvatar ??
+                                    'https://api.dicebear.com/7.x/notionists/svg?seed=${user?.id ?? "Guest"}&backgroundColor=e2e8f0',
+                              ),
+                              const SizedBox(width: 16),
+                              // 用户信息
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      user?.userName ?? "未登录",
+                                      style: const TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                        color: GlassTheme.textDark,
+                                        letterSpacing: 0.5,
+                                      ),
                                     ),
-                                  ),
-                                  const SizedBox(height: 6),
-                                  // 优化的 UID 展示 (胶囊样式)
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                                    decoration: BoxDecoration(
-                                      color: GlassTheme.backgroundGray,
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text(
-                                          "ID: ${user?.id ?? '---'}",
-                                          style: const TextStyle(
-                                            fontSize: 12,
-                                            color: GlassTheme.textGray,
-                                            fontWeight: FontWeight.w500,
-                                            fontFamily: 'Monospace', // 使用等宽字体更有科技感
+                                    const SizedBox(height: 6),
+                                    // 优化的 UID 展示 (胶囊样式)
+                                    Container(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 10,
+                                        vertical: 4,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: GlassTheme.backgroundGray,
+                                        borderRadius: BorderRadius.circular(12),
+                                      ),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          Text(
+                                            "ID: ${user?.id ?? '---'}",
+                                            style: const TextStyle(
+                                              fontSize: 12,
+                                              color: GlassTheme.textGray,
+                                              fontWeight: FontWeight.w500,
+                                              fontFamily:
+                                                  'Monospace', // 使用等宽字体更有科技感
+                                            ),
                                           ),
-                                        ),
-                                        const SizedBox(width: 4),
-                                        Icon(TDIcons.copy, size: 12, color: Colors.blue.withValues(alpha: 0.6)),
-                                      ],
+                                          const SizedBox(width: 4),
+                                          Icon(
+                                            TDIcons.copy,
+                                            size: 12,
+                                            color: Colors.blue.withValues(
+                                              alpha: 0.6,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                            // 右侧二维码
-                            Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: GlassTheme.backgroundGray,
-                                shape: BoxShape.circle,
+                              // 右侧二维码
+                              Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: GlassTheme.backgroundGray,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Icon(
+                                  TDIcons.qrcode,
+                                  size: 20,
+                                  color: Colors.black.withValues(alpha: 0.4),
+                                ),
                               ),
-                              child: Icon(TDIcons.qrcode, size: 20, color: Colors.black.withValues(alpha: 0.4)),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
                       ),
 
                       // Service Sections
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 16,
+                          vertical: 10,
+                        ),
                         child: Column(
                           children: [
                             _buildServiceGroup([
-                              const _ServiceItem(icon: TDIcons.wallet, title: "我的钱包"),
-                              const _ServiceItem(icon: TDIcons.app, title: "个性装扮"),
+                              const _ServiceItem(
+                                icon: TDIcons.wallet,
+                                title: "我的钱包",
+                              ),
+                              const _ServiceItem(
+                                icon: TDIcons.app,
+                                title: "个性装扮",
+                              ),
                             ]),
                             const SizedBox(height: 16),
                             _buildServiceGroup([
-                              const _ServiceItem(icon: TDIcons.star, title: "我的收藏"),
-                              const _ServiceItem(icon: TDIcons.file_copy, title: "文件传输助手"),
-                              const _ServiceItem(icon: TDIcons.image, title: "相册动态"),
+                              const _ServiceItem(
+                                icon: TDIcons.star,
+                                title: "我的收藏",
+                              ),
+                              const _ServiceItem(
+                                icon: TDIcons.file_copy,
+                                title: "文件传输助手",
+                              ),
+                              const _ServiceItem(
+                                icon: TDIcons.image,
+                                title: "相册动态",
+                              ),
                             ]),
                             const SizedBox(height: 16),
                             _buildServiceGroup([
-                              const _ServiceItem(icon: TDIcons.edit_1, title: "意见反馈"),
-                              const _ServiceItem(icon: TDIcons.info_circle, title: "关于 MallChat"),
+                              const _ServiceItem(
+                                icon: TDIcons.edit_1,
+                                title: "意见反馈",
+                              ),
+                              const _ServiceItem(
+                                icon: TDIcons.info_circle,
+                                title: "关于 MallChat",
+                              ),
                             ]),
                             const SizedBox(height: 24),
                             // Logout Button
@@ -155,7 +202,7 @@ class ProfilePage extends StatelessWidget {
                               type: TDButtonType.fill,
                               theme: TDButtonTheme.danger,
                               width: double.infinity,
-                              onTap: () => Request.app.logout(),
+                              onTap: () => Request.app.logoutRemote(),
                             ),
                             const SizedBox(height: 48),
                           ],
@@ -201,46 +248,11 @@ class ProfilePage extends StatelessWidget {
   }
 }
 
-class _StatItem extends StatelessWidget {
-  final String label;
-  final String count;
-  final IconData icon;
-
-  const _StatItem({required this.label, required this.count, required this.icon});
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Icon(icon, size: 24, color: GlassTheme.primaryBlue.withValues(alpha: 0.8)),
-        const SizedBox(height: 8),
-        Text(
-          count,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: GlassTheme.textDark,
-          ),
-        ),
-        const SizedBox(height: 2),
-        Text(
-          label,
-          style: const TextStyle(
-            fontSize: 12,
-            color: GlassTheme.textGray,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
 class _ServiceItem extends StatelessWidget {
   final IconData icon;
   final String title;
-  final String? subtitle;
 
-  const _ServiceItem({required this.icon, required this.title, this.subtitle});
+  const _ServiceItem({required this.icon, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -265,13 +277,12 @@ class _ServiceItem extends StatelessWidget {
                   ),
                 ),
               ),
-              if (subtitle != null)
-                Text(
-                  subtitle!,
-                  style: const TextStyle(fontSize: 13, color: GlassTheme.textGray),
-                ),
               const SizedBox(width: 4),
-              const Icon(TDIcons.chevron_right, size: 20, color: Color(0xFFD1D5DB)),
+              const Icon(
+                TDIcons.chevron_right,
+                size: 20,
+                color: Color(0xFFD1D5DB),
+              ),
             ],
           ),
         ),
