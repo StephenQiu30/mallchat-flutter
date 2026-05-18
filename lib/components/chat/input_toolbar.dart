@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
 
 class InputToolbar extends StatefulWidget {
-  const InputToolbar({super.key, required this.onSend, this.enabled = true});
+  const InputToolbar({
+    super.key,
+    required this.onSend,
+    this.onImagePicked,
+    this.enabled = true,
+  });
 
   final Function(String) onSend;
+  final Function(XFile image)? onImagePicked;
   final bool enabled;
 
   @override
@@ -13,15 +20,76 @@ class InputToolbar extends StatefulWidget {
 
 class _InputToolbarState extends State<InputToolbar> {
   final TextEditingController _controller = TextEditingController();
+  final ImagePicker _imagePicker = ImagePicker();
 
   void _handleSend() {
-    if (!widget.enabled) {
-      return;
-    }
+    if (!widget.enabled) return;
     if (_controller.text.trim().isNotEmpty) {
       widget.onSend(_controller.text.trim());
       _controller.clear();
     }
+  }
+
+  Future<void> _handleImagePick() async {
+    if (!widget.enabled) return;
+    try {
+      final image = await _imagePicker.pickImage(
+        source: ImageSource.gallery,
+        maxWidth: 1920,
+        maxHeight: 1920,
+        imageQuality: 85,
+      );
+      if (image != null && widget.onImagePicked != null) {
+        widget.onImagePicked!(image);
+      }
+    } catch (e) {
+      debugPrint('[InputToolbar] Image pick failed: $e');
+    }
+  }
+
+  Future<void> _handleCameraPick() async {
+    if (!widget.enabled) return;
+    try {
+      final image = await _imagePicker.pickImage(
+        source: ImageSource.camera,
+        maxWidth: 1920,
+        maxHeight: 1920,
+        imageQuality: 85,
+      );
+      if (image != null && widget.onImagePicked != null) {
+        widget.onImagePicked!(image);
+      }
+    } catch (e) {
+      debugPrint('[InputToolbar] Camera pick failed: $e');
+    }
+  }
+
+  void _showImageSourceSheet() {
+    showModalBottomSheet(
+      context: context,
+      builder: (sheetContext) => SafeArea(
+        child: Wrap(
+          children: [
+            ListTile(
+              leading: const Icon(Icons.photo_library),
+              title: const Text('从相册选择'),
+              onTap: () {
+                Navigator.pop(sheetContext);
+                _handleImagePick();
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.camera_alt),
+              title: const Text('拍照'),
+              onTap: () {
+                Navigator.pop(sheetContext);
+                _handleCameraPick();
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   @override
@@ -49,6 +117,7 @@ class _InputToolbarState extends State<InputToolbar> {
             TDIcons.add_circle,
             color: const Color(0xFF9CA3AF),
             enabled: widget.enabled,
+            onTap: _showImageSourceSheet,
           ),
           const SizedBox(width: 8),
           Expanded(
@@ -101,9 +170,14 @@ class _InputToolbarState extends State<InputToolbar> {
     );
   }
 
-  Widget _buildActionIcon(IconData icon, {Color? color, bool enabled = true}) {
+  Widget _buildActionIcon(
+    IconData icon, {
+    Color? color,
+    bool enabled = true,
+    VoidCallback? onTap,
+  }) {
     return InkWell(
-      onTap: enabled ? () {} : null,
+      onTap: enabled ? onTap : null,
       borderRadius: BorderRadius.circular(20),
       child: Padding(
         padding: const EdgeInsets.all(6),
