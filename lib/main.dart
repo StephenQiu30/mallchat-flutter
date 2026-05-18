@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mallchat_flutter/store/app_store.dart';
 import 'package:mallchat_flutter/store/chat_store.dart';
 import 'package:mallchat_flutter/store/contact_store.dart';
+import 'package:mallchat_flutter/providers/auth_provider.dart';
+import 'package:mallchat_flutter/providers/chat_provider.dart';
+import 'package:mallchat_flutter/providers/contact_provider.dart';
+import 'package:mallchat_flutter/services/websocket_service.dart';
 import 'layout/responsive_layout.dart';
 
 void main() async {
@@ -13,13 +18,36 @@ void main() async {
   final prefs = await SharedPreferences.getInstance();
   Get.put(prefs, permanent: true);
 
-  // Initialize Global Stores
+  // Initialize Global Stores (GetX)
   Get.put(AppStore());
   Get.put(ChatStore());
   Get.put(ContactStore());
   Get.find<AppStore>().bootstrapAfterLogin();
 
-  runApp(const MallChatApp());
+  // Initialize Providers
+  final authProvider = AuthProvider(prefs);
+  final chatProvider = ChatProvider();
+  final contactProvider = ContactProvider();
+
+  // Set current user for chat provider
+  chatProvider.setCurrentUser(authProvider.userProfile);
+
+  // Initialize WebSocket service
+  if (authProvider.isLoggedIn) {
+    WebSocketService.instance.connect();
+    chatProvider.initWebSocketListeners();
+  }
+
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: authProvider),
+        ChangeNotifierProvider.value(value: chatProvider),
+        ChangeNotifierProvider.value(value: contactProvider),
+      ],
+      child: const MallChatApp(),
+    ),
+  );
 }
 
 class MallChatApp extends StatelessWidget {

@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:mallchat_flutter/common/enums.dart';
 import 'package:mallchat_flutter/models/chat_message_item.dart';
 import 'package:mallchat_flutter/styles/glass_theme.dart';
 import 'package:mallchat_flutter/api/request.dart';
 import 'package:mallchat_flutter/components/chat/input_toolbar.dart';
 import 'package:mallchat_flutter/components/common/mallchat_avatar.dart';
+import 'package:mallchat_flutter/services/api/upload_service.dart';
 import 'package:tdesign_flutter/tdesign_flutter.dart';
 
 class ChatDetailPage extends StatelessWidget {
@@ -94,6 +97,17 @@ class ChatDetailPage extends StatelessWidget {
                       ? "${message.createTime!.hour}:${message.createTime!.minute.toString().padLeft(2, '0')}"
                       : '';
 
+                  final messageType = MessageType.fromValue(message.type);
+
+                  if (messageType == MessageType.image) {
+                    return _buildImageBubble(
+                      isSelf,
+                      item,
+                      timeStr,
+                      () => chatController.retrySend(item.clientId ?? ''),
+                    );
+                  }
+
                   return _buildMessageBubble(
                     isSelf,
                     item,
@@ -108,11 +122,24 @@ class ChatDetailPage extends StatelessWidget {
             () => InputToolbar(
               enabled: chatController.activeRoomId.value != null,
               onSend: (text) => chatController.sendTextMessage(text),
+              onImagePicked: (image) => _handleImageSend(image),
             ),
           ),
         ],
       ),
     );
+  }
+
+  Future<void> _handleImageSend(XFile image) async {
+    try {
+      // 上传图片到文件服务
+      final imageUrl = await UploadService.uploadImage(image.path);
+      if (imageUrl != null) {
+        await Request.chat.sendImageMessage(imageUrl);
+      }
+    } catch (e) {
+      debugPrint('[ChatDetailPage] Image send failed: $e');
+    }
   }
 
   Widget _buildLoadMore(int roomId) {
@@ -148,6 +175,134 @@ class ChatDetailPage extends StatelessWidget {
     );
   }
 
+  Widget _buildImageBubble(
+    bool isSelf,
+    ChatMessageItem item,
+    String time,
+    VoidCallback onRetry,
+  ) {
+    final message = item.message;
+    final avatar = message.fromUserAvatar ?? '';
+    final sender = message.fromUserName ?? '未知用户';
+    final deliveryState = Request.chat.deliveryState(item);
+    final imageUrl = message.content ?? '';
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Row(
+        mainAxisAlignment:
+            isSelf ? MainAxisAlignment.end : MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          if (!isSelf) ...[
+            MallChatAvatar(
+              size: TDAvatarSize.medium,
+              avatarUrl: avatar.isNotEmpty
+                  ? avatar
+                  : 'https://api.dicebear.com/7.x/notionists/svg?seed=Guest&backgroundColor=e2e8f0',
+            ),
+            const SizedBox(width: 10),
+          ],
+          Flexible(
+            child: Column(
+              crossAxisAlignment:
+                  isSelf ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+              children: [
+                if (!isSelf)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 4, left: 2),
+                    child: Text(
+                      sender,
+                      style: const TextStyle(
+                        color: GlassTheme.textLightGray,
+                        fontSize: 11,
+                      ),
+                    ),
+                  ),
+                Container(
+                  constraints: const BoxConstraints(maxWidth: 240, maxHeight: 320),
+                  decoration: BoxDecoration(
+                    color: isSelf
+                        ? GlassTheme.primaryBlue.withValues(alpha: 0.1)
+                        : GlassTheme.cardWhite,
+                    borderRadius: BorderRadius.circular(12),
+                    boxShadow: GlassTheme.softShadow,
+                  ),
+                  clipBehavior: Clip.antiAlias,
+                  child: imageUrl.isNotEmpty
+                      ? Image.network(
+                          imageUrl,
+                          fit: BoxFit.cover,
+                          loadingBuilder: (context, child, loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return const SizedBox(
+                              width: 160,
+                              height: 160,
+                              child: Center(
+                                child: CircularProgressIndicator(strokeWidth: 2),
+                              ),
+                            );
+                          },
+                          errorBuilder: (context, error, stackTrace) {
+                            return const SizedBox(
+                              width: 160,
+                              height: 120,
+                              child: Center(
+                                child: Icon(
+                                  Icons.broken_image,
+                                  color: GlassTheme.textLightGray,
+                                  size: 32,
+                                ),
+                              ),
+                            );
+                          },
+                        )
+                      : const SizedBox(
+                          width: 120,
+                          height: 120,
+                          child: Center(
+                            child: Icon(
+                              Icons.image,
+                              color: GlassTheme.textLightGray,
+                              size: 32,
+                            ),
+                          ),
+                        ),
+                ),
+                const SizedBox(height: 4),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      time,
+                      style: const TextStyle(
+                        color: GlassTheme.textLightGray,
+                        fontSize: 11,
+                      ),
+                    ),
+                    if (item.clientId != null) ...[
+                      const SizedBox(width: 6),
+                      _buildDeliveryLabel(deliveryState, onRetry),
+                    ],
+                  ],
+                ),
+              ],
+            ),
+          ),
+          if (isSelf) ...[
+            const SizedBox(width: 10),
+            MallChatAvatar(
+              size: TDAvatarSize.medium,
+              avatarUrl: avatar.isNotEmpty
+                  ? avatar
+                  : 'https://api.dicebear.com/7.x/notionists/svg?seed=${Request.app.userProfile.value?.id ?? "Me"}&backgroundColor=e2e8f0',
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
   Widget _buildMessageBubble(
     bool isSelf,
     ChatMessageItem item,
@@ -164,9 +319,8 @@ class ChatDetailPage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Row(
-        mainAxisAlignment: isSelf
-            ? MainAxisAlignment.end
-            : MainAxisAlignment.start,
+        mainAxisAlignment:
+            isSelf ? MainAxisAlignment.end : MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (!isSelf) ...[
@@ -180,9 +334,8 @@ class ChatDetailPage extends StatelessWidget {
           ],
           Flexible(
             child: Column(
-              crossAxisAlignment: isSelf
-                  ? CrossAxisAlignment.end
-                  : CrossAxisAlignment.start,
+              crossAxisAlignment:
+                  isSelf ? CrossAxisAlignment.end : CrossAxisAlignment.start,
               children: [
                 if (!isSelf)
                   Padding(
@@ -201,9 +354,8 @@ class ChatDetailPage extends StatelessWidget {
                     vertical: 10,
                   ),
                   decoration: BoxDecoration(
-                    color: isSelf
-                        ? GlassTheme.primaryBlue
-                        : GlassTheme.cardWhite,
+                    color:
+                        isSelf ? GlassTheme.primaryBlue : GlassTheme.cardWhite,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(isSelf ? 16 : 4),
                       topRight: Radius.circular(isSelf ? 4 : 16),
@@ -219,9 +371,8 @@ class ChatDetailPage extends StatelessWidget {
                       color: isSelf
                           ? GlassTheme.cardWhite
                           : GlassTheme.textDark,
-                      fontStyle: isRecalled
-                          ? FontStyle.italic
-                          : FontStyle.normal,
+                      fontStyle:
+                          isRecalled ? FontStyle.italic : FontStyle.normal,
                     ),
                   ),
                 ),
