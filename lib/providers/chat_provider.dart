@@ -470,7 +470,10 @@ class ChatProvider extends ChangeNotifier {
   }
 
   void _prependMessage(int roomId, ChatMessageItem item) {
-    final next = [item, ...(_messagesByRoom[roomId] ?? const [])];
+    final next = <ChatMessageItem>[
+      item,
+      ...(_messagesByRoom[roomId] ?? const <ChatMessageItem>[]),
+    ];
     _messagesByRoom[roomId] = next;
   }
 
