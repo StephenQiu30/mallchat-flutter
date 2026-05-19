@@ -20,7 +20,7 @@ class AuthProvider extends ChangeNotifier {
   LoginUserVo? _userProfile;
   bool _isLoggedIn = false;
   bool _isInitialized = false;
-  bool _isBootstrapping = false;
+  final bool _isBootstrapping = false;
 
   // --- Getters ---
 
