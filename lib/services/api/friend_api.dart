@@ -17,7 +17,7 @@ class FriendApi {
   /// 直接添加好友（跳过申请流程）
   Future<void> addFriend(int userId) async {
     final response = await Request.chatClient.chatFriendController.addFriend(
-      body: ChatFriendAddRequest(targetUid: userId),
+      body: ChatFriendAddRequest(friendUserId: userId),
     );
     requireResponseSuccess(response, fallbackMessage: '添加好友失败');
   }

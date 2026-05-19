@@ -167,6 +167,23 @@ class ChatStore extends GetxController {
     }
   }
 
+  Future<void> sendImageMessage(String imageUrl, {int? roomId}) async {
+    final targetRoomId = roomId ?? activeRoomId.value;
+    if (targetRoomId == null || imageUrl.trim().isEmpty) {
+      return;
+    }
+
+    try {
+      await _chatService.sendImageMessage(
+        roomId: targetRoomId,
+        imageUrl: imageUrl.trim(),
+      );
+      await refreshSessions();
+    } catch (e) {
+      debugPrint('[ChatStore] Failed to send image message: $e');
+    }
+  }
+
   Future<void> retrySend(String clientId) async {
     final target = _findLocalMessage(clientId);
     if (target == null) {

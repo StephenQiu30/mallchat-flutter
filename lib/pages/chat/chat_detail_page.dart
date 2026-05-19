@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mallchat_flutter/common/enums.dart';
 import 'package:mallchat_flutter/models/chat_message_item.dart';
+import 'package:mallchat_flutter/store/chat_store.dart';
 import 'package:mallchat_flutter/styles/glass_theme.dart';
 import 'package:mallchat_flutter/api/request.dart';
 import 'package:mallchat_flutter/components/chat/input_toolbar.dart';
@@ -132,10 +133,10 @@ class ChatDetailPage extends StatelessWidget {
 
   Future<void> _handleImageSend(XFile image) async {
     try {
-      // 上传图片到文件服务
       final imageUrl = await UploadService.uploadImage(image.path);
       if (imageUrl != null) {
-        await Request.chat.sendImageMessage(imageUrl);
+        final chatStore = Get.find<ChatStore>();
+        await chatStore.sendImageMessage(imageUrl);
       }
     } catch (e) {
       debugPrint('[ChatDetailPage] Image send failed: $e');
