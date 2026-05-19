@@ -56,6 +56,20 @@ class ChatService {
     );
   }
 
+  Future<int> sendImageMessage({
+    required int roomId,
+    required String imageUrl,
+  }) async {
+    final response = await Request.chatClient.chatMessageController.sendMessage(
+      body: ChatMessageSendRequest(roomId: roomId, content: imageUrl, type: 2),
+    );
+    return requireResponseData<int>(
+      response,
+      fallbackMessage: '发送图片消息失败',
+      emptyDataMessage: '图片消息发送结果为空',
+    );
+  }
+
   Future<void> markMessageRead({
     required int roomId,
     required int lastReadMessageId,
