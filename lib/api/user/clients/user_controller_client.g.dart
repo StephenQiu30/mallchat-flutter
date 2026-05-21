@@ -20,7 +20,7 @@ class _UserControllerClient implements UserControllerClient {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<BaseResponseBoolean> updateUser({
+  Future<BaseResponseUserOperationResultVo> updateUser({
     required UserUpdateRequest body,
   }) async {
     final _extra = <String, dynamic>{};
@@ -28,7 +28,7 @@ class _UserControllerClient implements UserControllerClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(await compute(serializeUserUpdateRequest, body));
-    final _options = _setStreamType<BaseResponseBoolean>(
+    final _options = _setStreamType<BaseResponseUserOperationResultVo>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -39,9 +39,12 @@ class _UserControllerClient implements UserControllerClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late BaseResponseBoolean _value;
+    late BaseResponseUserOperationResultVo _value;
     try {
-      _value = await compute(deserializeBaseResponseBoolean, _result.data!);
+      _value = await compute(
+        deserializeBaseResponseUserOperationResultVo,
+        _result.data!,
+      );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -50,12 +53,12 @@ class _UserControllerClient implements UserControllerClient {
   }
 
   @override
-  Future<BaseResponseBoolean> userLogout() async {
+  Future<BaseResponseUserOperationResultVo> userLogout() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<BaseResponseBoolean>(
+    final _options = _setStreamType<BaseResponseUserOperationResultVo>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -66,9 +69,12 @@ class _UserControllerClient implements UserControllerClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late BaseResponseBoolean _value;
+    late BaseResponseUserOperationResultVo _value;
     try {
-      _value = await compute(deserializeBaseResponseBoolean, _result.data!);
+      _value = await compute(
+        deserializeBaseResponseUserOperationResultVo,
+        _result.data!,
+      );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -137,7 +143,7 @@ class _UserControllerClient implements UserControllerClient {
   }
 
   @override
-  Future<BaseResponseBoolean> sendEmailCode({
+  Future<BaseResponseUserOperationResultVo> sendEmailCode({
     required UserEmailCodeRequest body,
   }) async {
     final _extra = <String, dynamic>{};
@@ -145,7 +151,7 @@ class _UserControllerClient implements UserControllerClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(await compute(serializeUserEmailCodeRequest, body));
-    final _options = _setStreamType<BaseResponseBoolean>(
+    final _options = _setStreamType<BaseResponseUserOperationResultVo>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -156,9 +162,12 @@ class _UserControllerClient implements UserControllerClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late BaseResponseBoolean _value;
+    late BaseResponseUserOperationResultVo _value;
     try {
-      _value = await compute(deserializeBaseResponseBoolean, _result.data!);
+      _value = await compute(
+        deserializeBaseResponseUserOperationResultVo,
+        _result.data!,
+      );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -227,7 +236,7 @@ class _UserControllerClient implements UserControllerClient {
   }
 
   @override
-  Future<BaseResponsePageUser> listUserByPage({
+  Future<BaseResponsePageUserVo> listUserByPage({
     required UserQueryRequest body,
   }) async {
     final _extra = <String, dynamic>{};
@@ -235,7 +244,7 @@ class _UserControllerClient implements UserControllerClient {
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(await compute(serializeUserQueryRequest, body));
-    final _options = _setStreamType<BaseResponsePageUser>(
+    final _options = _setStreamType<BaseResponsePageUserVo>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -246,9 +255,9 @@ class _UserControllerClient implements UserControllerClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late BaseResponsePageUser _value;
+    late BaseResponsePageUserVo _value;
     try {
-      _value = await compute(deserializeBaseResponsePageUser, _result.data!);
+      _value = await compute(deserializeBaseResponsePageUserVo, _result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -287,13 +296,15 @@ class _UserControllerClient implements UserControllerClient {
   }
 
   @override
-  Future<BaseResponseBoolean> editUser({required UserEditRequest body}) async {
+  Future<BaseResponseUserOperationResultVo> editUser({
+    required UserEditRequest body,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(await compute(serializeUserEditRequest, body));
-    final _options = _setStreamType<BaseResponseBoolean>(
+    final _options = _setStreamType<BaseResponseUserOperationResultVo>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -304,9 +315,12 @@ class _UserControllerClient implements UserControllerClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late BaseResponseBoolean _value;
+    late BaseResponseUserOperationResultVo _value;
     try {
-      _value = await compute(deserializeBaseResponseBoolean, _result.data!);
+      _value = await compute(
+        deserializeBaseResponseUserOperationResultVo,
+        _result.data!,
+      );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -315,13 +329,15 @@ class _UserControllerClient implements UserControllerClient {
   }
 
   @override
-  Future<BaseResponseBoolean> deleteUser({required DeleteRequest body}) async {
+  Future<BaseResponseUserOperationResultVo> deleteUser({
+    required UserIdRequest body,
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(await compute(serializeDeleteRequest, body));
-    final _options = _setStreamType<BaseResponseBoolean>(
+    _data.addAll(await compute(serializeUserIdRequest, body));
+    final _options = _setStreamType<BaseResponseUserOperationResultVo>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -332,9 +348,12 @@ class _UserControllerClient implements UserControllerClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late BaseResponseBoolean _value;
+    late BaseResponseUserOperationResultVo _value;
     try {
-      _value = await compute(deserializeBaseResponseBoolean, _result.data!);
+      _value = await compute(
+        deserializeBaseResponseUserOperationResultVo,
+        _result.data!,
+      );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -343,13 +362,13 @@ class _UserControllerClient implements UserControllerClient {
   }
 
   @override
-  Future<BaseResponseLong> addUser({required UserAddRequest body}) async {
+  Future<BaseResponseUserIdVo> addUser({required UserAddRequest body}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
     _data.addAll(await compute(serializeUserAddRequest, body));
-    final _options = _setStreamType<BaseResponseLong>(
+    final _options = _setStreamType<BaseResponseUserIdVo>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -360,9 +379,9 @@ class _UserControllerClient implements UserControllerClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late BaseResponseLong _value;
+    late BaseResponseUserIdVo _value;
     try {
-      _value = await compute(deserializeBaseResponseLong, _result.data!);
+      _value = await compute(deserializeBaseResponseUserIdVo, _result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -371,12 +390,12 @@ class _UserControllerClient implements UserControllerClient {
   }
 
   @override
-  Future<BaseResponseBoolean> isAdmin() async {
+  Future<BaseResponseUserAdminStatusVo> isAdmin() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<BaseResponseBoolean>(
+    final _options = _setStreamType<BaseResponseUserAdminStatusVo>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -387,9 +406,12 @@ class _UserControllerClient implements UserControllerClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late BaseResponseBoolean _value;
+    late BaseResponseUserAdminStatusVo _value;
     try {
-      _value = await compute(deserializeBaseResponseBoolean, _result.data!);
+      _value = await compute(
+        deserializeBaseResponseUserAdminStatusVo,
+        _result.data!,
+      );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -398,12 +420,15 @@ class _UserControllerClient implements UserControllerClient {
   }
 
   @override
-  Future<BaseResponseUser> getUserById({required int id}) async {
+  Future<BaseResponseUserVo> getUserById({
+    required UserIdRequest query,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'id': id};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(await compute(serializeUserIdRequest, query));
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<BaseResponseUser>(
+    final _options = _setStreamType<BaseResponseUserVo>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -414,9 +439,9 @@ class _UserControllerClient implements UserControllerClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late BaseResponseUser _value;
+    late BaseResponseUserVo _value;
     try {
-      _value = await compute(deserializeBaseResponseUser, _result.data!);
+      _value = await compute(deserializeBaseResponseUserVo, _result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
@@ -425,9 +450,12 @@ class _UserControllerClient implements UserControllerClient {
   }
 
   @override
-  Future<BaseResponseUserVo> getUserVoById({required int id}) async {
+  Future<BaseResponseUserVo> getUserVoById({
+    required UserIdRequest query,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'id': id};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(await compute(serializeUserIdRequest, query));
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<BaseResponseUserVo>(
@@ -453,10 +481,11 @@ class _UserControllerClient implements UserControllerClient {
 
   @override
   Future<BaseResponseListUserVo> getUserVoByIds({
-    required List<int> ids,
+    required UserIdsRequest query,
   }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'ids': ids};
+    final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(await compute(serializeUserIdsRequest, query));
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<BaseResponseListUserVo>(

@@ -7,9 +7,9 @@ import 'package:flutter/foundation.dart' show compute;
 import 'package:retrofit/retrofit.dart';
 
 import '../models/ai_chat_record_query_request.dart';
-import '../models/base_response_boolean.dart';
+import '../models/ai_chat_record_delete_request.dart';
+import '../models/base_response_ai_operation_result_vo.dart';
 import '../models/base_response_page_ai_chat_record_vo.dart';
-import '../models/delete_request.dart';
 
 part 'ai_chat_record_controller_client.g.dart';
 
@@ -30,7 +30,7 @@ abstract class AiChatRecordControllerClient {
   ///
   /// 根据 ID 删除指定的对话记录，仅本人可删除.
   @POST('/ai/record/delete')
-  Future<BaseResponseBoolean> deleteAiChatRecord({
-    @Body() required DeleteRequest body,
+  Future<BaseResponseAiOperationResultVo> deleteAiChatRecord({
+    @Body() required AiChatRecordDeleteRequest body,
   });
 }
