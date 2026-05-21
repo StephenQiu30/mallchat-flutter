@@ -6,16 +6,16 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart' show compute;
 import 'package:retrofit/retrofit.dart';
 
-import '../models/base_response_boolean.dart';
 import '../models/base_response_list_user_vo.dart';
 import '../models/base_response_login_user_vo.dart';
-import '../models/base_response_long.dart';
-import '../models/base_response_page_user.dart';
 import '../models/base_response_page_user_vo.dart';
-import '../models/base_response_user.dart';
+import '../models/base_response_user_admin_status_vo.dart';
+import '../models/base_response_user_id_vo.dart';
+import '../models/base_response_user_operation_result_vo.dart';
 import '../models/base_response_user_vo.dart';
-import '../models/delete_request.dart';
 import '../models/user_add_request.dart';
+import '../models/user_id_request.dart';
+import '../models/user_ids_request.dart';
 import '../models/user_app_login_request.dart';
 import '../models/user_apple_login_request.dart';
 import '../models/user_edit_request.dart';
@@ -36,7 +36,7 @@ abstract class UserControllerClient {
   ///
   /// 管理员后台更新用户信息.
   @POST('/user/update')
-  Future<BaseResponseBoolean> updateUser({
+  Future<BaseResponseUserOperationResultVo> updateUser({
     @Body() required UserUpdateRequest body,
   });
 
@@ -44,7 +44,7 @@ abstract class UserControllerClient {
   ///
   /// 退出当前登录状态.
   @POST('/user/logout')
-  Future<BaseResponseBoolean> userLogout();
+  Future<BaseResponseUserOperationResultVo> userLogout();
 
   /// 微信小程序登录.
   ///
@@ -66,7 +66,7 @@ abstract class UserControllerClient {
   ///
   /// 向指定邮箱发送 6 位数登录验证码.
   @POST('/user/login/email/code')
-  Future<BaseResponseBoolean> sendEmailCode({
+  Future<BaseResponseUserOperationResultVo> sendEmailCode({
     @Body() required UserEmailCodeRequest body,
   });
 
@@ -90,7 +90,7 @@ abstract class UserControllerClient {
   ///
   /// 管理员分页查询原始用户信息.
   @POST('/user/list/page')
-  Future<BaseResponsePageUser> listUserByPage({
+  Future<BaseResponsePageUserVo> listUserByPage({
     @Body() required UserQueryRequest body,
   });
 
@@ -106,50 +106,58 @@ abstract class UserControllerClient {
   ///
   /// 当前登录用户编辑自己的个人资料.
   @POST('/user/edit')
-  Future<BaseResponseBoolean> editUser({@Body() required UserEditRequest body});
+  Future<BaseResponseUserOperationResultVo> editUser({
+    @Body() required UserEditRequest body,
+  });
 
   /// 删除用户.
   ///
   /// 删除指定 ID 的用户（仅本人或管理员）.
   @POST('/user/delete')
-  Future<BaseResponseBoolean> deleteUser({@Body() required DeleteRequest body});
+  Future<BaseResponseUserOperationResultVo> deleteUser({
+    @Body() required UserIdRequest body,
+  });
 
   /// 创建用户.
   ///
   /// 管理员手动创建新用户.
   @POST('/user/add')
-  Future<BaseResponseLong> addUser({@Body() required UserAddRequest body});
+  Future<BaseResponseUserIdVo> addUser({@Body() required UserAddRequest body});
 
   /// 是否管理员.
   ///
   /// 返回当前登录用户是否为管理员.
   @GET('/user/is/admin')
-  Future<BaseResponseBoolean> isAdmin();
+  Future<BaseResponseUserAdminStatusVo> isAdmin();
 
   /// 根据ID获取用户.
   ///
   /// 根据用户ID获取用户详细信息（仅管理员）.
   ///
-  /// [id] - 用户ID.
+  /// [query] - 用户ID请求.
   @GET('/user/get')
-  Future<BaseResponseUser> getUserById({@Query('id') required int id});
+  Future<BaseResponseUserVo> getUserById({
+    @Queries() required UserIdRequest query,
+  });
 
   /// 根据ID获取用户视图对象.
   ///
   /// 根据用户ID获取用户脱敏后的视图对象.
   ///
-  /// [id] - 用户ID.
+  /// [query] - 用户ID请求.
   @GET('/user/get/vo')
-  Future<BaseResponseUserVo> getUserVoById({@Query('id') required int id});
+  Future<BaseResponseUserVo> getUserVoById({
+    @Queries() required UserIdRequest query,
+  });
 
   /// 批量获取用户视图对象.
   ///
   /// 根据用户ID列表批量获取用户脱敏后的视图对象.
   ///
-  /// [ids] - 用户ID列表.
+  /// [query] - 用户ID列表请求.
   @GET('/user/get/vo/batch')
   Future<BaseResponseListUserVo> getUserVoByIds({
-    @Query('ids') required List<int> ids,
+    @Queries() required UserIdsRequest query,
   });
 
   /// 获取当前登录用户.

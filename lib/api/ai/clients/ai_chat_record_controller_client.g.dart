@@ -53,15 +53,15 @@ class _AiChatRecordControllerClient implements AiChatRecordControllerClient {
   }
 
   @override
-  Future<BaseResponseBoolean> deleteAiChatRecord({
-    required DeleteRequest body,
+  Future<BaseResponseAiOperationResultVo> deleteAiChatRecord({
+    required AiChatRecordDeleteRequest body,
   }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(await compute(serializeDeleteRequest, body));
-    final _options = _setStreamType<BaseResponseBoolean>(
+    _data.addAll(await compute(serializeAiChatRecordDeleteRequest, body));
+    final _options = _setStreamType<BaseResponseAiOperationResultVo>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
         _dio.options,
@@ -72,9 +72,12 @@ class _AiChatRecordControllerClient implements AiChatRecordControllerClient {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, Object?>>(_options);
-    late BaseResponseBoolean _value;
+    late BaseResponseAiOperationResultVo _value;
     try {
-      _value = await compute(deserializeBaseResponseBoolean, _result.data!);
+      _value = await compute(
+        deserializeBaseResponseAiOperationResultVo,
+        _result.data!,
+      );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
       rethrow;
