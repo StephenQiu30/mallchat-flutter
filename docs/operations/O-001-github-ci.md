@@ -47,7 +47,7 @@ CI 配置位于 `.github/workflows/ci.yml`。
 
 ### 触发条件
 
-1. push 到 `master` 分支。
+1. push 到 `main` 分支。
 2. 面向当前默认分支的 pull request。
 
 ### 检查内容
