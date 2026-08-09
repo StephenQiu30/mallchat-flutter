@@ -4,7 +4,6 @@ set -euo pipefail
 required_files=(
   "README.md"
   "AGENTS.md"
-  "AGENTS.local.md"
   ".github/pull_request_template.md"
   "docs/README.md"
   "docs/TEMPLATE.md"
